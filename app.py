@@ -2,18 +2,18 @@
 # -*- coding: utf-8 -*-
 """
 ================================================================================
-ALKHALED ULTIMATE NODE ñ «·≈’œ«— «·‘«„· „⁄ «·«‰ ‘«— «·›Ì—Ê”Ì (Viral Propagation)
+ALKHALED ULTIMATE NODE ‚Äì √á√°√Ö√ï√è√á√ë √á√°√î√á√£√° √£√ö √á√°√á√§√ä√î√á√ë √á√°√ù√≠√ë√¶√ì√≠ (Viral Propagation)
 ================================================================================
-- 780+ ‰ﬁÿ… RPC ÕﬁÌﬁÌ…
-- 25+ „‰’… ﬂ„Ê„Ì… ÕﬁÌﬁÌ…
-- ‘»ﬂ… P2P ·« „—ﬂ“Ì… (libp2p + mDNS)
--  Œ“Ì‰ Ê Ê“Ì⁄ «·ﬂÊœ ⁄»— IPFS («‰ ‘«— ›Ì—Ê”Ì)
-- Pub/Sub „ ⁄œœ «·ﬁ‰Ê« 
-- MEV° „—«ÃÕ… Ã€—«›Ì…° –ﬂ«¡ «’ÿ‰«⁄Ì (MAB° PPO° Federated Learning° QuantumOptimizer° FHE)
-- ⁄ﬁ· „œ»— (ThinkingCore) „⁄ √Ê«„— ⁄—»Ì…
-- ExperienceDB ÕﬁÌﬁÌ (SQLite)
-- œ«·… Õﬁ‰ ›Ì AlKhaledUltimateAgent
-- «‰ ‘«— ›Ì—Ê”Ì: «·⁄ﬁœ…  »ÕÀ ⁄‰ ﬂÊœ „ÕœÀ „‰ «·√ﬁ—«‰ Ê ÕœÀ ‰›”Â«  ·ﬁ«∆Ì«° Ê ‰‘— ﬂÊœÂ« ··√ﬁ—«‰ «·Ãœœ.
+- 780+ √§√û√ò√â RPC √ç√û√≠√û√≠√â
+- 25+ √£√§√ï√â √ü√£√¶√£√≠√â √ç√û√≠√û√≠√â
+- √î√à√ü√â P2P √°√á √£√ë√ü√í√≠√â (libp2p + mDNS)
+- √ä√é√í√≠√§ √¶√ä√¶√í√≠√ö √á√°√ü√¶√è √ö√à√ë IPFS (√á√§√ä√î√á√ë √ù√≠√ë√¶√ì√≠)
+- Pub/Sub √£√ä√ö√è√è √á√°√û√§√¶√á√ä
+- MEV¬° √£√ë√á√å√ç√â √å√õ√ë√á√ù√≠√â¬° √ê√ü√á√Å √á√ï√ò√§√á√ö√≠ (MAB¬° PPO¬° Federated Learning¬° QuantumOptimizer¬° FHE)
+- √ö√û√° √£√è√à√ë (ThinkingCore) √£√ö √É√¶√á√£√ë √ö√ë√à√≠√â
+- ExperienceDB √ç√û√≠√û√≠ (SQLite)
+- √è√á√°√â √ç√û√§ √ù√≠ AlKhaledUltimateAgent
+- √á√§√ä√î√á√ë √ù√≠√ë√¶√ì√≠: √á√°√ö√û√è√â √ä√à√ç√ã √ö√§ √ü√¶√è √£√ç√è√ã √£√§ √á√°√É√û√ë√á√§ √¶√ä√ç√è√ã √§√ù√ì√•√á √ä√°√û√á√Ü√≠√á√∞¬° √¶√ä√§√î√ë √ü√¶√è√•√á √°√°√É√û√ë√á√§ √á√°√å√è√è.
 ================================================================================
 """
 
@@ -45,7 +45,7 @@ from enum import Enum
 import math
 import numpy as np
 
-# -------------------- ≈⁄œ«œ «· ”ÃÌ· --------------------
+# -------------------- √Ö√ö√è√á√è √á√°√ä√ì√å√≠√° --------------------
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -53,7 +53,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger('UltimateNode')
 
-# ==================== «·„ﬂ »«  «·«Œ Ì«—Ì… ====================
+# ==================== √á√°√£√ü√ä√à√á√ä √á√°√á√é√ä√≠√á√ë√≠√â ====================
 LIBP2P_AVAILABLE = False
 try:
     from libp2p import new_node
@@ -139,7 +139,7 @@ try:
 except ImportError:
     pass
 
-# ====================  ⁄—Ì›«  «·»Ì«‰«  «·√”«”Ì… ====================
+# ==================== √ä√ö√ë√≠√ù√á√ä √á√°√à√≠√á√§√á√ä √á√°√É√ì√á√ì√≠√â ====================
 class StrategyCategory(Enum):
     ARBITRAGE = "arbitrage"
     LIQUIDATION = "liquidation"
@@ -506,16 +506,16 @@ class ExperienceDB:
     async def close(self):
         pass
 
-# ==================== 1. RPC Manager (780 ‰ﬁÿ…) ====================
-# («·ﬁ«∆„… «·ﬂ»Ì—… «Œ ’«—« ñ ﬂ„« ›Ì «·≈’œ«—«  «·”«»ﬁ…)
+# ==================== 1. RPC Manager (780 √§√û√ò√â) ====================
+# (√á√°√û√á√Ü√£√â √á√°√ü√à√≠√ë√â √á√é√ä√ï√á√ë√á√∞ ‚Äì √ü√£√á √ù√≠ √á√°√Ö√ï√è√á√ë√á√ä √á√°√ì√á√à√û√â)
 ALL_RPCS = {
     'ethereum': [
         ('https://eth.llamarpc.com', 'us-east'),
         ('https://rpc.ankr.com/eth', 'eu-central'),
-        # ... (√ﬂÀ— „‰ 50 ‰ﬁÿ…)
+        # ... (√É√ü√ã√ë √£√§ 50 √§√û√ò√â)
     ],
     'bsc': [('https://bsc-dataseed1.binance.org', 'ap-east'), ...],
-    # ... 73 ‘»ﬂ…
+    # ... 73 √î√à√ü√â
 }
 
 class RPCEndpoint:
@@ -612,7 +612,7 @@ class RPCManager:
     async def close(self):
         await self.session.close()
 
-# ==================== 2. Quantum Manager (25+ „‰’…) ====================
+# ==================== 2. Quantum Manager (25+ √£√§√ï√â) ====================
 QUANTUM_PLATFORMS = [
     {'name': 'IBM Quantum', 'type': 'cloud', 'provider': 'ibm', 'framework': 'qiskit',
      'technology': 'superconducting', 'qubits': 127, 'public': True, 'needs_token': True},
@@ -806,7 +806,7 @@ class P2PNetwork:
 
     async def start(self):
         if not LIBP2P_AVAILABLE:
-            logger.warning("libp2p not available ñ P2P disabled")
+            logger.warning("libp2p not available ‚Äì P2P disabled")
             return
         try:
             self.host = await new_node(transport_opt=[f"/ip4/0.0.0.0/tcp/{self.port}"])
@@ -905,7 +905,7 @@ class P2PNetwork:
         finally:
             s.close()
 
-# ==================== 4. IPFS Distributor („⁄ «‰ ‘«— ›Ì—Ê”Ì) ====================
+# ==================== 4. IPFS Distributor (√£√ö √á√§√ä√î√á√ë √ù√≠√ë√¶√ì√≠) ====================
 class IPFSDistributor:
     def __init__(self):
         self.client = None
@@ -958,11 +958,11 @@ class IPFSDistributor:
         return False
 
     def get_cid_of_path(self, path: str) -> Optional[str]:
-        """«·Õ’Ê· ⁄·Ï CID ·„Õ ÊÏ „ÊÃÊœ »«·›⁄· (»œÊ‰ ≈⁄«œ… —›⁄)"""
+        """√á√°√ç√ï√¶√° √ö√°√¨ CID √°√£√ç√ä√¶√¨ √£√¶√å√¶√è √à√á√°√ù√ö√° (√à√è√¶√§ √Ö√ö√á√è√â √ë√ù√ö)"""
         if self.connected:
             try:
                 res = self.client.ls(path)
-                # ≈–« ﬂ«‰ «·„·› „ÊÃÊœ«° ‰Õ’· ⁄·Ï «·‹ hash „‰ «·ﬁ«∆„…
+                # √Ö√ê√á √ü√á√§ √á√°√£√°√ù √£√¶√å√¶√è√á√∞¬° √§√ç√ï√° √ö√°√¨ √á√°√ú hash √£√§ √á√°√û√á√Ü√£√â
                 if 'Objects' in res and res['Objects']:
                     return res['Objects'][0]['Hash']
             except:
@@ -1133,7 +1133,7 @@ class GeoArbitrage:
                 )
                 await self.pubsub.publish('opportunities', opp.to_dict())
 
-# ==================== 8. √œÊ«  –ﬂÌ… (MAB, PPO, Federated, QuantumOptimizer, FHE) ====================
+# ==================== 8. √É√è√¶√á√ä √ê√ü√≠√â (MAB, PPO, Federated, QuantumOptimizer, FHE) ====================
 class MABAgent:
     def __init__(self, epsilon: float = 0.1):
         self.epsilon = epsilon
@@ -1336,7 +1336,7 @@ class FHELayer:
         result = vec1 + vec2
         return result.serialize()
 
-# ==================== 9. «·⁄ﬁ· «·„œ»— (ThinkingCore) ====================
+# ==================== 9. √á√°√ö√û√° √á√°√£√è√à√ë (ThinkingCore) ====================
 class ThinkingCore:
     def __init__(self, node):
         self.node = node
@@ -1391,29 +1391,29 @@ class ThinkingCore:
                 suggestions.append({
                     'type': 'disable',
                     'strategy': agent_name,
-                    'reason': f'‰”»… ‰Ã«Õ „‰Œ›÷… Ãœ« ({perf["success_rate"]*100:.1f}%)',
-                    'action': ' ⁄ÿÌ· Â–Â «·«” —« ÌÃÌ… „ƒﬁ «'
+                    'reason': f'√§√ì√à√â √§√å√á√ç √£√§√é√ù√ñ√â √å√è√á√∞ ({perf["success_rate"]*100:.1f}%)',
+                    'action': '√ä√ö√ò√≠√° √•√ê√• √á√°√á√ì√ä√ë√á√ä√≠√å√≠√â √£√Ñ√û√ä√á√∞'
                 })
             elif perf['success_rate'] > 0.8 and perf['calls'] > 20:
                 suggestions.append({
                     'type': 'increase_weight',
                     'strategy': agent_name,
-                    'reason': f'‰”»… ‰Ã«Õ „„ «“… ({perf["success_rate"]*100:.1f}%)',
-                    'action': '“Ì«œ… Ê“‰ Â–Â «·«” —« ÌÃÌ… ›Ì «·«Œ Ì«—'
+                    'reason': f'√§√ì√à√â √§√å√á√ç √£√£√ä√á√í√â ({perf["success_rate"]*100:.1f}%)',
+                    'action': '√í√≠√á√è√â √¶√í√§ √•√ê√• √á√°√á√ì√ä√ë√á√ä√≠√å√≠√â √ù√≠ √á√°√á√é√ä√≠√á√ë'
                 })
         return suggestions
 
     async def apply_suggestion(self, suggestion_index: int) -> str:
         if suggestion_index < 0 or suggestion_index >= len(self.pending_suggestions):
-            return "? —ﬁ„ «ﬁ —«Õ €Ì— ’ÕÌÕ"
+            return "? √ë√û√£ √á√û√ä√ë√á√ç √õ√≠√ë √ï√ç√≠√ç"
         sugg = self.pending_suggestions[suggestion_index]
-        # Â‰« Ì„ﬂ‰  ÿ»Ìﬁ «· €ÌÌ— ›⁄·Ì« ⁄·Ï «·√Ê—ﬂ” —« Ê—
-        return f"?  „  ÿ»Ìﬁ «·«ﬁ —«Õ: {sugg['action']}"
+        # √•√§√á √≠√£√ü√§ √ä√ò√à√≠√û √á√°√ä√õ√≠√≠√ë √ù√ö√°√≠√á√∞ √ö√°√¨ √á√°√É√¶√ë√ü√ì√ä√ë√á√ä√¶√ë
+        return f"? √ä√£ √ä√ò√à√≠√û √á√°√á√û√ä√ë√á√ç: {sugg['action']}"
 
     async def consult_rl(self, question: str) -> str:
         if not self.rl_agent or not self.rl_agent.trained:
-            return "? ÊﬂÌ· RL €Ì— „œ—»"
-        return "?? RL: Ì‰’Õ »“Ì«œ… «· —ﬂÌ“ ⁄·Ï «” —« ÌÃÌ«  «·„—«ÃÕ…."
+            return "? √¶√ü√≠√° RL √õ√≠√ë √£√è√ë√à"
+        return "?? RL: √≠√§√ï√ç √à√í√≠√á√è√â √á√°√ä√ë√ü√≠√í √ö√°√¨ √á√ì√ä√ë√á√ä√≠√å√≠√á√ä √á√°√£√ë√á√å√ç√â."
 
     def _reshape_arabic(self, text: str) -> str:
         if ARABIC_SHAPE_AVAILABLE:
@@ -1424,62 +1424,62 @@ class ThinkingCore:
     async def execute_arabic(self, cmd: str) -> str:
         parts = cmd.strip().split()
         if not parts:
-            return "? √„— ›«—€"
-        if parts[0] in ["›ﬂ—", "Õ··", " Õ·Ì·"]:
+            return "? √É√£√ë √ù√á√ë√õ"
+        if parts[0] in ["√ù√ü√ë", "√ç√°√°", "√ä√ç√°√≠√°"]:
             analysis = await self.analyze(force=True)
             best = analysis['best_strategies'][:3]
             worst = analysis['worst_strategies'][:3]
             self.pending_suggestions = analysis['suggestions']
-            reply = f"?? «· Õ·Ì·:\n≈Ã„«·Ì «·√—»«Õ 7 √Ì«„: ${analysis['stats_7d'].get('total_profit', 0):.2f}\n"
-            reply += "√›÷· «·«” —« ÌÃÌ« :\n"
+            reply = f"?? √á√°√ä√ç√°√≠√°:\n√Ö√å√£√á√°√≠ √á√°√É√ë√à√á√ç 7 √É√≠√á√£: ${analysis['stats_7d'].get('total_profit', 0):.2f}\n"
+            reply += "√É√ù√ñ√° √á√°√á√ì√ä√ë√á√ä√≠√å√≠√á√ä:\n"
             for name, perf in best:
-                reply += f"  - {name}: —»Õ ${perf['profit']:.2f}, ‰Ã«Õ {perf['success_rate']*100:.1f}%\n"
-            reply += f"⁄œœ «·«ﬁ —«Õ« : {len(self.pending_suggestions)}"
+                reply += f"  - {name}: √ë√à√ç ${perf['profit']:.2f}, √§√å√á√ç {perf['success_rate']*100:.1f}%\n"
+            reply += f"√ö√è√è √á√°√á√û√ä√ë√á√ç√á√ä: {len(self.pending_suggestions)}"
             return self._reshape_arabic(reply)
-        elif parts[0] == "«ﬁ —«Õ" and len(parts) >= 2:
+        elif parts[0] == "√á√û√ä√ë√á√ç" and len(parts) >= 2:
             try:
                 idx = int(parts[1])
                 if idx < 0 or idx >= len(self.pending_suggestions):
-                    return f"? «ﬁ —«Õ {idx} €Ì— „ÊÃÊœ"
+                    return f"? √á√û√ä√ë√á√ç {idx} √õ√≠√ë √£√¶√å√¶√è"
                 sugg = self.pending_suggestions[idx]
-                return self._reshape_arabic(f"?? «ﬁ —«Õ {idx}: {sugg['type']} - {sugg['reason']}\n«·≈Ã—«¡: {sugg['action']}")
+                return self._reshape_arabic(f"?? √á√û√ä√ë√á√ç {idx}: {sugg['type']} - {sugg['reason']}\n√á√°√Ö√å√ë√á√Å: {sugg['action']}")
             except ValueError:
-                return "? —ﬁ„ €Ì— ’ÕÌÕ"
-        elif parts[0] in ["«ﬁ —«Õ« ", "suggestions"]:
+                return "? √ë√û√£ √õ√≠√ë √ï√ç√≠√ç"
+        elif parts[0] in ["√á√û√ä√ë√á√ç√á√ä", "suggestions"]:
             if not self.pending_suggestions:
-                return "·«  ÊÃœ «ﬁ —«Õ«  Õ«·Ì«"
-            reply = "?? «·«ﬁ —«Õ«  «·„⁄·ﬁ…:\n"
+                return "√°√á √ä√¶√å√è √á√û√ä√ë√á√ç√á√ä √ç√á√°√≠√á√∞"
+            reply = "?? √á√°√á√û√ä√ë√á√ç√á√ä √á√°√£√ö√°√û√â:\n"
             for i, sugg in enumerate(self.pending_suggestions):
                 reply += f"{i}: {sugg['type']} - {sugg['reason']}\n"
             return self._reshape_arabic(reply)
-        elif parts[0] == "ÿ»ﬁ" and len(parts) >= 2:
+        elif parts[0] == "√ò√à√û" and len(parts) >= 2:
             try:
                 idx = int(parts[1])
                 return await self.apply_suggestion(idx)
             except ValueError:
-                return "? —ﬁ„ €Ì— ’ÕÌÕ"
-        elif parts[0] == "«” ‘—" and len(parts) >= 2:
+                return "? √ë√û√£ √õ√≠√ë √ï√ç√≠√ç"
+        elif parts[0] == "√á√ì√ä√î√ë" and len(parts) >= 2:
             agent = parts[1]
-            if agent in ["rl", " ⁄·„ „⁄““"]:
+            if agent in ["rl", "√ä√ö√°√£ √£√ö√í√í"]:
                 return await self.consult_rl("")
             else:
-                return f"? ÊﬂÌ· {agent} €Ì— „⁄—Ê›"
-        elif parts[0] == "‰’ÌÕ…":
-            return self._reshape_arabic("?? ‰’ÌÕ…: —ﬂ“ ⁄·Ï «” —« ÌÃÌ«  «·„—«ÃÕ… ›Ì › —«  «· ﬁ·»«  «·⁄«·Ì….")
-        elif parts[0] in ["„”«⁄œ…", "help"]:
+                return f"? √¶√ü√≠√° {agent} √õ√≠√ë √£√ö√ë√¶√ù"
+        elif parts[0] == "√§√ï√≠√ç√â":
+            return self._reshape_arabic("?? √§√ï√≠√ç√â: √ë√ü√í √ö√°√¨ √á√ì√ä√ë√á√ä√≠√å√≠√á√ä √á√°√£√ë√á√å√ç√â √ù√≠ √ù√ä√ë√á√ä √á√°√ä√û√°√à√á√ä √á√°√ö√á√°√≠√â.")
+        elif parts[0] in ["√£√ì√á√ö√è√â", "help"]:
             return self._reshape_arabic("""
-?? √Ê«„— «·⁄ﬁ· «·„œ»—:
-- ›ﬂ— / Õ·· : ≈Ã—«¡  Õ·Ì· ÃœÌœ
-- «ﬁ —«Õ«  : ⁄—÷ ﬂ· «·«ﬁ —«Õ« 
-- «ﬁ —«Õ [—ﬁ„] : ⁄—÷  ›«’Ì· «ﬁ —«Õ
-- ÿ»ﬁ [—ﬁ„] :  ‰›Ì– «ﬁ —«Õ
-- «” ‘— rl : «” ‘«—… ÊﬂÌ· RL
-- ‰’ÌÕ… : ‰’ÌÕ… ⁄«„…
+?? √É√¶√á√£√ë √á√°√ö√û√° √á√°√£√è√à√ë:
+- √ù√ü√ë / √ç√°√° : √Ö√å√ë√á√Å √ä√ç√°√≠√° √å√è√≠√è
+- √á√û√ä√ë√á√ç√á√ä : √ö√ë√ñ √ü√° √á√°√á√û√ä√ë√á√ç√á√ä
+- √á√û√ä√ë√á√ç [√ë√û√£] : √ö√ë√ñ √ä√ù√á√ï√≠√° √á√û√ä√ë√á√ç
+- √ò√à√û [√ë√û√£] : √ä√§√ù√≠√ê √á√û√ä√ë√á√ç
+- √á√ì√ä√î√ë rl : √á√ì√ä√î√á√ë√â √¶√ü√≠√° RL
+- √§√ï√≠√ç√â : √§√ï√≠√ç√â √ö√á√£√â
 """)
         else:
-            return self._reshape_arabic("? √„— €Ì— „⁄—Ê›")
+            return self._reshape_arabic("? √É√£√ë √õ√≠√ë √£√ö√ë√¶√ù")
 
-# ==================== 10. «·⁄ﬁœ… «·—∆Ì”Ì… „⁄ «‰ ‘«— ›Ì—Ê”Ì ====================
+# ==================== 10. √á√°√ö√û√è√â √á√°√ë√Ü√≠√ì√≠√â √£√ö √á√§√ä√î√á√ë √ù√≠√ë√¶√ì√≠ ====================
 class UltimateNode:
     def __init__(self, config: dict = None):
         self.config = config or {}
@@ -1529,11 +1529,11 @@ class UltimateNode:
         await self.pubsub.subscribe('commands', self._on_command)
         await self.quantum.discover()
 
-        # ===== «‰ ‘«— ›Ì—Ê”Ì: „Õ«Ê·… «·Õ’Ê· ⁄·Ï ﬂÊœ „ÕœÀ „‰ «·√ﬁ—«‰ =====
+        # ===== √á√§√ä√î√á√ë √ù√≠√ë√¶√ì√≠: √£√ç√á√¶√°√â √á√°√ç√ï√¶√° √ö√°√¨ √ü√¶√è √£√ç√è√ã √£√§ √á√°√É√û√ë√á√§ =====
         if self.p2p and self.p2p.connected and len(self.p2p.peers) > 0:
             await self._fetch_latest_code_from_peers()
         else:
-            # ≈–« ·„  ﬂ‰ Â‰«ﬂ √ﬁ—«‰° «‰‘— «·ﬂÊœ «·Õ«·Ì ⁄·Ï IPFS
+            # √Ö√ê√á √°√£ √ä√ü√§ √•√§√á√ü √É√û√ë√á√§¬° √á√§√î√ë √á√°√ü√¶√è √á√°√ç√á√°√≠ √ö√°√¨ IPFS
             self.code_cid = self.ipfs.publish(self.code_path)
             if self.code_cid:
                 logger.info(f"Published initial code to IPFS: {self.code_cid}")
@@ -1546,15 +1546,15 @@ class UltimateNode:
             asyncio.create_task(self._quantum_loop()),
             asyncio.create_task(self._geo_loop()),
             asyncio.create_task(self._discovery_loop()),
-            asyncio.create_task(self._propagation_loop()),  # ‰‘— ›Ì—Ê”Ì
+            asyncio.create_task(self._propagation_loop()),  # √§√î√ë √ù√≠√ë√¶√ì√≠
             asyncio.create_task(self._stats_loop()),
             asyncio.create_task(self._health_check_loop()),
         ]
         logger.info(f"?? UltimateNode {self.node_id} started on port {self.port}, code CID: {self.code_cid}")
 
     async def _fetch_latest_code_from_peers(self):
-        """ÿ·» CID «·ﬂÊœ „‰ «·√ﬁ—«‰ Ê Õ„Ì·Â ≈–« ﬂ«‰ √ÕœÀ"""
-        for peer in list(self.p2p.peers)[:5]:  # Ã—» √Ê· 5 √ﬁ—«‰
+        """√ò√°√à CID √á√°√ü√¶√è √£√§ √á√°√É√û√ë√á√§ √¶√ä√ç√£√≠√°√• √Ö√ê√á √ü√á√§ √É√ç√è√ã"""
+        for peer in list(self.p2p.peers)[:5]:  # √å√ë√à √É√¶√° 5 √É√û√ë√á√§
             try:
                 r, w = await asyncio.open_connection(peer, self.port)
                 req = {'cmd': 'get_code_cid'}
@@ -1565,11 +1565,11 @@ class UltimateNode:
                 peer_cid = data.get('cid')
                 if peer_cid and peer_cid != self.code_cid:
                     logger.info(f"Found newer code from peer {peer}: {peer_cid}")
-                    #  Õ„Ì· «·ﬂÊœ «·ÃœÌœ
+                    # √ä√ç√£√≠√° √á√°√ü√¶√è √á√°√å√è√≠√è
                     if self.ipfs.fetch(peer_cid, '/tmp/newcode'):
-                        # „ﬁ«—‰… (Ì„ﬂ‰ ≈÷«›… «· Õﬁﬁ „‰ «·≈’œ«—)
+                        # √£√û√á√ë√§√â (√≠√£√ü√§ √Ö√ñ√á√ù√â √á√°√ä√ç√û√û √£√§ √á√°√Ö√ï√è√á√ë)
                         self.code_cid = peer_cid
-                        # ‰”Œ «·ﬂÊœ ≈·Ï «·„Ã·œ «·Õ«·Ì
+                        # √§√ì√é √á√°√ü√¶√è √Ö√°√¨ √á√°√£√å√°√è √á√°√ç√á√°√≠
                         subprocess.run(['cp', '-r', '/tmp/newcode/.', self.code_path])
                         logger.info("Code updated from peer. Restarting...")
                         os.execv(sys.executable, [sys.executable] + sys.argv)
