@@ -1,0 +1,1834 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+================================================================================
+AL-KHALED V20095 – CORE (ÇáÌÒÁ 1/3) – ÇáÅÕÏÇÑ ÇáäåÇÆí ÇáãõÕáÍ æÇáãßÊãá
+================================================================================
+- ÌãíÚ ÇáãíÒÇÊ ÇáÃÕáíÉ ãÍÝæÙÉ ÈÇáßÇãá.
+- ÅÖÇÝÉ ExecutionEngine æ ProfitReinvestor.
+- ÊÍÓíä PredictiveFailureDetector ÈÇÓÊÎÏÇã EWMA ãÚ ÚÊÈÉ ÏíäÇãíßíÉ.
+- ÊÍÓíä AddressAutoUpdater ÈÊÍÏíË ÍÞíÞí ãä RPC (ãËÇá áÚäÇæíä Uniswap).
+- ÅßãÇá WalletManager.transfer_token.
+- ÅÕáÇÍ ÌãíÚ ÇáÃÎØÇÁ ÇáÈÑãÌíÉ ÇáÓÇÈÞÉ.
+- ÅÖÇÝÉ ÂáíÇÊ ÅÚÇÏÉ ãÍÇæáÉ ÐßíÉ æÊÕäíÝ ÇáÃÎØÇÁ áßá ãÕÏÑ.
+- ÑÈØ ßÇãá ãÚ ãÕÇÏÑ ÈíÇäÇÊ ÍÞíÞíÉ ãÚ æÌæÏ fallbacks.
+================================================================================
+"""
+
+import asyncio
+import aiohttp
+import aiosqlite
+import json
+import os
+import sys
+import time
+import logging
+import hashlib
+import hmac
+import pickle
+import uuid
+import random
+import re
+import base64
+import ssl
+import socket
+import secrets
+import signal
+import mmap
+import struct
+import datetime
+import subprocess
+import smtplib
+import platform
+import shutil
+import threading
+import queue
+from collections import OrderedDict, defaultdict, deque
+from dataclasses import dataclass, field, asdict
+from datetime import datetime, timedelta
+from enum import Enum
+from typing import (Dict, List, Optional, Any, Tuple, Callable, Union, Set,
+                    Awaitable)
+from functools import wraps, partial
+from abc import ABC, abstractmethod
+import contextlib
+import inspect
+import weakref
+import math
+import traceback
+
+import numpy as np
+
+# ==================== ÇáãßÊÈÇÊ ÇáÇÎÊíÇÑíÉ ãÚ ÇÓÊíÑÇÏ Âãä ====================
+try:
+    from web3 import AsyncWeb3, Web3
+    from web3.providers import AsyncHTTPProvider
+    from web3.types import TxParams, Wei, Nonce
+    from eth_account import Account
+    from eth_account.signers.local import LocalAccount
+    from eth_account.messages import encode_defunct, encode_typed_data, encode_structured_data
+    from web3.middleware import async_geth_poa_middleware
+    WEB3_AVAILABLE = True
+except ImportError:
+    WEB3_AVAILABLE = False
+    AsyncWeb3 = Web3 = Account = None
+
+try:
+    import redis.asyncio as redis
+    REDIS_AVAILABLE = True
+except ImportError:
+    REDIS_AVAILABLE = False
+    redis = None
+
+try:
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+    from cryptography.hazmat.primitives import hashes
+    from cryptography.hazmat.backends import default_backend
+    CRYPTO_AVAILABLE = True
+except ImportError:
+    CRYPTO_AVAILABLE = False
+    AESGCM = None
+
+try:
+    import zstandard as zstd
+    ZSTD_AVAILABLE = True
+except ImportError:
+    ZSTD_AVAILABLE = False
+
+try:
+    import msgpack
+    MSGPACK_AVAILABLE = True
+except ImportError:
+    MSGPACK_AVAILABLE = False
+
+try:
+    import uvloop
+    uvloop.install()
+except ImportError:
+    pass
+
+try:
+    import telegram
+    from telegram.error import TelegramError
+    TELEGRAM_AVAILABLE = True
+except ImportError:
+    TELEGRAM_AVAILABLE = False
+
+try:
+    import asyncpg
+    POSTGRES_AVAILABLE = True
+except ImportError:
+    POSTGRES_AVAILABLE = False
+
+try:
+    import psutil
+    PSUTIL_AVAILABLE = True
+except ImportError:
+    PSUTIL_AVAILABLE = False
+
+try:
+    import requests
+    REQUESTS_AVAILABLE = True
+except ImportError:
+    REQUESTS_AVAILABLE = False
+
+try:
+    import schedule
+    SCHEDULE_AVAILABLE = True
+except ImportError:
+    SCHEDULE_AVAILABLE = False
+
+try:
+    from statsmodels.tsa.arima.model import ARIMA
+    ARIMA_AVAILABLE = True
+except ImportError:
+    ARIMA_AVAILABLE = False
+
+try:
+    from libp2p import new_node
+    from libp2p.peer.peerinfo import info_from_p2p_addr
+    from libp2p.typing import TProtocol
+    LIBP2P_AVAILABLE = True
+except ImportError:
+    LIBP2P_AVAILABLE = False
+
+try:
+    import torch
+    import torch.nn as nn
+    import torch.optim as optim
+    TORCH_AVAILABLE = True
+except ImportError:
+    TORCH_AVAILABLE = False
+
+try:
+    import pymysql
+    PYMYSQL_AVAILABLE = True
+except ImportError:
+    PYMYSQL_AVAILABLE = False
+
+try:
+    import psycopg2
+    PSYCOPG2_AVAILABLE = True
+except ImportError:
+    PSYCOPG2_AVAILABLE = False
+
+try:
+    from src.vault import Vault
+    from src.swap import SwapInput, SwapKind
+    from src.add_liquidity import AddLiquidityInput, AddLiquidityKind
+    from src.remove_liquidity import RemoveLiquidityInput, RemoveLiquidityKind
+    BALANCER_AVAILABLE = True
+except ImportError:
+    BALANCER_AVAILABLE = False
+
+try:
+    import numpy as np
+    import pandas as pd
+    from sklearn.ensemble import RandomForestRegressor
+    from sklearn.preprocessing import StandardScaler
+    ML_AVAILABLE = True
+except ImportError:
+    ML_AVAILABLE = False
+
+# ==================== ÇáãßÊÈÇÊ ÇáÅÖÇÝíÉ ááæßáÇÁ ÇáãÊÞÏãíä ====================
+try:
+    import boto3
+    from braket.aws import AwsDevice
+    from braket.devices import LocalSimulator
+    from braket.circuits import Circuit
+    BRAKET_AVAILABLE = True
+except ImportError:
+    BRAKET_AVAILABLE = False
+    AwsDevice = LocalSimulator = Circuit = None
+
+try:
+    import tenseal as ts
+    TENSEAL_AVAILABLE = True
+except ImportError:
+    TENSEAL_AVAILABLE = False
+    ts = None
+
+try:
+    from ape import project, accounts
+    APE_AVAILABLE = True
+except ImportError:
+    APE_AVAILABLE = False
+    project = accounts = None
+
+# ==================== ÅÚÏÇÏ ÇáÊÓÌíá ÇáãÊÞÏã ====================
+AUDIT_LEVEL = 25
+logging.addLevelName(AUDIT_LEVEL, "AUDIT")
+
+def audit(self, message, *args, **kws):
+    if self.isEnabledFor(AUDIT_LEVEL):
+        self._log(AUDIT_LEVEL, message, args, **kws)
+
+logging.Logger.audit = audit
+
+log_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger('AlKhaled')
+logger.setLevel(logging.INFO)
+
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setFormatter(log_formatter)
+logger.addHandler(console_handler)
+
+file_handler = logging.FileHandler('alkhaled.log')
+file_handler.setFormatter(log_formatter)
+logger.addHandler(file_handler)
+
+error_logger = logging.getLogger('AlKhaled.Error')
+error_logger.setLevel(logging.ERROR)
+error_handler = logging.FileHandler('alkhaled_errors.log')
+error_handler.setFormatter(log_formatter)
+error_logger.addHandler(error_handler)
+
+audit_logger = logging.getLogger('AlKhaled.Audit')
+audit_logger.setLevel(AUDIT_LEVEL)
+audit_handler = logging.FileHandler('alkhaled_audit.log')
+audit_handler.setFormatter(log_formatter)
+audit_logger.addHandler(audit_handler)
+
+# ==================== ÇáäãÇÐÌ ÇáÃÓÇÓíÉ ====================
+class GasType(Enum):
+    THIRD_PARTY = 1
+    LOAN = 2
+    SELF = 3
+    ZERO = 4
+
+class ExecutorType(Enum):
+    FLASHBOTS = "flashbots"
+    EDEN = "eden"
+    BLOXROUTE = "bloxroute"
+    FLASHBOTS_PROTECT = "flashbots_protect"
+    JITO = "jito"
+    PRIVATE_MEMPOOL = "private_mempool"
+    ZEROX = "0x"
+    ONEINCH = "1inch"
+    PARASWAP = "paraswap"
+    GELATO = "gelato"
+    CHAINLINK = "chainlink"
+    KEEP3R = "keep3r"
+    DEFENDER = "defender"
+    FORTA = "forta"
+    GRAPH = "graph"
+    PARSIQ = "parsiq"
+    COVALENT = "covalent"
+    HOP = "hop"
+    SYNAPSE = "synapse"
+    CELER = "celer"
+    MULTICHAIN = "multichain"
+    WORMHOLE = "wormhole"
+    AXELAR = "axelar"
+    LAYERZERO = "layerzero"
+    ACROSS = "across"
+    ANYSWAP = "anyswap"
+    COWSWAP = "cowswap"
+    PAYMASTER = "paymaster"
+    PERMIT2 = "permit2"
+    LIQUIDATION = "liquidation"
+    GOVERNANCE = "governance"
+    OPTIONS = "options"
+    REFERRAL = "referral"
+    JIT = "jit"
+    SELF_DESTRUCT = "self_destruct"
+    AIRDROP = "airdrop"
+    DONATION = "donation"
+    UNIVERSAL = "universal"
+    SELF = "self"
+    SIMPLE_TX = "simple_tx"
+    EIP2771 = "eip2771"
+    EIP7702 = "eip7702"
+    GSN = "gsn"
+    PERMIT = "permit"
+    BICONOMY = "biconomy"
+    PIMLICO = "pimlico"
+    STACKUP = "stackup"
+    CANDIDE = "candide"
+    MISTX = "mistx"
+    BALANCER_V3 = "balancer_v3"
+
+class StrategyCategory(Enum):
+    ARBITRAGE = "arbitrage"
+    LIQUIDATION = "liquidation"
+    MEV = "mev"
+    MARKET = "market"
+    LENDING = "lending"
+    STAKING = "staking"
+    FLASH_LOAN = "flash_loan"
+    YIELD = "yield"
+    LIQUIDITY = "liquidity"
+    ORACLE = "oracle"
+    PRICE_FEED = "price_feed"
+    TWAP = "twap"
+    CROSS_CHAIN = "cross_chain"
+    BRIDGE = "bridge"
+    NFT = "nft"
+    JIT = "jit"
+    GOVERNANCE = "governance"
+    KEEPER = "keeper"
+    GAS = "gas"
+    GASLESS = "gasless"
+    DUST = "dust"
+    FUNDING = "funding"
+    OPTIONS = "options"
+    REFERRAL = "referral"
+    SELF_DESTRUCT = "self_destruct"
+    AIRDROP = "airdrop"
+    DONATION = "donation"
+    HONEYPOT = "honeypot"
+    FORGOTTEN = "forgotten"
+    RL = "rl"
+    DEEP = "deep"
+    GENETIC = "genetic"
+    PRICE_PREDICTION = "price_prediction"
+    SENTIMENT = "sentiment"
+    TECHNICAL = "technical"
+    NEWS = "news"
+    COMPOSIO = "composio"
+    LANGGRAPH = "langgraph"
+    OPENSAGE = "opensage"
+    AUTOGEN = "autogen"
+    CREWAI = "crewai"
+    BROWSER_USE = "browser_use"
+    INJECTIVE = "injective"
+    KILO = "kilo"
+    NEURO_SAN = "neuro_san"
+    ORCHESTRAL = "orchestral"
+    WALDIEZ = "waldiez"
+    RAGAS = "ragas"
+    PROMPTFOO = "promptfoo"
+    HELICONE = "helicone"
+    DEEP_RESEARCH = "deep_research"
+    SMART_AUDITOR = "smart_auditor"
+    GOVERNANCE_TRACKER = "governance_tracker"
+    LIQUIDITY_ANALYZER = "liquidity_analyzer"
+    ANALYTICS = "analytics"
+    RESEARCH = "research"
+    PAX = "pax"
+    HPR_MAXBOT = "hpr_maxbot"
+    LATENCY_OPT = "latency_opt"
+    RUST = "rust"
+    CPP = "cpp"
+    UINT256 = "uint256"
+    MULTI_BUILDER = "multi_builder"
+    HYBRID = "hybrid"
+    META = "meta"
+    OTHER = "other"
+    SELF_HEALING = "self_healing"
+    TOOL_UPDATER = "tool_updater"
+    MULTISOURCE = "multisource"
+    STRATEGY_EXEC = "strategy_exec"
+    SANDWICH = "sandwich"
+    TRIANGULAR_ARBITRAGE = "triangular_arbitrage"
+    TIME_BANDIT = "time_bandit"
+    BACKRUN = "backrun"
+    FRONTRUN = "frontrun"
+    TREASURY_HUNTING = "treasury_hunting"
+    NESTED_FLASH_LOAN = "nested_flash_loan"
+    SKIM = "skim"
+    MEV_SHARE = "mev_share"
+    ORACLE_MANIPULATION = "oracle_manipulation"
+    BASIS_TRADING = "basis_trading"
+    META_OPTIMIZATION = "meta_optimization"
+
+class FlashLoanStrategy(Enum):
+    MULTI_DEX_ARBITRAGE = "multi_dex_arbitrage"
+    CROSS_CHAIN = "cross_chain"
+    NESTED = "nested"
+    LIQUIDATION_SNIPING = "liquidation_sniping"
+    ORACLE_MISMATCH = "oracle_mismatch"
+    JIT_HEDGING = "jit_hedging"
+
+
+@dataclass
+class Opportunity:
+    id: str = field(default_factory=lambda: f"opp_{int(time.time()*1000)}_{os.urandom(4).hex()}")
+    timestamp_ns: int = field(default_factory=time.time_ns)
+    parent_id: Optional[str] = None
+    name: str = ""
+    category: Optional[StrategyCategory] = None
+    profit: float = 0.0
+    action: str = ""
+    params: dict = field(default_factory=dict)
+    gas_type: int = GasType.SELF.value
+    executor: Optional[ExecutorType] = None
+    chain: str = 'ethereum'
+    priority: int = 5
+    confidence: float = 0.5
+    gas_cost: float = 0.0
+    tags: List[str] = field(default_factory=list)
+    deadline: float = 0.0
+    need_approval: bool = True
+    amount_in_token: Optional[float] = None
+    token_symbol: Optional[str] = None
+    token_address: Optional[str] = None
+    gas_wei: Optional[int] = None
+    required_gas_wei: Optional[int] = None
+    ai_generated: bool = False
+    flashbots_compatible: bool = False
+    supported_agents: List[str] = field(default_factory=list)
+    tx_data: Optional[Dict] = None
+    target_contract: Optional[str] = None
+    call_data: Optional[str] = None
+    value: Optional[int] = None
+    loan_amount: Optional[int] = None
+    loan_token: Optional[str] = None
+    loan_source: Optional[str] = None
+    path: Optional[List[Dict]] = None
+    expected_profit: Optional[int] = None
+    min_profit: Optional[int] = None
+    execution_contract: Optional[str] = None
+    simulation_success: bool = False
+    is_safe: bool = False
+
+    def __post_init__(self):
+        self.net_profit = self.profit - self.gas_cost
+        self.score = self.net_profit * self.confidence * (10 - self.priority + 1)
+
+    def is_expired(self) -> bool:
+        return self.deadline > 0 and time.time() > self.deadline
+
+    def to_dict(self) -> Dict:
+        result = asdict(self)
+        if self.category:
+            result['category'] = self.category.value
+        if self.executor:
+            result['executor'] = self.executor.value
+        return result
+
+    @classmethod
+    def from_dict(cls, data: Dict) -> 'Opportunity':
+        if 'category' in data and isinstance(data['category'], str):
+            try:
+                data['category'] = StrategyCategory(data['category'])
+            except ValueError:
+                data['category'] = None
+        if 'executor' in data and isinstance(data['executor'], str):
+            try:
+                data['executor'] = ExecutorType(data['executor'])
+            except ValueError:
+                data['executor'] = None
+        return cls(**data)
+
+
+@dataclass
+class MarketData:
+    timestamp: float
+    chain: str
+    eth_price: float
+    gas_gwei: float
+    block_number: Optional[int] = None
+    base_fee: Optional[int] = None
+    priority_fee: Optional[int] = None
+    uniswap_prices: Dict[str, float] = field(default_factory=dict)
+    sushiswap_prices: Dict[str, float] = field(default_factory=dict)
+    curve_prices: Dict[str, float] = field(default_factory=dict)
+    pancakeswap_prices: Dict[str, float] = field(default_factory=dict)
+    quickswap_prices: Dict[str, float] = field(default_factory=dict)
+    chainlink_prices: Dict[str, float] = field(default_factory=dict)
+    maker_prices: Dict[str, float] = field(default_factory=dict)
+    lending_rates: Dict[str, Dict[str, float]] = field(default_factory=dict)
+    liquidity_depth: Dict[str, float] = field(default_factory=dict)
+    funding_rates: Dict[str, float] = field(default_factory=dict)
+    nft_prices: Dict[str, Dict[str, float]] = field(default_factory=dict)
+    twap_prices: Dict[str, float] = field(default_factory=dict)
+    external: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict:
+        return asdict(self)
+
+    @classmethod
+    def from_dict(cls, data: Dict) -> 'MarketData':
+        return cls(**data)
+
+
+@dataclass
+class TradeRecord:
+    id: str
+    opportunity_id: str
+    timestamp_ns: int
+    chain: str
+    executor: str
+    profit_usd: float
+    gas_cost_usd: float
+    tx_hash: Optional[str] = None
+    error: Optional[str] = None
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+
+# ==================== ÅÚÏÇÏÇÊ Config ====================
+@dataclass
+class DexArbConfig:
+    min_spread: float = 0.01
+    amount: float = 10.0
+    gas_units: int = 150000
+
+@dataclass
+class LiquidationConfig:
+    threshold: float = 1.05
+    bonus: float = 0.10
+    gas_units: int = 200000
+
+@dataclass
+class FlashLoanConfig:
+    min_spread: float = 0.005
+    amount: float = 100000.0
+    fee: float = 0.0005
+    gas_units: int = 500000
+
+@dataclass
+class OracleConfig:
+    mismatch_threshold: float = 0.01
+    trade_amount: float = 100.0
+    gas_units: int = 150000
+
+@dataclass
+class NFTConfig:
+    min_margin: float = 0.05
+    gas_units: int = 200000
+
+@dataclass
+class JITConfig:
+    min_liquidity_usd: float = 10000.0
+    min_profit: float = 50.0
+    gas_units: int = 200000
+
+@dataclass
+class LendingConfig:
+    rate_spread_min: float = 0.02
+    amount: float = 1000.0
+    gas_units: int = 250000
+
+@dataclass
+class FundingConfig:
+    rate_min_abs: float = 0.001
+    min_spread: float = 0.005
+    position_size: float = 1000.0
+    gas_units: int = 300000
+
+@dataclass
+class DustConfig:
+    min_value_usd: float = 0.01
+    gas_units: int = 50000
+
+@dataclass
+class TWAPConfig:
+    manipulation_threshold: float = 0.02
+    trade_amount: float = 1000.0
+    gas_units: int = 400000
+
+@dataclass
+class GovernanceConfig:
+    min_profit_usd: float = 100.0
+    gas_units: int = 100000
+
+@dataclass
+class OptionsConfig:
+    min_profit_usd: float = 50.0
+    gas_units: int = 150000
+    min_intrinsic_multiplier: float = 1.1
+
+@dataclass
+class CrossChainConfig:
+    min_spread: float = 0.02
+    amount: float = 10.0
+    fee_estimate: float = 5.0
+    gas_units: int = 300000
+
+@dataclass
+class GaslessConfig:
+    min_profit: float = 5.0
+    permit2_gas_units: int = 100000
+    gelato_gas_units: int = 150000
+    chainlink_gas_units: int = 150000
+    keep3r_gas_units: int = 150000
+    gelato_min_profit: float = 5.0
+    defender_min_profit: float = 5.0
+    forta_min_profit: float = 5.0
+    graph_min_profit: float = 5.0
+    parsiq_min_profit: float = 5.0
+    covalent_min_profit: float = 5.0
+    keep3r_min_profit: float = 5.0
+    chainlink_trade_amount: float = 1.0
+
+@dataclass
+class ReferralConfig:
+    min_profit_usd: float = 1.0
+    gas_units: int = 50000
+
+@dataclass
+class SelfDestructConfig:
+    min_value: float = 0.1
+    gas_units: int = 50000
+
+@dataclass
+class SandwichConfig:
+    min_profit: float = 10.0
+    gas_units: int = 300000
+    max_slippage: float = 0.02
+
+@dataclass
+class TriangularConfig:
+    min_profit: float = 5.0
+    gas_units: int = 400000
+
+@dataclass
+class TreasuryHuntingConfig:
+    min_value: float = 1000.0
+    gas_units: int = 200000
+
+@dataclass
+class NestedFlashLoanConfig:
+    min_profit: float = 20.0
+    gas_units: int = 1000000
+
+@dataclass
+class SkimConfig:
+    min_value: float = 0.1
+    gas_units: int = 90000
+
+@dataclass
+class AgentConfig:
+    rl_agent_path: str = 'models/rl_agent.pkl'
+    ml_agent_path: str = 'models/ml_agent.pkl'
+    rule_based_enabled: bool = True
+    max_agents_per_opportunity: int = 3
+    use_optical_comm: bool = False
+    optical_light_speed: float = 200000.0
+    enable_p2p: bool = False
+    enable_predictive: bool = False
+    mab_epsilon: float = 0.1
+    adaptive_cache_factor: float = 0.1
+
+@dataclass
+class MaintenanceConfig:
+    enabled: bool = True
+    interval_seconds: int = 3600
+    telegram_token: str = ""
+    telegram_chat_id: str = ""
+    email_smtp_server: str = "localhost"
+    email_smtp_port: int = 25
+    email_from: str = "alkhaled@localhost"
+    email_to: str = ""
+    cpu_threshold: float = 90.0
+    memory_threshold: float = 90.0
+    disk_threshold: float = 85.0
+    services_to_monitor: List[str] = field(default_factory=lambda: ["nginx", "mysql", "docker", "sshd"])
+    log_cleanup_days: int = 30
+    update_pip: bool = True
+    update_npm: bool = True
+    git_repos: List[Dict] = field(default_factory=list)
+    auto_deploy: bool = False
+    error_log_paths: List[str] = field(default_factory=lambda: ["/var/log/nginx/error.log", "/var/log/mysql/error.log"])
+    databases: List[Dict] = field(default_factory=list)
+    backup_path: str = "/backups"
+    slow_query_threshold: float = 2.0
+    backup_retention_days: int = 7
+    vulnerability_feeds: List[str] = field(default_factory=lambda: ["https://cve.circl.lu/api/last"])
+    firewall_rules_path: str = "/etc/iptables/rules.v4"
+    fail2ban_jails: List[str] = field(default_factory=lambda: ["sshd", "nginx"])
+
+@dataclass
+class PerformanceConfig:
+    enabled: bool = True
+    metrics_port: int = 9090
+    report_interval: int = 3600
+    alert_on_slow: bool = True
+    slow_threshold_ms: float = 100.0
+
+
+@dataclass
+class Config:
+    # Trading Parameters
+    min_profit: float = 10.0
+    min_confidence: float = 0.3
+    max_opps: int = 100
+    max_retries: int = 3
+    retry_delay: float = 1.0
+    execution_timeout: float = 30.0
+    tx_confirmation_timeout: float = 60.0
+    max_concurrent_executions: int = 5
+    max_position_size_usd: float = 10000.0
+    max_daily_loss_usd: float = 1000.0
+    max_slippage: float = 0.01
+    base_gas_multiplier: float = 1.2
+    max_simulation_gas: int = 30_000_000
+    simulation_timeout: float = 30.0
+    cache_ttl: int = 30
+    max_reasons_per_key: int = 100
+    max_balance_cache_size: int = 1000
+    nonce_reserved_expiry: int = 300
+    rpc_max_global_attempts: int = 10
+    verbose_errors: bool = False
+    enable_intelligence: bool = True
+    scan_interval: float = 10.0
+    parallel_scans: int = 3
+    use_public_apis: bool = True
+
+    # Blockchain API Keys
+    eth_private_key: str = ""
+    eth_address: str = ""
+    infura_project_id: str = ""
+    alchemy_api_key: str = ""
+    etherscan_api_key: str = ""
+    bscscan_api_key: str = ""
+    polygonscan_api_key: str = ""
+    arbiscan_api_key: str = ""
+    optimistic_etherscan_api_key: str = ""
+    snowtrace_api_key: str = ""
+    ftmscan_api_key: str = ""
+
+    # CEX API Keys
+    binance_api_key: str = ""
+    binance_secret: str = ""
+    coinbase_api_key: str = ""
+    coinbase_secret: str = ""
+    kraken_api_key: str = ""
+    kraken_secret: str = ""
+    kucoin_api_key: str = ""
+    kucoin_secret: str = ""
+    kucoin_passphrase: str = ""
+    bybit_api_key: str = ""
+    bybit_secret: str = ""
+    okx_api_key: str = ""
+    okx_secret: str = ""
+    okx_passphrase: str = ""
+    gateio_api_key: str = ""
+    gateio_secret: str = ""
+
+    # Data API Keys
+    coingecko_api_key: str = ""
+    coinmarketcap_api_key: str = ""
+    defillama_api_key: str = ""
+    covalent_api_key: str = ""
+    zerion_api_key: str = ""
+    thegraph_api_key: str = ""
+    dia_api_key: str = ""
+
+    # Security & Monitoring
+    misttrack_api_key: str = ""
+    agentguard_api_key: str = ""
+    lightrun_api_key: str = ""
+    composio_api_key: str = ""
+
+    # Database
+    database_url: str = "sqlite+aiosqlite:///alkhaled.db"
+    postgres_url: str = "postgresql://user:pass@localhost/alkhaled"
+
+    # Blockchain Endpoints
+    free_rpc_endpoints: List[str] = field(default_factory=lambda: [
+        "https://eth.llamarpc.com",
+        "https://rpc.ankr.com/eth",
+        "https://ethereum.publicnode.com",
+        "https://eth-mainnet.g.alchemy.com/v2/demo",
+        "https://eth-mainnet.public.blastapi.io",
+        "https://rpc.flashbots.net",
+        "https://eth-mainnet.nodereal.io/v1",
+        "https://api.mycryptoapi.com/eth",
+        "https://cloudflare-eth.com",
+        "https://eth-mainnet.gateway.pokt.network/v1/lb/62798259",
+        "https://ethereum.blockpi.network/v1/rpc/public",
+        "https://1rpc.io/eth",
+        "https://eth.drpc.org",
+        "https://rpc.builder0x69.io",
+        "https://rpc.mevblocker.io",
+        "https://rpc.flashbots.net?bundle=only",
+        "https://virginia.rpc.blxrbdn.com",
+        "https://uk.rpc.blxrbdn.com",
+        "https://singapore.rpc.blxrbdn.com",
+    ])
+    proxy_list: List[str] = field(default_factory=list)
+    cloud_endpoints: List[str] = field(default_factory=list)
+
+    # External Libraries Paths
+    rust_lib_path: str = "lib/alkhaled_rust.so"
+    cpp_lib_path: str = "lib/alkhaled_cpp.so"
+
+    # Gasless executors
+    flashbots_relays: str = "https://relay.flashbots.net,https://bundle.alchemy.com"
+    flashbots_auth_key: str = ""
+    eden_relay: str = "https://api.edennetwork.io/v1/bundle"
+    bloxroute_relay: str = "https://mev.api.blxrbdn.com"
+    cowswap_api_url: str = "https://api.cow.fi/mainnet/api/v1"
+    gelato_api_key: str = ""
+    chainlink_api_key: str = ""
+    defender_api_key: str = ""
+    forta_api_key: str = ""
+    graph_api_key: str = ""
+    parsiq_api_key: str = ""
+    biconomy_api_key: str = ""
+    pimlico_api_key: str = ""
+    stackup_api_key: str = ""
+    zerox_api_key: str = ""
+    oneinch_api_key: str = ""
+    paraswap_api_key: str = ""
+
+    # Bridge API Keys
+    hop_api_key: str = ""
+    synapse_api_key: str = ""
+    celer_api_key: str = ""
+    multichain_api_key: str = ""
+    wormhole_api_key: str = ""
+    axelar_api_key: str = ""
+    layerzero_api_key: str = ""
+    across_api_key: str = ""
+    anyswap_api_key: str = ""
+
+    # Encryption
+    redis_url: str = "redis://localhost:6379/0"
+    master_password: str = ""
+    telegram_token: str = ""
+    telegram_chat_id: str = ""
+
+    # Agent config
+    agent: AgentConfig = field(default_factory=AgentConfig)
+
+    # Strategy configs
+    dex_arb: DexArbConfig = field(default_factory=DexArbConfig)
+    liquidation: LiquidationConfig = field(default_factory=LiquidationConfig)
+    flash_loan: FlashLoanConfig = field(default_factory=FlashLoanConfig)
+    oracle: OracleConfig = field(default_factory=OracleConfig)
+    nft: NFTConfig = field(default_factory=NFTConfig)
+    jit: JITConfig = field(default_factory=JITConfig)
+    lending: LendingConfig = field(default_factory=LendingConfig)
+    funding: FundingConfig = field(default_factory=FundingConfig)
+    dust: DustConfig = field(default_factory=DustConfig)
+    twap: TWAPConfig = field(default_factory=TWAPConfig)
+    governance: GovernanceConfig = field(default_factory=GovernanceConfig)
+    options: OptionsConfig = field(default_factory=OptionsConfig)
+    cross_chain: CrossChainConfig = field(default_factory=CrossChainConfig)
+    gasless: GaslessConfig = field(default_factory=GaslessConfig)
+    referral: ReferralConfig = field(default_factory=ReferralConfig)
+    self_destruct: SelfDestructConfig = field(default_factory=SelfDestructConfig)
+    sandwich: SandwichConfig = field(default_factory=SandwichConfig)
+    triangular: TriangularConfig = field(default_factory=TriangularConfig)
+    treasury_hunting: TreasuryHuntingConfig = field(default_factory=TreasuryHuntingConfig)
+    nested_flash_loan: NestedFlashLoanConfig = field(default_factory=NestedFlashLoanConfig)
+    skim: SkimConfig = field(default_factory=SkimConfig)
+
+    # Maintenance config
+    maintenance: MaintenanceConfig = field(default_factory=MaintenanceConfig)
+
+    # Performance config
+    performance: PerformanceConfig = field(default_factory=PerformanceConfig)
+
+    # ÅÚÏÇÏÇÊ ÅÖÇÝíÉ ááæßáÇÁ ÇáãÊÞÏãíä
+    quantum: Dict[str, Any] = field(default_factory=lambda: {"enabled": True, "use_real_qpu": False})
+    fhe: Dict[str, Any] = field(default_factory=lambda: {"enabled": True})
+    cross_chain_orchestrator: Dict[str, Any] = field(default_factory=lambda: {"enabled": True})
+    adaptive_contracts: Dict[str, Any] = field(default_factory=lambda: {"enabled": True})
+    forwarder_address: str = ""  # ÚäæÇä EIP2771 forwarder
+
+    @classmethod
+    def from_env(cls) -> 'Config':
+        cfg = cls()
+        for key in cls.__dataclass_fields__:
+            env_val = os.getenv(key.upper())
+            if env_val is not None:
+                try:
+                    field_type = cls.__dataclass_fields__[key].type
+                    if field_type == bool:
+                        setattr(cfg, key, env_val.lower() in ('true', '1', 'yes'))
+                    elif field_type == int:
+                        setattr(cfg, key, int(env_val))
+                    elif field_type == float:
+                        setattr(cfg, key, float(env_val))
+                    elif field_type == list:
+                        setattr(cfg, key, [x.strip() for x in env_val.split(',')])
+                    else:
+                        setattr(cfg, key, env_val)
+                except:
+                    setattr(cfg, key, env_val)
+        return cfg
+
+
+# ==================== ÃÏæÇÊ ãÓÇÚÏÉ ====================
+def validate_ethereum_address(address: str) -> bool:
+    if not isinstance(address, str) or not address.startswith('0x') or len(address) != 42:
+        return False
+    try:
+        int(address[2:], 16)
+        return True
+    except:
+        return False
+
+
+def gas_cost_usd(gas_units: int, eth_price: float, gas_gwei: float) -> float:
+    return (gas_gwei * 1e9 * gas_units / 1e18) * eth_price
+
+
+def time_now_ns() -> int:
+    return time.perf_counter_ns()
+
+
+def time_elapsed_ns(start_ns: int) -> int:
+    return time_now_ns() - start_ns
+
+
+def exponential_backoff(attempt: int, base: float = 1.0, max_delay: float = 60.0) -> float:
+    return min(base * (2 ** attempt), max_delay)
+
+
+async def random_sleep(min_sec: float, max_sec: float):
+    await asyncio.sleep(random.uniform(min_sec, max_sec))
+
+
+def compress_zstd(data: bytes) -> bytes:
+    if ZSTD_AVAILABLE:
+        return zstd.compress(data)
+    return data
+
+
+def decompress_zstd(data: bytes) -> bytes:
+    if ZSTD_AVAILABLE:
+        return zstd.decompress(data)
+    return data
+
+
+def retry(max_retries: int = 3, delay: float = 1.0, backoff: float = 2.0, exceptions: tuple = (Exception,)):
+    def decorator(func):
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            last_exception = None
+            current_delay = delay
+            for attempt in range(max_retries):
+                try:
+                    return await func(*args, **kwargs)
+                except exceptions as e:
+                    last_exception = e
+                    if attempt < max_retries - 1:
+                        logger.debug(f"Retry {attempt+1}/{max_retries} for {func.__name__}: {e}")
+                        await asyncio.sleep(current_delay)
+                        current_delay *= backoff
+                    else:
+                        logger.error(f"All retries failed for {func.__name__}: {e}")
+            raise last_exception
+        return wrapper
+    return decorator
+
+
+# ==================== ErrorClassifier æ smart_retry ====================
+class ErrorCategory(Enum):
+    NETWORK = "network"
+    RPC = "rpc"
+    CONTRACT = "contract"
+    GAS = "gas"
+    NONCE = "nonce"
+    UNKNOWN = "unknown"
+
+
+class ErrorClassifier:
+    @staticmethod
+    def classify(error: Exception) -> ErrorCategory:
+        error_str = str(error).lower()
+        if 'connection' in error_str or 'timeout' in error_str or 'socket' in error_str:
+            return ErrorCategory.NETWORK
+        if 'nonce' in error_str or 'already known' in error_str:
+            return ErrorCategory.NONCE
+        if 'gas' in error_str or 'intrinsic gas' in error_str:
+            return ErrorCategory.GAS
+        if 'execution reverted' in error_str or 'invalid opcode' in error_str:
+            return ErrorCategory.CONTRACT
+        if 'rpc' in error_str or 'http' in error_str:
+            return ErrorCategory.RPC
+        return ErrorCategory.UNKNOWN
+
+
+def smart_retry(max_retries: int = 3, delay: float = 1.0, backoff: float = 2.0):
+    def decorator(func):
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            last_exception = None
+            current_delay = delay
+            rpc_manager = kwargs.get('rpc_manager')
+            nonce_manager = kwargs.get('nonce_manager')
+            for attempt in range(max_retries):
+                try:
+                    return await func(*args, **kwargs)
+                except Exception as e:
+                    last_exception = e
+                    category = ErrorClassifier.classify(e)
+                    if category == ErrorCategory.CONTRACT:
+                        logger.error(f"Unrecoverable contract error: {e}")
+                        raise
+                    if category == ErrorCategory.RPC and rpc_manager:
+                        await rpc_manager.switch_node()
+                    if category == ErrorCategory.NONCE and nonce_manager:
+                        await nonce_manager.reset()
+                    if attempt < max_retries - 1:
+                        logger.warning(f"Retry {attempt+1}/{max_retries} for {func.__name__} due to {category.value}: {e}")
+                        await asyncio.sleep(current_delay)
+                        current_delay *= backoff
+                    else:
+                        logger.error(f"All retries failed for {func.__name__}: {e}")
+            raise last_exception
+        return wrapper
+    return decorator
+
+
+# ==================== MABAgent ÇáÃÓÇÓí ====================
+class MABAgent:
+    def __init__(self, exp_db: 'ExperienceDB', epsilon: float = 0.1):
+        self.exp_db = exp_db
+        self.epsilon = epsilon
+        self.arms = defaultdict(lambda: {'successes': 0, 'trials': 0})
+
+    async def select_arm(self, available_agents: List[str]) -> str:
+        if random.random() < self.epsilon:
+            return random.choice(available_agents)
+        best_agent = None
+        best_ucb = -float('inf')
+        total_trials = sum(self.arms.get(a, {}).get('trials', 0) for a in available_agents)
+        for agent in available_agents:
+            stats = self.arms.get(agent, {'successes': 0, 'trials': 0})
+            if stats['trials'] == 0:
+                return agent
+            avg_reward = stats['successes'] / stats['trials']
+            exploration = math.sqrt(2 * math.log(total_trials + 1) / stats['trials'])
+            ucb = avg_reward + exploration
+            if ucb > best_ucb:
+                best_ucb = ucb
+                best_agent = agent
+        return best_agent or random.choice(available_agents)
+
+    async def update_arm(self, agent_name: str, reward: float):
+        if agent_name not in self.arms:
+            self.arms[agent_name] = {'successes': 0, 'trials': 0}
+        self.arms[agent_name]['trials'] += 1
+        if reward > 0:
+            self.arms[agent_name]['successes'] += 1
+
+
+# ==================== ÇáÃãÇä ====================
+class AESGCMEncryptor:
+    def __init__(self, password: str, salt: Optional[bytes] = None):
+        if not CRYPTO_AVAILABLE:
+            raise ImportError("cryptography library required")
+        self.password = password.encode()
+        self.salt = salt or os.urandom(16)
+        self._derive_key()
+
+    def _derive_key(self, iterations: int = 200000):
+        kdf = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=self.salt,
+            iterations=iterations,
+            backend=default_backend()
+        )
+        self.key = kdf.derive(self.password)
+        self.aesgcm = AESGCM(self.key)
+
+    def encrypt(self, data: bytes) -> bytes:
+        nonce = os.urandom(12)
+        ciphertext = self.aesgcm.encrypt(nonce, data, None)
+        return self.salt + nonce + ciphertext
+
+    def decrypt(self, encrypted_data: bytes) -> bytes:
+        salt = encrypted_data[:16]
+        nonce = encrypted_data[16:28]
+        ciphertext = encrypted_data[28:]
+        kdf = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=salt,
+            iterations=200000,
+            backend=default_backend()
+        )
+        key = kdf.derive(self.password)
+        aesgcm = AESGCM(key)
+        return aesgcm.decrypt(nonce, ciphertext, None)
+
+
+class SecureRedis:
+    def __init__(self, redis_url: str, encryptor: Optional[AESGCMEncryptor] = None):
+        if not REDIS_AVAILABLE:
+            raise ImportError("redis.asyncio required")
+        self.redis = redis.from_url(redis_url, decode_responses=False)
+        self.encryptor = encryptor
+
+    async def set(self, key: str, value: bytes, ex: Optional[int] = None):
+        if self.encryptor:
+            value = self.encryptor.encrypt(value)
+        await self.redis.set(key, value, ex=ex)
+
+    async def get(self, key: str) -> Optional[bytes]:
+        value = await self.redis.get(key)
+        if value and self.encryptor:
+            value = self.encryptor.decrypt(value)
+        return value
+
+    async def delete(self, key: str):
+        await self.redis.delete(key)
+
+    async def incr(self, key: str) -> int:
+        return await self.redis.incr(key)
+
+    async def setnx(self, key: str, value: bytes) -> bool:
+        return await self.redis.setnx(key, value)
+
+    async def expire(self, key: str, seconds: int):
+        await self.redis.expire(key, seconds)
+
+    async def zadd(self, key: str, mapping: Dict):
+        await self.redis.zadd(key, mapping)
+
+    async def zremrangebyscore(self, key: str, min: float, max: float):
+        await self.redis.zremrangebyscore(key, min, max)
+
+    async def zcard(self, key: str) -> int:
+        return await self.redis.zcard(key)
+
+    async def close(self):
+        await self.redis.close()
+
+
+class KeyManager:
+    def __init__(self, redis: Optional[SecureRedis], master_password: str):
+        self.redis = redis
+        self.master_password = master_password
+
+    async def get_key(self, key_name: str) -> Optional[bytes]:
+        return await self.redis.get(f"key:{key_name}") if self.redis else None
+
+    async def set_key(self, key_name: str, value: bytes, expire: Optional[int] = None):
+        if self.redis:
+            await self.redis.set(f"key:{key_name}", value, ex=expire)
+
+    async def delete_key(self, key_name: str):
+        if self.redis:
+            await self.redis.delete(f"key:{key_name}")
+
+    @contextlib.asynccontextmanager
+    async def use_key(self, key_name: str):
+        key = await self.get_key(key_name)
+        try:
+            yield key
+        finally:
+            pass
+
+
+# ==================== APIKeyManager ====================
+class APIKeyManager:
+    def __init__(self, key_manager: KeyManager, use_public_apis: bool = True):
+        self.key_manager = key_manager
+        self.use_public_apis = use_public_apis
+        self.sources = [
+            'coingecko', 'coinmarketcap', 'defillama', 'etherscan',
+            'bscscan', 'polygonscan', 'arbiscan', 'optimistic_etherscan',
+            'snowtrace', 'ftmscan', 'binance', 'coinbase', 'kraken',
+            'kucoin', 'bybit', 'okx', 'gateio', 'infura', 'alchemy',
+            'thegraph', 'covalent', 'zerion', 'misttrack', 'agentguard',
+            'composio', 'gelato', 'chainlink', 'defender', 'forta',
+            'parsiq', 'zerox', 'oneinch', 'paraswap', 'hop', 'synapse',
+            'celer', 'multichain', 'wormhole', 'axelar', 'layerzero',
+            'across', 'anyswap', 'biconomy', 'pimlico', 'stackup'
+        ]
+        self.public_sources = ['coingecko', 'defillama', 'binance', 'thegraph', 'covalent', 'etherscan']
+        self.cache = {}
+        self.validation_funcs = {
+            'coingecko': self._validate_coingecko,
+            'etherscan': self._validate_etherscan,
+            'infura': self._validate_infura,
+            'alchemy': self._validate_alchemy,
+        }
+
+    async def _validate_coingecko(self, key: str) -> bool:
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.get(f"https://api.coingecko.com/api/v3/ping?x_cg_pro_api_key={key}", timeout=5) as resp:
+                    return resp.status == 200
+            except:
+                return False
+
+    async def _validate_etherscan(self, key: str) -> bool:
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.get(f"https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey={key}", timeout=5) as resp:
+                    data = await resp.json()
+                    return data.get('status') == '1'
+            except:
+                return False
+
+    async def _validate_infura(self, key: str) -> bool:
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.post(f"https://mainnet.infura.io/v3/{key}", json={"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}, timeout=5) as resp:
+                    data = await resp.json()
+                    return 'result' in data
+            except:
+                return False
+
+    async def _validate_alchemy(self, key: str) -> bool:
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.post(f"https://eth-mainnet.g.alchemy.com/v2/{key}", json={"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}, timeout=5) as resp:
+                    data = await resp.json()
+                    return 'result' in data
+            except:
+                return False
+
+    async def get_key(self, source: str) -> Optional[str]:
+        if source not in self.sources:
+            return None
+        if self.use_public_apis and source in self.public_sources:
+            return None
+        if source in self.cache:
+            key, expiry = self.cache[source]
+            if time.time() < expiry:
+                return key
+        keys_data = await self.key_manager.get_key(f"apikeys:{source}")
+        if not keys_data:
+            return None
+        try:
+            keys = json.loads(keys_data.decode())
+        except:
+            keys = []
+        validate = self.validation_funcs.get(source, lambda k: True)
+        for key in keys:
+            if await validate(key):
+                self.cache[source] = (key, time.time() + 300)
+                return key
+        return None
+
+    async def set_keys(self, source: str, keys: List[str]):
+        await self.key_manager.set_key(f"apikeys:{source}", json.dumps(keys).encode())
+
+    async def check_all_keys(self) -> Dict[str, bool]:
+        results = {}
+        for source in self.sources:
+            keys_data = await self.key_manager.get_key(f"apikeys:{source}")
+            if not keys_data:
+                results[source] = False
+                continue
+            try:
+                keys = json.loads(keys_data.decode())
+                validate = self.validation_funcs.get(source, lambda k: True)
+                valid = any(await validate(k) for k in keys)
+                results[source] = valid
+            except:
+                results[source] = False
+        return results
+
+
+# ==================== KeyMaintenanceAgent ====================
+class KeyMaintenanceAgent(BaseMaintenanceAgent):
+    def __init__(self, config: MaintenanceConfig, api_key_manager: APIKeyManager):
+        super().__init__("KeyMaintenance", config)
+        self.api_key_manager = api_key_manager
+
+    async def run(self) -> Dict[str, Any]:
+        self.logger.info("Checking API keys health...")
+        results = {'valid_keys': {}, 'invalid_keys': [], 'refreshed': []}
+        try:
+            status = await self.api_key_manager.check_all_keys()
+            for source, valid in status.items():
+                if valid:
+                    results['valid_keys'][source] = True
+                else:
+                    results['invalid_keys'].append(source)
+                    self.logger.warning(f"Invalid key for {source}")
+            self._increment_success("key_maintenance")
+            if results['invalid_keys']:
+                await self.notification_queue.put(f"?? Invalid API keys: {', '.join(results['invalid_keys'])}")
+        except Exception as e:
+            self._increment_failure(str(e), "key_maintenance")
+            await self.notification_queue.put(f"? Key maintenance failed: {e}")
+        return results
+
+
+# ==================== AtomicNonceManager ====================
+class AtomicNonceManager:
+    def __init__(self, redis: Optional[SecureRedis], address: str, chain_id: int, use_sqlite: bool = True):
+        self.redis = redis
+        self.address = address.lower()
+        self.chain_id = chain_id
+        self.key = f"nonce:{self.address}:{chain_id}"
+        self.local_nonce: Optional[int] = None
+        self.lock = asyncio.Lock()
+        self.reserved_nonces: Set[int] = set()
+        self.max_attempts = 10
+        self.use_sqlite = use_sqlite and not redis
+        self.sqlite_db = None
+        self._lua_script = """
+            local key = KEYS[1]
+            local chain_nonce = tonumber(ARGV[1])
+            local current = redis.call('GET', key)
+            if not current then
+                redis.call('SET', key, chain_nonce)
+                return chain_nonce
+            else
+                current = tonumber(current)
+                if current < chain_nonce then
+                    redis.call('SET', key, chain_nonce)
+                    current = chain_nonce
+                end
+                local new_nonce = current + 1
+                redis.call('SET', key, new_nonce)
+                return new_nonce
+            end
+        """ if REDIS_AVAILABLE else None
+
+    async def _get_sqlite(self):
+        if not self.sqlite_db:
+            self.sqlite_db = await aiosqlite.connect('nonce.db')
+            await self.sqlite_db.execute('CREATE TABLE IF NOT EXISTS nonces (key TEXT PRIMARY KEY, nonce INTEGER)')
+            await self.sqlite_db.commit()
+        return self.sqlite_db
+
+    async def get_nonce(self, w3: AsyncWeb3) -> int:
+        async with self.lock:
+            chain_nonce = await w3.eth.get_transaction_count(self.address, 'pending')
+            if self.redis:
+                try:
+                    if hasattr(self.redis, 'redis') and self.redis.redis:
+                        new_nonce = await self.redis.redis.eval(
+                            self._lua_script,
+                            1,
+                            self.key,
+                            str(chain_nonce)
+                        )
+                        new_nonce = int(new_nonce)
+                    else:
+                        success = await self.redis.setnx(self.key, str(chain_nonce))
+                        if success:
+                            new_nonce = chain_nonce
+                        else:
+                            new_nonce = await self.redis.incr(self.key)
+                            if new_nonce < chain_nonce:
+                                await self.redis.set(self.key, str(chain_nonce))
+                                new_nonce = chain_nonce
+                except Exception:
+                    success = await self.redis.setnx(self.key, str(chain_nonce))
+                    if success:
+                        new_nonce = chain_nonce
+                    else:
+                        new_nonce = await self.redis.incr(self.key)
+                        if new_nonce < chain_nonce:
+                            await self.redis.set(self.key, str(chain_nonce))
+                            new_nonce = chain_nonce
+                attempts = 0
+                while new_nonce in self.reserved_nonces and attempts < self.max_attempts:
+                    new_nonce = await self.redis.incr(self.key)
+                    attempts += 1
+                if attempts >= self.max_attempts:
+                    raise Exception("Too many nonce collisions")
+                self.reserved_nonces.add(new_nonce)
+                return new_nonce
+            elif self.use_sqlite:
+                db = await self._get_sqlite()
+                async with db.execute('SELECT nonce FROM nonces WHERE key = ?', (self.key,)) as cursor:
+                    row = await cursor.fetchone()
+                if row:
+                    current = row[0]
+                    if current < chain_nonce:
+                        new_nonce = chain_nonce
+                    else:
+                        new_nonce = current + 1
+                else:
+                    new_nonce = chain_nonce
+                await db.execute('INSERT OR REPLACE INTO nonces (key, nonce) VALUES (?, ?)', (self.key, new_nonce))
+                await db.commit()
+                attempts = 0
+                while new_nonce in self.reserved_nonces and attempts < self.max_attempts:
+                    new_nonce += 1
+                    await db.execute('UPDATE nonces SET nonce = ? WHERE key = ?', (new_nonce, self.key))
+                    await db.commit()
+                    attempts += 1
+                if attempts >= self.max_attempts:
+                    raise Exception("Too many nonce collisions")
+                self.reserved_nonces.add(new_nonce)
+                return new_nonce
+            else:
+                if self.local_nonce is None or self.local_nonce < chain_nonce:
+                    self.local_nonce = chain_nonce
+                else:
+                    self.local_nonce += 1
+                attempts = 0
+                while self.local_nonce in self.reserved_nonces and attempts < self.max_attempts:
+                    self.local_nonce += 1
+                    attempts += 1
+                if attempts >= self.max_attempts:
+                    raise Exception("Too many nonce collisions")
+                self.reserved_nonces.add(self.local_nonce)
+                return self.local_nonce
+
+    async def commit_nonce(self, nonce: int):
+        if self.redis:
+            current = await self.redis.get(self.key)
+            if current and int(current) <= nonce:
+                await self.redis.set(self.key, str(nonce + 1))
+        elif self.use_sqlite:
+            db = await self._get_sqlite()
+            await db.execute('UPDATE nonces SET nonce = ? WHERE key = ?', (nonce + 1, self.key))
+            await db.commit()
+        else:
+            if self.local_nonce and self.local_nonce <= nonce:
+                self.local_nonce = nonce + 1
+        self.reserved_nonces.discard(nonce)
+
+    async def reset(self):
+        self.reserved_nonces.clear()
+        if self.redis:
+            await self.redis.delete(self.key)
+        elif self.use_sqlite:
+            db = await self._get_sqlite()
+            await db.execute('DELETE FROM nonces WHERE key = ?', (self.key,))
+            await db.commit()
+
+
+# ==================== RateLimiter ====================
+class RateLimiter:
+    def __init__(self, redis: Optional[SecureRedis], max_requests: int, window_seconds: int, name: str = "default"):
+        self.redis = redis
+        self.max_requests = max_requests
+        self.window = window_seconds
+        self.name = name
+        self.local_counter = defaultdict(list)
+        self._cleanup_task: Optional[asyncio.Task] = None
+
+    async def start_cleanup(self):
+        async def cleanup():
+            while True:
+                await asyncio.sleep(60)
+                now = time.time()
+                for key in list(self.local_counter.keys()):
+                    self.local_counter[key] = [t for t in self.local_counter[key] if t > now - self.window]
+                    if not self.local_counter[key]:
+                        del self.local_counter[key]
+        self._cleanup_task = asyncio.create_task(cleanup())
+
+    async def acquire(self, key: str) -> bool:
+        now = time.time()
+        full_key = f"{self.name}:{key}"
+        if self.redis:
+            window_start = now - self.window
+            redis_key = f"ratelimit:{full_key}"
+            await self.redis.zremrangebyscore(redis_key, 0, window_start)
+            count = await self.redis.zcard(redis_key)
+            if count < self.max_requests:
+                member = str(uuid.uuid4())
+                await self.redis.zadd(redis_key, {member: now})
+                await self.redis.expire(redis_key, self.window + 10)
+                return True
+            return False
+        else:
+            self.local_counter[full_key] = [t for t in self.local_counter[full_key] if t > now - self.window]
+            if len(self.local_counter[full_key]) < self.max_requests:
+                self.local_counter[full_key].append(now)
+                return True
+            return False
+
+    async def stop_cleanup(self):
+        if self._cleanup_task:
+            self._cleanup_task.cancel()
+            try:
+                await self._cleanup_task
+            except asyncio.CancelledError:
+                pass
+
+
+# ==================== Quantum Cache ====================
+class QuantumCache:
+    def __init__(self, name: str, size: int = 1024 * 1024 * 100, max_entries: int = 10000):
+        self.name = name
+        self.size = size
+        self.max_entries = max_entries
+        self.mmap = None
+        self.lock = asyncio.Lock()
+        self.index: Dict[str, Tuple[int, int, float]] = {}
+        self.lru: deque = deque(maxlen=max_entries)
+        self.write_pos = 0
+        self._init_mmap()
+        self._cleanup_task: Optional[asyncio.Task] = None
+
+    def _init_mmap(self):
+        try:
+            self.mmap = mmap.mmap(-1, self.size, self.name)
+        except Exception as e:
+            logger.error(f"Failed to create mmap {self.name}: {e}")
+            self.mmap = None
+
+    async def set(self, key: str, value: Any, ttl: Optional[int] = None):
+        if not self.mmap:
+            return
+        async with self.lock:
+            try:
+                data = msgpack.packb({'key': key, 'value': value, 'expires': time.time() + ttl if ttl else 0})
+                compressed = compress_zstd(data)
+                length = len(compressed)
+                if length + 8 > self.size:
+                    logger.warning(f"Value too large for QuantumCache: {length} bytes")
+                    return
+
+                if key in self.index:
+                    old_pos, old_len, _ = self.index[key]
+                    del self.index[key]
+                    if key in self.lru:
+                        self.lru.remove(key)
+
+                if self.write_pos + 4 + length > self.size:
+                    self.write_pos = 0
+                pos = self.write_pos
+                self.mmap.seek(pos)
+                self.mmap.write(struct.pack('I', length))
+                self.mmap.write(compressed)
+                self.write_pos += 4 + length
+
+                expires = time.time() + ttl if ttl else 0
+                self.index[key] = (pos, length, expires)
+                self.lru.append(key)
+
+                if len(self.index) > self.max_entries:
+                    oldest = self.lru.popleft()
+                    if oldest in self.index:
+                        del self.index[oldest]
+            except Exception as e:
+                logger.error(f"QuantumCache set error: {e}")
+
+    async def get(self, key: str) -> Optional[Any]:
+        if not self.mmap:
+            return None
+        async with self.lock:
+            entry = self.index.get(key)
+            if not entry:
+                return None
+            pos, length, expires = entry
+            if expires and expires < time.time():
+                del self.index[key]
+                if key in self.lru:
+                    self.lru.remove(key)
+                return None
+            try:
+                self.mmap.seek(pos)
+                len_data = self.mmap.read(4)
+                if len(len_data) < 4:
+                    return None
+                stored_len = struct.unpack('I', len_data)[0]
+                if stored_len != length:
+                    return None
+                data = self.mmap.read(length)
+                decompressed = decompress_zstd(data)
+                obj = msgpack.unpackb(decompressed)
+                if key in self.lru:
+                    self.lru.remove(key)
+                self.lru.append(key)
+                return obj['value']
+            except Exception as e:
+                logger.error(f"QuantumCache get error: {e}")
+                return None
+
+    async def start_cleanup(self, interval: float = 60.0):
+        async def cleanup():
+            while True:
+                await asyncio.sleep(interval)
+                await self._cleanup_expired()
+        self._cleanup_task = asyncio.create_task(cleanup())
+
+    async def _cleanup_expired(self):
+        now = time.time()
+        expired = [k for k, (_, _, exp) in self.index.items() if exp and exp < now]
+        for k in expired:
+            del self.index[k]
+            if k in self.lru:
+                self.lru.remove(k)
+
+    async def close(self):
+        if self._cleanup_task:
+            self._cleanup_task.cancel()
+            try:
+                await self._cleanup_task
+            except asyncio.CancelledError:
+                pass
+        if self.mmap:
+            self.mmap.close()
+
+
+# ==================== SmartCache ====================
+class SmartCache:
+    def __init__(self, redis: Optional[SecureRedis] = None, quantum: Optional[QuantumCache] = None,
+                 max_size: int = 10000, default_ttl: int = 10):
+        self.redis = redis
+        self.quantum = quantum
+        self.default_ttl = default_ttl
+        self.max_size = max_size
+        self.memory: OrderedDict = OrderedDict()
+        self.memory_ttl: Dict[str, float] = {}
+        self.lock = asyncio.Lock()
+
+    async def get(self, key: str) -> Optional[Any]:
+        async with self.lock:
+            if key in self.memory:
+                if time.time() < self.memory_ttl.get(key, 0):
+                    self.memory.move_to_end(key)
+                    return self.memory[key]
+                else:
+                    del self.memory[key]
+                    del self.memory_ttl[key]
+        if self.quantum:
+            val = await self.quantum.get(key)
+            if val:
+                await self._set_memory(key, val, self.default_ttl)
+                return val
+        if self.redis:
+            data = await self.redis.get(f"cache:{key}")
+            if data:
+                data = decompress_zstd(data)
+                value = pickle.loads(data)
+                await self._set_memory(key, value, self.default_ttl)
+                return value
+        return None
+
+    async def set(self, key: str, value: Any, ttl: Optional[int] = None):
+        ttl = ttl or self.default_ttl
+        await self._set_memory(key, value, ttl)
+        if self.quantum:
+            await self.quantum.set(key, value, ttl)
+        if self.redis:
+            data = pickle.dumps(value)
+            data = compress_zstd(data)
+            await self.redis.set(f"cache:{key}", data, ex=ttl)
+
+    async def _set_memory(self, key: str, value: Any, ttl: int):
+        async with self.lock:
+            now = time.time()
+            expired = [k for k, exp in list(self.memory_ttl.items()) if exp < now]
+            for k in expired:
+                del self.memory[k]
+                del self.memory_ttl[k]
+            if key in self.memory:
+                self.memory.move_to_end(key)
+            else:
+                if len(self.memory) >= self.max_size:
+                    self.memory.popitem(last=False)
+            self.memory[key] = value
+            self.memory_ttl[key] = time.time() + ttl
+
+    async def delete(self, key: str):
+        async with self.lock:
+            self.memory.pop(key, None)
+            self.memory_ttl.pop(key, None)
+        if self.redis:
+            await self.redis.delete(f"cache:{key}")
+
+    async def clear(self):
+        async with self.lock:
+            self.memory.clear()
+            self.memory_ttl.clear()
+
+    async def cleanup_expired(self):
+        now = time.time()
+        async with self.lock:
+            expired = [k for k, t in self.memory_ttl.items() if t < now]
+            for k in expired:
+                del self.memory[k]
+                del self.memory_ttl[k]
+
+
+# ==================== AdaptiveCache ====================
+class AdaptiveCache(SmartCache):
+    def __init__(self, redis=None, quantum=None, max_size=10000, default_ttl=10, adaptation_factor=0.1):
+        super().__init__(redis, quantum, max_size, default_ttl)
+        self.adaptation_factor = adaptation_factor
+        self.hit_rates = defaultdict(lambda: deque(maxlen=100))
+        self.last_ttl = {}
+
+    async def get(self, key: str) -> Optional[Any]:
+        start = time.time()
+        value = await super().get(key)
+        if value:
+            self.hit_rates[key].append(1)
+            if len(self.hit_rates[key]) > 50 and sum(self.hit_rates[key])/len(self.hit_rates[key]) > 0.9:
+                current_ttl = self.last_ttl.get(key, self.default_ttl)
+                new_ttl = min(current_ttl * (1 + self.adaptation_factor), 300)
+                self.last_ttl[key] = new_ttl
+        else:
+            self.hit_rates[key].append(0)
+        return value
+
+
+# ==================== RPC Node æ GodPulse ====================
+class RPCNode:
+    def __init__(self, url: str, chain_id: int, poa: bool):
+        self.url = url
+        self.chain_id = chain_id
+        self.poa = poa
+        self.user_agents = [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15",
+            "AlKhaled-Bot/1.0",
+        ]
+        self.current_ua = random.choice(self.user_agents)
+        self.session = aiohttp.ClientSession(headers={'User-Agent': self.current_ua})
+        self.w3 = AsyncWeb3(AsyncHTTPProvider(url, request_kwargs={'timeout': 10, 'session': self.session}))
+        if poa and WEB3_AVAILABLE:
+            self.w3.middleware_onion.inject(async_geth_poa_middleware, layer=0)
+        self.latency = float('inf')
+        self.is_healthy = False
+        self.last_check = 0
+        self.block_number = 0
+        self.failures = 0
+        self.successes = 0
+        self.total_response_time = 0.0
+        self.block_diff = 0
+        self.predictor = PredictiveFailureDetector()  # ÏãÌ ÇáãÊäÈÆ
+
+    async def check_health(self) -> bool:
+        if time.time() - self.last_check < 10:
+            return self.is_healthy
+        start = time.time()
+        try:
+            block = await asyncio.wait_for(self.w3.eth.block_number, timeout=5)
+            latency = time.time() - start
+            self.latency = latency
+            self.block_number = block
+            self.is_healthy = True
+            self.failures = 0
+            self.successes += 1
+            self.total_response_time += self.latency
+            self.predictor.update(latency)
+        except Exception as e:
+            self.is_healthy = False
+            self.latency = float('inf')
+            self.failures += 1
+            self.predictor.update(10.0)  # ÞíãÉ ÚÇáíÉ ááÝÔá
+        self.last_check = time.time()
+        return self.is_healthy
+
+    async def rotate_user_agent(self):
+        self.current_ua = random.choice(self.user_agents)
+        await self.session.close()
+        self.session = aiohttp.ClientSession(headers={'User-Agent': self.current_ua})
+        self.w3 = AsyncWeb3(AsyncHTTPProvider(self.url, request_kwargs={'timeout': 10, 'session': self.session}))
+        if self.poa and WEB3_AVAILABLE:
+            self.w3.middleware_onion.inject(async_geth_poa_middleware, layer=0)
+
+    def score(self) -> float:
+        if not self.is_healthy:
+            return float('inf')
+        latency_score = self.latency
+        reliability = self.successes / max(1, self.successes + self.failures)
+        return latency_score * (2 - reliability)
+
+    def should_switch(self) -> bool:
+        return self.predictor.should_switch()
+
+    async def close(self):
+        await self.session.close()
+
+
+class PredictiveFailureDetector:
+    def __init__(self, history_size: int = 100, threshold: float = 2.0):
+        self.history = deque(maxlen=history_size)
+        self.threshold = threshold
+        self.predictions = deque(maxlen=10)
+        self.failure_probability = 0.0
+        self.alpha = 0.3
+        self.mean = None
+        self.variance = None
+
+    def update(self, latency: float):
+        self.history.append(latency)
+        self._predict_ewma()
+
+    def _predict_ewma(self):
+        if len(self.history) < 10:
+            return
+        if self.mean is None:
+            self.mean = np.mean(self.history)
+            self.variance = np.var(self.history)
+        else:
+            new_mean = self.alpha * self.history[-1] + (1 - self.alpha) * self.mean
+            new_variance = self.alpha * (self.history[-1] - new_mean)**2 + (1 - self.alpha) * self.variance
+            self.mean = new_mean
+            self.variance = new_variance
+        forecast = self.mean
+        self.predictions.append(forecast)
+        if len(self.predictions) > 3:
+            avg_pred = np.mean(self.predictions)
+            if self.mean > 0:
+                self.failure_probability = min(1.0, avg_pred / (self.mean * self.threshold))
+
+    def should_switch(self) -> bool:
+        if len(self.predictions) < 3:
+            return False
+        avg_pred = np.mean(self.predictions)
+        return avg_pred > self.mean * self.threshold if self.mean else False
+
+
+class GodPulse:
+    def __init__(self, chain: str, config: Config):
+        self.chain = chain
+        self.config = config
+        self.chain_id = SUPPORTED_CHAINS.get(chain, {}).get('chain_id', 1)
+        self.poa = SUPPORTED_CHAINS.get(chain, {}).get('poa', False)
+        self.nodes: List[RPCNode] = []
+        self._load_nodes()
+        self.fallback = FallbackManager(self._call_primary, self._call_fallback)
+        self.rate_limiter = RateLimiter(None, 100, 1, f"rpc_{chain}")
+
+    def _load_nodes(self):
+        builtin = SUPPORTED_CHAINS.get(self.chain, {}).get('rpcs', [])
+        free = self.config.free_rpc_en

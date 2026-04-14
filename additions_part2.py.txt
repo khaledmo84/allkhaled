@@ -1,0 +1,1515 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+================================================================================
+≈÷«›«  - «·Ã“¡ «·À«‰Ì (Nexus + «·Êﬂ·«¡ «·√Œ·«ﬁÌÊ‰)
+================================================================================
+«·„Ì“«  «·ÃœÌœ… ›Ì Â–« «·Ã“¡ (€Ì— «·„ÊÃÊœ… ›Ì core/agents/unified/thinking_core/tests):
+--------------------------------------------------------------------------------
+1. Nexus („ﬂÊ‰«  „ ﬁœ„…):
+   - CloudManager «·ﬂ«„· (5 ”Õ«»« ) „⁄ œÊ«· list/launch/terminate.
+   - DeploymentAgent: ‰‘— –« Ì ⁄»— GitHub.
+   - LiquidInfrastructureAgent: »‰Ì…  Õ Ì… ”«∆·… („—«ﬁ»… «·⁄ﬁœ Ê≈⁄«œ… «· Ê«“‰).
+   - DecentralizedStorage:  Œ“Ì‰ ·«„—ﬂ“Ì (IPFS + „Õ·Ì).
+   - EdgeNetwork: ‘»ﬂ… Õ«›… (Cloudflare Workers + R2).
+   - StealthManager: ≈Œ›«¡ «·ÂÊÌ… (User-Agent, Proxy,  ‘›Ì—).
+   - SmartScheduler: ÃœÊ·… –ﬂÌ… „⁄ „—«⁄«… ”«⁄«  «·€«“.
+   - TerraformIntegration:  ﬂ«„· Terraform ·≈œ«—… «·»‰Ì… «· Õ Ì….
+   - WalletGeneratorAgent: ≈‰‘«¡ „Õ«›Ÿ Ê Œ“Ì‰ „›« ÌÕ „‘›—….
+   - SignatureOpportunityAgent: —’œ ›—’ Airdrops Ê«· ÊﬁÌ⁄ ⁄·ÌÂ«.
+   - ZeroWalletAgent: ≈œ«—… „Õ«›Ÿ Testnet Ê«· ›«⁄· „⁄ «·’‰«»Ì—.
+2. «·Êﬂ·«¡ «·√Œ·«ﬁÌÊ‰ (29 ÊﬂÌ·):
+   - DormantContractAgent: ⁄ﬁÊœ „ÂÃÊ—….
+   - BridgeDustAgent: Ã”Ê— ⁄«·ﬁ….
+   - GovernanceRewardsAgent: „ﬂ«›¬  ÕÊﬂ„….
+   - LiquiditySweepAgent: ”ÌÊ·… „‰”Ì….
+   - BugBountyAgent: À€—«  √„‰Ì….
+   - MEVProtectorAgent: Õ„«Ì… MEV.
+   - ArbitrageAgent: „—«ÃÕ… (”Ì „  ÿÊÌ—Â ·«Õﬁ«).
+   - TimeSeriesAgent:  ‰»ƒ ”·«”· “„‰Ì….
+   - FlashblocksAgent: «” €·«· Flashblocks.
+   - WhiteHatMediatorAgent: Ê”«ÿ… √Œ·«ﬁÌ….
+   - V2LiquiditySnipingAgent: ﬁ‰’ ”ÌÊ·… V2.
+   - BountyContractsAgent: ⁄ﬁÊœ „ﬂ«›¬ .
+   - SafeAirdropAgent: Airdrops ¬„‰….
+   - RelayContractsAgent: ⁄ﬁÊœ Relay.
+   - PancakeOldPoolsAgent: „Ã„⁄«  Pancake «·ﬁœÌ„….
+   - OldGovernanceAgent: ÕÊﬂ„… ﬁœÌ„….
+   - UnclaimedBridgeAgent: Ã”Ê— €Ì— „ÿ«·» »Â«.
+   - V1LiquidityAgent: ”ÌÊ·… V1.
+   - ExpiredGovernanceRewardsAgent: „ﬂ«›¬  ÕÊﬂ„… „‰ ÂÌ….
+   - DustHuntingAgent: ’Ìœ «·ﬂ”Ê—.
+   - VulnerabilityReportingAgent: «·≈»·«€ ⁄‰ À€—« .
+   - SmartContractWriterAgent: ﬂ «»… ⁄ﬁÊœ –ﬂÌ….
+   - SecurityAuditorAgent:  œﬁÌﬁ √„‰Ì.
+   - SolverAgent:  ﬂ«„· „⁄ Solvers.
+   - FrontrunProtectorAgent: Õ„«Ì… Frontrunning.
+   - MempoolWatcherAgent: „—«ﬁ»… «·„Ì„»Ê·.
+   - GasOptimizerAgent:  Õ”Ì‰ «·€«“.
+   - ComplianceAgent: «·«„ À«· «·ﬁ«‰Ê‰Ì.
+   - ReportingAgent:  ﬁ«—Ì— √œ«¡.
+3. Ê«ÃÂ… FastAPI + Prometheus ·‰ﬁ«ÿ «·‰Â«Ì… «·ÃœÌœ….
+================================================================================
+"""
+
+import asyncio
+import aiohttp
+import aiofiles
+import json
+import os
+import sys
+import time
+import hashlib
+import secrets
+import random
+import subprocess
+import tempfile
+import shutil
+import socket
+import struct
+import zipfile
+import tarfile
+import sqlite3
+from typing import Dict, List, Optional, Any, Tuple, Callable, Union, Set, AsyncGenerator
+from datetime import datetime, timedelta
+from collections import defaultdict, deque
+import logging
+import uuid
+import pickle
+import numpy as np
+
+# «” Ì—«œ «·„ﬂÊ‰«  „‰ core (≈‰ ÊÃœ )
+try:
+    from core import (
+        Config, ExperienceDB, SmartCache, KeyManager, GodPulse,
+        GasManager, CircuitBreaker, RiskManager, Opportunity as CoreOpportunity,
+        StrategyCategory, BaseAgent as CoreBaseAgent, validate_ethereum_address,
+        time_now_ns, gas_cost_usd, retry as core_retry, smart_retry,
+        AESGCMEncryptor, SecureRedis, SUPPORTED_CHAINS,
+        RPCManager, QuantumManager, MarketData, TradeRecord
+    )
+    from agents import AgentOrchestrator, PreflightSimulator, ContractDeployerAgent
+    from unified import AlKhaledUltimateAgent, MempoolWatcher
+    from thinking_core import ThinkingCore
+    CORE_AVAILABLE = True
+    logger = logging.getLogger('AdditionsPart2')
+except ImportError as e:
+    CORE_AVAILABLE = False
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger('AdditionsPart2')
+    logger.warning(f"?? «·„ﬂÊ‰«  «·√”«”Ì… €Ì— „ Ê›—…: {e}")
+
+# «” Ì—«œ „‰ «·Ã“¡ «·√Ê· (· Ã‰» ≈⁄«œ…  ⁄—Ì›)
+try:
+    from additions_part1 import (
+        exponential_backoff, compress_zstd, decompress_zstd, with_retry,
+        AutoStrategyAdvisor, NeuralEarlyWarningSystem, AdaptiveGasWall, SelfHealingContractGuardian,
+        RPCManagerExtended, DeploymentPlatformManager,
+        AdvancedBackupSystem, PreDeploymentTester, NodeDiscovery, PerformanceEvaluator,
+        CloudCostMonitor, DefiLlamaClient, DuneClient, SelfUpdater, TerminationManager,
+        PluginLoader, KeyRotationManager, MultiSigManager, TemporaryWalletManager
+    )
+    PART1_AVAILABLE = True
+except ImportError:
+    PART1_AVAILABLE = False
+    logger.warning("?? «·Ã“¡ «·√Ê· €Ì— „ Ê›—° ”Ì „  ‘€Ì· »⁄÷ «·„Ì“«  »‘ﬂ· „ÕœÊœ")
+
+# =============================================================================
+# ≈⁄œ«œ «· ”ÃÌ· („ÿ«»ﬁ ··Ã“¡ «·√Ê·)
+# =============================================================================
+LOG_DIR = "logs"
+BACKUP_DIR = "backups"
+PLUGIN_DIR = "plugins"
+for d in [LOG_DIR, BACKUP_DIR, PLUGIN_DIR]:
+    os.makedirs(d, exist_ok=True)
+
+class JSONFormatter(logging.Formatter):
+    def format(self, record):
+        return json.dumps({
+            "timestamp": datetime.now().isoformat(),
+            "level": record.levelname,
+            "name": record.name,
+            "message": record.getMessage(),
+            "module": record.module,
+            "function": record.funcName,
+            "line": record.lineno
+        })
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(os.path.join(LOG_DIR, 'alkhaled.log')),
+        logging.FileHandler(os.path.join(LOG_DIR, 'alkhaled.json'), mode='a'),
+        logging.StreamHandler()
+    ]
+)
+json_handler = logging.FileHandler(os.path.join(LOG_DIR, 'alkhaled.json'), mode='a')
+json_handler.setFormatter(JSONFormatter())
+logging.getLogger().addHandler(json_handler)
+logger = logging.getLogger('AdditionsPart2')
+
+# =============================================================================
+# 1. „ﬂÊ‰«  Nexus
+# =============================================================================
+
+class CloudManager:
+    """
+    „œÌ— «·”Õ«»«  «·Œ„” (Oracle, Azure, GCP, AWS, DigitalOcean)
+    œÊ«· ﬂ«„·… ·‹ list, launch, terminate
+    """
+    def __init__(self, config: Dict = None, key_manager: KeyManager = None,
+                 exp_db: ExperienceDB = None, cache: SmartCache = None):
+        self.config = config or {}
+        self.key_manager = key_manager
+        self.exp_db = exp_db
+        self.cache = cache
+        self.clients = {}
+        self.logger = logging.getLogger('CloudManager')
+
+    async def initialize(self):
+        tasks = []
+        if self.config.get('oracle_enabled'):
+            tasks.append(self._init_oracle())
+        if self.config.get('azure_enabled'):
+            tasks.append(self._init_azure())
+        if self.config.get('gcp_enabled'):
+            tasks.append(self._init_gcp())
+        if self.config.get('aws_enabled'):
+            tasks.append(self._init_aws())
+        if self.config.get('do_enabled'):
+            tasks.append(self._init_digitalocean())
+        await asyncio.gather(*tasks)
+
+    async def _init_oracle(self):
+        try:
+            import oci
+            from oci.core import ComputeClient, VirtualNetworkClient
+            from oci.identity import IdentityClient
+            try:
+                signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+                self.clients['oracle_compute'] = ComputeClient(config={}, signer=signer)
+                self.clients['oracle_identity'] = IdentityClient(config={}, signer=signer)
+                self.logger.info("Oracle client initialized with Instance Principals")
+                return
+            except:
+                pass
+            config_path = self.config.get('oracle_config_path', '~/.oci/config')
+            oracle_config = oci.config.from_file(config_path)
+            self.clients['oracle_compute'] = ComputeClient(oracle_config)
+            self.clients['oracle_identity'] = IdentityClient(oracle_config)
+            self.logger.info("Oracle client initialized from config file")
+        except Exception as e:
+            self.logger.error(f"Oracle init failed: {e}")
+
+    async def _init_azure(self):
+        try:
+            from azure.identity import DefaultAzureCredential
+            from azure.mgmt.compute import ComputeManagementClient
+            from azure.mgmt.resource import ResourceManagementClient
+            credential = DefaultAzureCredential()
+            subscription_id = self.config.get('azure_subscription_id')
+            if subscription_id:
+                self.clients['azure_compute'] = ComputeManagementClient(credential, subscription_id)
+                self.clients['azure_resource'] = ResourceManagementClient(credential, subscription_id)
+                self.logger.info("Azure client initialized")
+        except Exception as e:
+            self.logger.error(f"Azure init failed: {e}")
+
+    async def _init_gcp(self):
+        try:
+            from google.cloud import compute_v1
+            from google.oauth2 import service_account
+            if self.key_manager:
+                creds_data = await self.key_manager.get_key("gcp_credentials")
+                if creds_data:
+                    creds_info = json.loads(creds_data.decode())
+                    credentials = service_account.Credentials.from_service_account_info(creds_info)
+                else:
+                    credentials = None
+                self.clients['gcp_instances'] = compute_v1.InstancesClient(credentials=credentials)
+                self.clients['gcp_regions'] = compute_v1.RegionsClient(credentials=credentials)
+                self.logger.info("GCP client initialized")
+        except Exception as e:
+            self.logger.error(f"GCP init failed: {e}")
+
+    async def _init_aws(self):
+        try:
+            import boto3
+            access_key = await self.key_manager.get_key("aws_access_key") if self.key_manager else None
+            secret_key = await self.key_manager.get_key("aws_secret_key") if self.key_manager else None
+            region = self.config.get('aws_region', 'us-east-1')
+            if access_key and secret_key:
+                session = boto3.Session(
+                    aws_access_key_id=access_key.decode(),
+                    aws_secret_access_key=secret_key.decode(),
+                    region_name=region
+                )
+            else:
+                session = boto3.Session(region_name=region)
+            self.clients['aws_ec2'] = session.client('ec2')
+            self.clients['aws_cloudwatch'] = session.client('cloudwatch')
+            self.logger.info("AWS client initialized")
+        except Exception as e:
+            self.logger.error(f"AWS init failed: {e}")
+
+    async def _init_digitalocean(self):
+        try:
+            import digitalocean
+            if self.key_manager:
+                token = await self.key_manager.get_key("do_token")
+                if token:
+                    self.clients['do_manager'] = digitalocean.Manager(token=token.decode())
+                    self.logger.info("DigitalOcean client initialized")
+        except Exception as e:
+            self.logger.error(f"DigitalOcean init failed: {e}")
+
+    # œÊ«· Oracle
+    async def list_oracle_instances(self, compartment_id: str) -> List[Dict]:
+        if 'oracle_compute' not in self.clients:
+            return []
+        try:
+            compute = self.clients['oracle_compute']
+            instances = compute.list_instances(compartment_id).data
+            return [{
+                'id': i.id,
+                'name': i.display_name,
+                'state': i.lifecycle_state,
+                'shape': i.shape,
+                'region': i.region,
+                'created': i.time_created.isoformat() if i.time_created else None
+            } for i in instances]
+        except Exception as e:
+            self.logger.error(f"Oracle list instances failed: {e}")
+            return []
+
+    async def launch_oracle_instance(self, compartment_id: str, availability_domain: str,
+                                     shape: str, subnet_id: str, image_id: str,
+                                     display_name: str) -> Optional[str]:
+        if 'oracle_compute' not in self.clients:
+            return None
+        try:
+            import oci
+            compute = self.clients['oracle_compute']
+            details = oci.core.models.LaunchInstanceDetails(
+                availability_domain=availability_domain,
+                compartment_id=compartment_id,
+                shape=shape,
+                subnet_id=subnet_id,
+                source_details=oci.core.models.InstanceSourceViaImageDetails(image_id=image_id),
+                display_name=display_name
+            )
+            response = compute.launch_instance(details)
+            return response.data.id
+        except Exception as e:
+            self.logger.error(f"Oracle launch failed: {e}")
+            return None
+
+    async def terminate_oracle_instance(self, instance_id: str):
+        if 'oracle_compute' not in self.clients:
+            return
+        try:
+            compute = self.clients['oracle_compute']
+            compute.terminate_instance(instance_id)
+            self.logger.info(f"Terminated Oracle instance {instance_id}")
+        except Exception as e:
+            self.logger.error(f"Oracle terminate failed: {e}")
+
+    # œÊ«· Azure
+    async def list_azure_vms(self, resource_group: str) -> List[Dict]:
+        if 'azure_compute' not in self.clients:
+            return []
+        try:
+            compute = self.clients['azure_compute']
+            vms = compute.virtual_machines.list(resource_group)
+            return [{
+                'id': vm.id,
+                'name': vm.name,
+                'location': vm.location,
+                'vm_size': vm.hardware_profile.vm_size,
+                'provisioning_state': vm.provisioning_state
+            } for vm in vms]
+        except Exception as e:
+            self.logger.error(f"Azure list VMs failed: {e}")
+            return []
+
+    async def launch_azure_vm(self, resource_group: str, vm_name: str, location: str,
+                               vm_size: str, admin_username: str, admin_password: str,
+                               image_publisher: str, image_offer: str, image_sku: str) -> Optional[str]:
+        if 'azure_compute' not in self.clients:
+            return None
+        try:
+            compute = self.clients['azure_compute']
+            vm_parameters = {
+                'location': location,
+                'hardware_profile': {'vm_size': vm_size},
+                'storage_profile': {
+                    'image_reference': {
+                        'publisher': image_publisher,
+                        'offer': image_offer,
+                        'sku': image_sku,
+                        'version': 'latest'
+                    }
+                },
+                'os_profile': {
+                    'computer_name': vm_name,
+                    'admin_username': admin_username,
+                    'admin_password': admin_password
+                },
+                'network_profile': {
+                    'network_interfaces': [{
+                        'id': f"/subscriptions/{compute._config.subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.Network/networkInterfaces/{vm_name}-nic",
+                        'properties': {'primary': True}
+                    }]
+                }
+            }
+            poller = compute.virtual_machines.begin_create_or_update(resource_group, vm_name, vm_parameters)
+            vm = poller.result()
+            return vm.id
+        except Exception as e:
+            self.logger.error(f"Azure launch failed: {e}")
+            return None
+
+    async def terminate_azure_vm(self, resource_group: str, vm_name: str):
+        if 'azure_compute' not in self.clients:
+            return
+        try:
+            compute = self.clients['azure_compute']
+            poller = compute.virtual_machines.begin_delete(resource_group, vm_name)
+            poller.result()
+            self.logger.info(f"Terminated Azure VM {vm_name}")
+        except Exception as e:
+            self.logger.error(f"Azure terminate failed: {e}")
+
+    # œÊ«· GCP
+    async def list_gcp_instances(self, project: str, zone: str) -> List[Dict]:
+        if 'gcp_instances' not in self.clients:
+            return []
+        try:
+            client = self.clients['gcp_instances']
+            request = compute_v1.ListInstancesRequest(project=project, zone=zone)
+            instances = client.list(request=request)
+            return [{
+                'id': i.id,
+                'name': i.name,
+                'zone': i.zone,
+                'machine_type': i.machine_type,
+                'status': i.status
+            } for i in instances]
+        except Exception as e:
+            self.logger.error(f"GCP list instances failed: {e}")
+            return []
+
+    async def launch_gcp_instance(self, project: str, zone: str, name: str,
+                                   machine_type: str, source_image: str,
+                                   network: str = 'default') -> Optional[str]:
+        if 'gcp_instances' not in self.clients:
+            return None
+        try:
+            client = self.clients['gcp_instances']
+            instance = compute_v1.Instance()
+            instance.name = name
+            instance.machine_type = f"zones/{zone}/machineTypes/{machine_type}"
+            disk = compute_v1.AttachedDisk()
+            disk.boot = True
+            disk.initialize_params = compute_v1.AttachedDiskInitializeParams()
+            disk.initialize_params.source_image = source_image
+            instance.disks = [disk]
+            network_interface = compute_v1.NetworkInterface()
+            network_interface.name = network
+            instance.network_interfaces = [network_interface]
+            request = compute_v1.InsertInstanceRequest(
+                project=project, zone=zone, instance_resource=instance
+            )
+            operation = client.insert(request=request)
+            operation.result()
+            return f"projects/{project}/zones/{zone}/instances/{name}"
+        except Exception as e:
+            self.logger.error(f"GCP launch failed: {e}")
+            return None
+
+    async def terminate_gcp_instance(self, project: str, zone: str, name: str):
+        if 'gcp_instances' not in self.clients:
+            return
+        try:
+            client = self.clients['gcp_instances']
+            request = compute_v1.DeleteInstanceRequest(project=project, zone=zone, instance=name)
+            operation = client.delete(request=request)
+            operation.result()
+            self.logger.info(f"Terminated GCP instance {name}")
+        except Exception as e:
+            self.logger.error(f"GCP terminate failed: {e}")
+
+    # œÊ«· AWS
+    async def list_aws_instances(self, region: str = None) -> List[Dict]:
+        if 'aws_ec2' not in self.clients:
+            return []
+        try:
+            ec2 = self.clients['aws_ec2']
+            if region:
+                ec2 = boto3.client('ec2', region_name=region)
+            response = ec2.describe_instances()
+            instances = []
+            for reservation in response['Reservations']:
+                for inst in reservation['Instances']:
+                    instances.append({
+                        'id': inst['InstanceId'],
+                        'state': inst['State']['Name'],
+                        'type': inst['InstanceType'],
+                        'launch_time': inst['LaunchTime'].isoformat(),
+                        'public_ip': inst.get('PublicIpAddress'),
+                        'private_ip': inst.get('PrivateIpAddress'),
+                        'region': region or 'default'
+                    })
+            return instances
+        except Exception as e:
+            self.logger.error(f"AWS list instances failed: {e}")
+            return []
+
+    async def launch_aws_instance(self, image_id: str, instance_type: str,
+                                  key_name: str = None, security_group_ids: List[str] = None,
+                                  subnet_id: str = None, region: str = None,
+                                  min_count: int = 1, max_count: int = 1) -> List[str]:
+        if 'aws_ec2' not in self.clients:
+            return []
+        try:
+            ec2 = self.clients['aws_ec2']
+            if region:
+                ec2 = boto3.client('ec2', region_name=region)
+            params = {
+                'ImageId': image_id,
+                'InstanceType': instance_type,
+                'MinCount': min_count,
+                'MaxCount': max_count
+            }
+            if key_name:
+                params['KeyName'] = key_name
+            if security_group_ids:
+                params['SecurityGroupIds'] = security_group_ids
+            if subnet_id:
+                params['SubnetId'] = subnet_id
+            response = ec2.run_instances(**params)
+            return [inst['InstanceId'] for inst in response['Instances']]
+        except Exception as e:
+            self.logger.error(f"AWS launch failed: {e}")
+            return []
+
+    async def terminate_aws_instance(self, instance_id: str, region: str = None):
+        if 'aws_ec2' not in self.clients:
+            return
+        try:
+            ec2 = self.clients['aws_ec2']
+            if region:
+                ec2 = boto3.client('ec2', region_name=region)
+            ec2.terminate_instances(InstanceIds=[instance_id])
+            self.logger.info(f"Terminated AWS instance {instance_id}")
+        except Exception as e:
+            self.logger.error(f"AWS terminate failed: {e}")
+
+    # œÊ«· DigitalOcean
+    async def list_do_droplets(self) -> List[Dict]:
+        if 'do_manager' not in self.clients:
+            return []
+        try:
+            manager = self.clients['do_manager']
+            droplets = manager.get_all_droplets()
+            return [{
+                'id': d.id,
+                'name': d.name,
+                'status': d.status,
+                'ip': d.ip_address,
+                'region': d.region['slug'],
+                'size': d.size['slug'],
+                'created': d.created_at
+            } for d in droplets]
+        except Exception as e:
+            self.logger.error(f"DO list droplets failed: {e}")
+            return []
+
+    async def launch_do_droplet(self, name: str, region: str, size: str,
+                                image: str, ssh_keys: List[int] = None,
+                                backups: bool = False, ipv6: bool = False) -> Optional[int]:
+        if 'do_manager' not in self.clients:
+            return None
+        try:
+            manager = self.clients['do_manager']
+            droplet = digitalocean.Droplet(
+                token=manager.token,
+                name=name,
+                region=region,
+                size=size,
+                image=image,
+                ssh_keys=ssh_keys,
+                backups=backups,
+                ipv6=ipv6
+            )
+            droplet.create()
+            return droplet.id
+        except Exception as e:
+            self.logger.error(f"DO launch failed: {e}")
+            return None
+
+    async def terminate_do_droplet(self, droplet_id: int):
+        if 'do_manager' not in self.clients:
+            return
+        try:
+            manager = self.clients['do_manager']
+            droplet = digitalocean.Droplet.get_object(manager.token, droplet_id)
+            droplet.destroy()
+            self.logger.info(f"Terminated DO droplet {droplet_id}")
+        except Exception as e:
+            self.logger.error(f"DO terminate failed: {e}")
+
+
+class DeploymentAgent:
+    """ÊﬂÌ· «·‰‘— «·–ﬂÌ ⁄»— GitHub"""
+    def __init__(self, config: Dict = None, exp_db: ExperienceDB = None):
+        self.config = config or {}
+        self.exp_db = exp_db
+        self.repo_url = self.config.get('github_repo', 'https://github.com/alkhaled/core.git')
+        self.repo_name = self.config.get('github_repo_name', 'alkhaled/core')
+        self.branch = self.config.get('github_branch', 'main')
+        self.deploy_path = self.config.get('deploy_path', '/opt/alkhaled')
+        self.check_interval = self.config.get('deploy_check_interval', 300)
+        self.github_token = self.config.get('github_token', os.environ.get('GITHUB_TOKEN'))
+        self.rsync_source = self.config.get('rsync_source', None)
+        self.last_commit_key = "deployment:last_commit"
+        self.deploy_count_key = "deployment:count"
+        self.deploy_status_key = "deployment:status"
+        self.last_commit = None
+        self.deploy_count = 0
+        self.status = {'state': 'idle', 'last_error': None}
+        self.running = False
+        self._task = None
+        self.logger = logging.getLogger('DeploymentAgent')
+        self.strategies = [self._deploy_git_pull, self._deploy_github_archive, self._deploy_rsync]
+
+    async def setup(self):
+        if self.exp_db:
+            last = await self.exp_db.db_get(self.last_commit_key)
+            self.last_commit = last.decode() if last else None
+            count = await self.exp_db.db_get(self.deploy_count_key)
+            self.deploy_count = int(count) if count else 0
+            status = await self.exp_db.db_get(self.deploy_status_key)
+            self.status = json.loads(status) if status else {'state': 'idle', 'last_error': None}
+
+    async def start_monitoring(self):
+        self.running = True
+        self._task = asyncio.create_task(self._run())
+        self.logger.info("DeploymentAgent started")
+
+    async def _run(self):
+        while self.running:
+            try:
+                await self._check_and_deploy()
+            except Exception as e:
+                self.logger.error(f"Deployment error: {e}")
+                self.status['last_error'] = str(e)
+                await self._save_status()
+            await asyncio.sleep(self.check_interval)
+
+    async def _check_and_deploy(self):
+        latest = await self._get_latest_commit()
+        if not latest:
+            return
+        if latest == self.last_commit:
+            return
+        self.logger.info(f"New commit detected: {latest[:8]}")
+        success = await self.deploy_now()
+        if success:
+            self.last_commit = latest
+            self.deploy_count += 1
+            if self.exp_db:
+                await self.exp_db.db_set(self.last_commit_key, latest)
+                await self.exp_db.db_set(self.deploy_count_key, str(self.deploy_count))
+            self.logger.info(f"Deployed successfully (total: {self.deploy_count})")
+
+    async def deploy_now(self) -> bool:
+        self.status['state'] = 'deploying'
+        await self._save_status()
+        for strategy in self.strategies:
+            try:
+                success = await strategy()
+                if success:
+                    self.status['state'] = 'idle'
+                    self.status['last_error'] = None
+                    await self._save_status()
+                    return True
+            except Exception as e:
+                self.logger.warning(f"Strategy {strategy.__name__} failed: {e}")
+        self.status['state'] = 'failed'
+        self.status['last_error'] = 'All strategies failed'
+        await self._save_status()
+        return False
+
+    async def _get_latest_commit(self) -> Optional[str]:
+        if not self.github_token:
+            return None
+        try:
+            async with aiohttp.ClientSession() as session:
+                url = f"https://api.github.com/repos/{self.repo_name}/commits/{self.branch}"
+                headers = {'Authorization': f'token {self.github_token}'}
+                async with session.get(url, headers=headers, timeout=10) as resp:
+                    if resp.status == 200:
+                        data = await resp.json()
+                        return data['sha']
+        except Exception as e:
+            self.logger.warning(f"GitHub API failed: {e}")
+        return None
+
+    async def _deploy_git_pull(self) -> bool:
+        if not shutil.which('git'):
+            return False
+        try:
+            if not os.path.exists(os.path.join(self.deploy_path, '.git')):
+                proc = await asyncio.create_subprocess_exec(
+                    'git', 'clone', '--branch', self.branch, self.repo_url, self.deploy_path,
+                    stdout=asyncio.PIPE, stderr=asyncio.PIPE
+                )
+            else:
+                proc = await asyncio.create_subprocess_exec(
+                    'git', '-C', self.deploy_path, 'pull', 'origin', self.branch,
+                    stdout=asyncio.PIPE, stderr=asyncio.PIPE
+                )
+            await proc.communicate()
+            return proc.returncode == 0
+        except:
+            return False
+
+    async def _deploy_github_archive(self) -> bool:
+        if not self.github_token:
+            return False
+        try:
+            url = f"https://api.github.com/repos/{self.repo_name}/zipball/{self.branch}"
+            headers = {'Authorization': f'token {self.github_token}'}
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url, headers=headers) as resp:
+                    if resp.status != 200:
+                        return False
+                    with tempfile.NamedTemporaryFile(suffix='.zip', delete=False) as tmp:
+                        tmp.write(await resp.read())
+                        tmp_path = tmp.name
+            import zipfile
+            extract_path = self.deploy_path + '_new'
+            os.makedirs(extract_path, exist_ok=True)
+            with zipfile.ZipFile(tmp_path, 'r') as zip_ref:
+                zip_ref.extractall(extract_path)
+            extracted_items = os.listdir(extract_path)
+            if len(extracted_items) == 1 and os.path.isdir(os.path.join(extract_path, extracted_items[0])):
+                src = os.path.join(extract_path, extracted_items[0])
+                for item in os.listdir(src):
+                    shutil.move(os.path.join(src, item), self.deploy_path)
+            else:
+                for item in extracted_items:
+                    shutil.move(os.path.join(extract_path, item), self.deploy_path)
+            shutil.rmtree(extract_path)
+            os.unlink(tmp_path)
+            return True
+        except:
+            return False
+
+    async def _deploy_rsync(self) -> bool:
+        if not self.rsync_source or not shutil.which('rsync'):
+            return False
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                'rsync', '-avz', '--delete', self.rsync_source, self.deploy_path,
+                stdout=asyncio.PIPE, stderr=asyncio.PIPE
+            )
+            await proc.communicate()
+            return proc.returncode == 0
+        except:
+            return False
+
+    async def _save_status(self):
+        if self.exp_db:
+            await self.exp_db.db_set(self.deploy_status_key, json.dumps(self.status))
+
+    async def stop(self):
+        self.running = False
+        if self._task:
+            self._task.cancel()
+            try:
+                await self._task
+            except asyncio.CancelledError:
+                pass
+        self.logger.info("DeploymentAgent stopped")
+
+
+class LiquidInfrastructureAgent:
+    """»‰Ì…  Õ Ì… ”«∆·… ñ „—«ﬁ»… «·⁄ﬁœ Ê≈⁄«œ… «· Ê«“‰"""
+    def __init__(self, config: Dict = None, cache: SmartCache = None,
+                 cloud_mgr: CloudManager = None, agent=None):
+        self.config = config or {}
+        self.cache = cache
+        self.cloud = cloud_mgr
+        self.agent = agent
+        self.nodes = []
+        self.node_stats_key = "liquid:nodes"
+        self.balancing_interval = self.config.get('liquid_balance_interval', 300)
+        self.running = False
+        self._task = None
+        self.logger = logging.getLogger('LiquidInfrastructure')
+
+    async def setup(self):
+        if self.cache:
+            nodes_data = await self.cache.get(self.node_stats_key)
+            if nodes_data:
+                self.nodes = nodes_data
+
+    async def register_node(self, node_id: str, region: str, cloud: str, capacity: Dict,
+                           instance_id: str = None):
+        node = {
+            'id': node_id, 'region': region, 'cloud': cloud, 'capacity': capacity,
+            'instance_id': instance_id, 'load': 0.0, 'cpu_usage': 0.0, 'memory_usage': 0.0,
+            'network_in': 0, 'network_out': 0, 'last_seen': time.time(), 'status': 'active'
+        }
+        for i, n in enumerate(self.nodes):
+            if n['id'] == node_id:
+                self.nodes[i] = node
+                break
+        else:
+            self.nodes.append(node)
+        await self._save_nodes()
+
+    async def update_node_load(self, node_id: str, cpu: float = None, memory: float = None,
+                               net_in: int = None, net_out: int = None):
+        for node in self.nodes:
+            if node['id'] == node_id:
+                if cpu is not None:
+                    node['cpu_usage'] = cpu
+                if memory is not None:
+                    node['memory_usage'] = memory
+                if net_in is not None:
+                    node['network_in'] = net_in
+                if net_out is not None:
+                    node['network_out'] = net_out
+                node['last_seen'] = time.time()
+                node['load'] = (node['cpu_usage'] * 0.5 + node['memory_usage'] * 0.5)
+                await self._save_nodes()
+                break
+
+    async def get_best_node(self, required_cpu: float = 0, required_memory: float = 0,
+                           preferred_region: str = None, preferred_cloud: str = None) -> Optional[Dict]:
+        candidates = [n for n in self.nodes if n['status'] == 'active' and n['load'] < 0.8]
+        if preferred_region:
+            candidates = [n for n in candidates if n['region'] == preferred_region]
+        if preferred_cloud:
+            candidates = [n for n in candidates if n['cloud'] == preferred_cloud]
+        candidates = [n for n in candidates if n['capacity'].get('cpu', 0) >= required_cpu
+                     and n['capacity'].get('memory', 0) >= required_memory]
+        if not candidates:
+            return None
+        return min(candidates, key=lambda x: x['load'])
+
+    async def rebalance(self):
+        if not self.nodes:
+            return
+        avg_load = sum(n['load'] for n in self.nodes) / len(self.nodes)
+        high = [n for n in self.nodes if n['load'] > avg_load + 0.2]
+        low = [n for n in self.nodes if n['load'] < avg_load - 0.2]
+        if high and low:
+            self.logger.info(f"Imbalance: {len(high)} high, {len(low)} low")
+            if self.cache:
+                await self.cache.set("liquid:rebalance_needed", True, ttl=60)
+
+    async def start_monitoring(self):
+        self.running = True
+        self._task = asyncio.create_task(self._run())
+        self.logger.info("LiquidInfrastructure started")
+
+    async def _run(self):
+        while self.running:
+            try:
+                #  ÕœÌÀ «·Õ„· »»Ì«‰«  „Õ«ﬂ«… (›Ì «·≈‰ «Ã  ıﬁ—√ „‰ GodPulse √Ê Prometheus)
+                for node in self.nodes:
+                    await self.update_node_load(node['id'],
+                                               cpu=random.uniform(0.1, 0.9),
+                                               memory=random.uniform(0.1, 0.8))
+                await self.rebalance()
+            except Exception as e:
+                self.logger.error(f"Monitoring error: {e}")
+            await asyncio.sleep(self.balancing_interval)
+
+    async def _save_nodes(self):
+        if self.cache:
+            await self.cache.set(self.node_stats_key, self.nodes, ttl=3600)
+
+    async def stop(self):
+        self.running = False
+        if self._task:
+            self._task.cancel()
+            try:
+                await self._task
+            except asyncio.CancelledError:
+                pass
+
+
+class DecentralizedStorage:
+    """ Œ“Ì‰ ·«„—ﬂ“Ì ⁄»— IPFS „⁄ Fallback „Õ·Ì"""
+    def __init__(self, config: Dict = None, cache: SmartCache = None):
+        self.config = config or {}
+        self.cache = cache
+        self.ipfs_client = None
+        self.storage_path = self.config.get('decentralized_storage_path', '/tmp/alkhaled_storage')
+        os.makedirs(self.storage_path, exist_ok=True)
+        self.logger = logging.getLogger('DecentralizedStorage')
+        if IPFS_AVAILABLE:
+            try:
+                import ipfshttpclient
+                self.ipfs_client = ipfshttpclient.connect('/ip4/127.0.0.1/tcp/5001', timeout=3)
+                self.logger.info("IPFS connected")
+            except:
+                self.logger.warning("IPFS not available, using local fallback")
+
+    async def upload(self, data: bytes, filename: str = None, pin: bool = True) -> Optional[str]:
+        if self.ipfs_client:
+            try:
+                with tempfile.NamedTemporaryFile(delete=False) as tmp:
+                    tmp.write(data)
+                    tmp_path = tmp.name
+                res = self.ipfs_client.add(tmp_path)
+                cid = res['Hash']
+                os.unlink(tmp_path)
+                if pin:
+                    self.ipfs_client.pin.add(cid)
+                if self.cache:
+                    await self.cache.set(f"ipfs:{cid}", filename or cid, ttl=86400)
+                return f"ipfs:{cid}"
+            except Exception as e:
+                self.logger.error(f"IPFS upload failed: {e}")
+        local_filename = filename or f"file_{int(time.time())}_{uuid.uuid4().hex[:8]}"
+        local_path = os.path.join(self.storage_path, local_filename)
+        try:
+            async with aiofiles.open(local_path, 'wb') as f:
+                await f.write(data)
+            if self.cache:
+                await self.cache.set(f"local:{local_filename}", local_path, ttl=86400)
+            return f"local:{local_filename}"
+        except Exception as e:
+            self.logger.error(f"Local save failed: {e}")
+            return None
+
+    async def download(self, uri: str) -> Optional[bytes]:
+        if uri.startswith('ipfs:'):
+            cid = uri[5:]
+            if self.ipfs_client:
+                try:
+                    return self.ipfs_client.cat(cid)
+                except Exception as e:
+                    self.logger.error(f"IPFS download failed: {e}")
+                    return None
+        elif uri.startswith('local:'):
+            local_path = uri[6:]
+            full_path = os.path.join(self.storage_path, local_path)
+            try:
+                async with aiofiles.open(full_path, 'rb') as f:
+                    return await f.read()
+            except Exception as e:
+                self.logger.error(f"Local read failed: {e}")
+                return None
+        return None
+
+    async def pin(self, cid: str) -> bool:
+        if self.ipfs_client:
+            try:
+                self.ipfs_client.pin.add(cid)
+                return True
+            except:
+                pass
+        return False
+
+
+class EdgeNetwork:
+    """‘»ﬂ… Õ«›… ⁄»— Cloudflare Workers Ê R2"""
+    def __init__(self, config: Dict = None, cache: SmartCache = None,
+                 key_manager: KeyManager = None):
+        self.config = config or {}
+        self.cache = cache
+        self.key_manager = key_manager
+        self.account_id = self.config.get('cloudflare_account_id', '')
+        self.api_token = self.config.get('cloudflare_api_token', os.environ.get('CLOUDFLARE_API_TOKEN'))
+        self.session = None
+        self.logger = logging.getLogger('EdgeNetwork')
+
+    async def _ensure_session(self):
+        if not self.session:
+            self.session = aiohttp.ClientSession()
+
+    async def deploy_worker(self, worker_name: str, script: str, routes: List[str] = None) -> bool:
+        if not self.account_id or not self.api_token:
+            self.logger.error("Cloudflare credentials missing")
+            return False
+        await self._ensure_session()
+        url = f"https://api.cloudflare.com/client/v4/accounts/{self.account_id}/workers/scripts/{worker_name}"
+        headers = {
+            'Authorization': f'Bearer {self.api_token}',
+            'Content-Type': 'application/javascript'
+        }
+        try:
+            async with self.session.put(url, headers=headers, data=script) as resp:
+                if resp.status == 200:
+                    self.logger.info(f"Worker {worker_name} deployed")
+                    if routes:
+                        await self._set_worker_routes(worker_name, routes)
+                    return True
+                else:
+                    error = await resp.text()
+                    self.logger.error(f"Worker deploy failed: {error}")
+                    return False
+        except Exception as e:
+            self.logger.error(f"Worker deploy error: {e}")
+            return False
+
+    async def _set_worker_routes(self, worker_name: str, routes: List[str]):
+        if not self.account_id or not self.api_token:
+            return
+        await self._ensure_session()
+        headers = {'Authorization': f'Bearer {self.api_token}'}
+        url = f"https://api.cloudflare.com/client/v4/zones"
+        try:
+            async with self.session.get(url, headers=headers) as resp:
+                if resp.status == 200:
+                    zones = await resp.json()
+                    for zone in zones.get('result', []):
+                        zone_id = zone['id']
+                        for route in routes:
+                            route_url = f"https://api.cloudflare.com/client/v4/zones/{zone_id}/workers/routes"
+                            route_data = {'pattern': route, 'script': worker_name}
+                            async with self.session.post(route_url, headers=headers, json=route_data) as r:
+                                if r.status != 200:
+                                    self.logger.warning(f"Failed to set route {route} for zone {zone['name']}")
+        except Exception as e:
+            self.logger.error(f"Failed to set routes: {e}")
+
+    async def upload_to_r2(self, bucket: str, key: str, data: bytes,
+                          content_type: str = 'application/octet-stream') -> bool:
+        if not self.account_id or not self.api_token:
+            return False
+        await self._ensure_session()
+        url = f"https://api.cloudflare.com/client/v4/accounts/{self.account_id}/r2/buckets/{bucket}/objects/{key}"
+        headers = {
+            'Authorization': f'Bearer {self.api_token}',
+            'Content-Type': content_type
+        }
+        try:
+            async with self.session.put(url, headers=headers, data=data) as resp:
+                if resp.status == 200:
+                    self.logger.info(f"Uploaded to R2: {bucket}/{key}")
+                    return True
+                else:
+                    error = await resp.text()
+                    self.logger.error(f"R2 upload failed: {error}")
+                    return False
+        except Exception as e:
+            self.logger.error(f"R2 upload error: {e}")
+            return False
+
+    async def get_r2_download_url(self, bucket: str, key: str, expires: int = 3600) -> Optional[str]:
+        if not self.account_id or not self.api_token:
+            return None
+        await self._ensure_session()
+        url = f"https://api.cloudflare.com/client/v4/accounts/{self.account_id}/r2/buckets/{bucket}/objects/{key}"
+        headers = {'Authorization': f'Bearer {self.api_token}'}
+        params = {'expires_in': expires}
+        try:
+            async with self.session.get(url, headers=headers, params=params) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    return data.get('result', {}).get('url')
+        except Exception as e:
+            self.logger.error(f"Failed to get R2 URL: {e}")
+        return None
+
+    async def close(self):
+        if self.session:
+            await self.session.close()
+
+
+class StealthManager:
+    """≈œ«—… ≈Œ›«¡ «·ÂÊÌ… (User-Agent, Proxy,  ‘›Ì—)"""
+    def __init__(self, config: Dict = None, key_manager: KeyManager = None):
+        self.config = config or {}
+        self.key_manager = key_manager
+        self.proxy_list = self.config.get('proxy_list', [])
+        self.user_agents = [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        ]
+        self.current_user_agent = random.choice(self.user_agents)
+        self.current_proxy = None
+        self.logger = logging.getLogger('StealthManager')
+
+    async def rotate_user_agent(self) -> str:
+        self.current_user_agent = random.choice(self.user_agents)
+        return self.current_user_agent
+
+    async def rotate_proxy(self) -> Optional[str]:
+        if not self.proxy_list:
+            return None
+        self.current_proxy = random.choice(self.proxy_list)
+        return self.current_proxy
+
+    async def get_http_session(self) -> aiohttp.ClientSession:
+        ua = await self.rotate_user_agent()
+        proxy = await self.rotate_proxy()
+        connector = aiohttp.TCPConnector()
+        if proxy:
+            return aiohttp.ClientSession(headers={'User-Agent': ua}, 
+                                        connector=connector,
+                                        trust_env=True)
+        else:
+            return aiohttp.ClientSession(headers={'User-Agent': ua})
+
+    async def encrypt_data(self, data: bytes) -> bytes:
+        if not self.key_manager:
+            return data
+        key_data = await self.key_manager.get_key("encryption_master")
+        if not key_data:
+            key = secrets.token_bytes(32)
+            await self.key_manager.set_key("encryption_master", key)
+            encryptor = AESGCMEncryptor(key.decode('latin1') if isinstance(key, bytes) else key)
+        else:
+            encryptor = AESGCMEncryptor(key_data.decode('latin1') if isinstance(key_data, bytes) else key_data)
+        return encryptor.encrypt(data)
+
+    async def decrypt_data(self, encrypted: bytes) -> bytes:
+        if not self.key_manager:
+            return encrypted
+        key_data = await self.key_manager.get_key("encryption_master")
+        if not key_data:
+            raise ValueError("Encryption key not found")
+        encryptor = AESGCMEncryptor(key_data.decode('latin1') if isinstance(key_data, bytes) else key_data)
+        return encryptor.decrypt(encrypted)
+
+
+class SmartScheduler:
+    """ÃœÊ·… –ﬂÌ… „⁄ „—«⁄«… ”«⁄«  «·€«“ «·„À·Ï"""
+    def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
+                 god_pulse: GodPulse = None):
+        self.config = config or {}
+        self.exp_db = exp_db
+        self.god_pulse = god_pulse
+        self.tasks = {}
+        self.schedule_key = "scheduler:tasks"
+        self.running = False
+        self._task = None
+        self.logger = logging.getLogger('SmartScheduler')
+
+    async def load_tasks(self):
+        if self.exp_db:
+            tasks_data = await self.exp_db.db_get(self.schedule_key)
+            if tasks_data:
+                try:
+                    self.tasks = json.loads(tasks_data)
+                except:
+                    self.tasks = {}
+
+    async def save_tasks(self):
+        if self.exp_db:
+            await self.exp_db.db_set(self.schedule_key, json.dumps(self.tasks), expire=86400*30)
+
+    async def add_task(self, task_id: str, func: Callable, args: tuple = (), kwargs: dict = None,
+                      schedule_type: str = 'interval', interval: int = 3600,
+                      preferred_hours: List[int] = None, preferred_gas: bool = False):
+        self.tasks[task_id] = {
+            'func_name': func.__name__,
+            'module': func.__module__,
+            'args': args,
+            'kwargs': kwargs or {},
+            'schedule_type': schedule_type,
+            'interval': interval,
+            'preferred_hours': preferred_hours or [],
+            'preferred_gas': preferred_gas,
+            'last_run': 0,
+            'next_run': time.time() + interval,
+            'run_count': 0,
+            'success_count': 0,
+            'fail_count': 0
+        }
+        await self.save_tasks()
+        self.logger.info(f"Task {task_id} added")
+
+    async def remove_task(self, task_id: str):
+        if task_id in self.tasks:
+            del self.tasks[task_id]
+            await self.save_tasks()
+
+    async def start(self):
+        await self.load_tasks()
+        self.running = True
+        self._task = asyncio.create_task(self._run())
+        self.logger.info("SmartScheduler started")
+
+    async def _run(self):
+        while self.running:
+            now = time.time()
+            for task_id, task in list(self.tasks.items()):
+                if task['next_run'] <= now:
+                    await self._execute_task(task_id, task)
+            await asyncio.sleep(60)
+
+    async def _execute_task(self, task_id: str, task: Dict):
+        self.logger.info(f"Executing scheduled task: {task_id}")
+        task['last_run'] = time.time()
+        task['run_count'] += 1
+
+        if task['preferred_hours']:
+            current_hour = datetime.now().hour
+            if current_hour not in task['preferred_hours']:
+                next_hour = min([h for h in task['preferred_hours'] if h > current_hour] + [task['preferred_hours'][0]])
+                next_time = datetime.now().replace(hour=next_hour, minute=0, second=0)
+                if next_time < datetime.now():
+                    next_time += timedelta(days=1)
+                task['next_run'] = next_time.timestamp()
+                await self.save_tasks()
+                return
+
+        if task['preferred_gas'] and self.god_pulse:
+            try:
+                eth_pulse = self.god_pulse.get('ethereum')
+                if eth_pulse:
+                    node = await eth_pulse.get_best_node()
+                    if node:
+                        gas_price = await node.w3.eth.gas_price
+                        if gas_price > 50 * 10**9:
+                            task['next_run'] = time.time() + 300
+                            await self.save_tasks()
+                            return
+            except:
+                pass
+
+        try:
+            module = __import__(task['module'], fromlist=[task['func_name']])
+            func = getattr(module, task['func_name'])
+            if asyncio.iscoroutinefunction(func):
+                await func(*task['args'], **task['kwargs'])
+            else:
+                func(*task['args'], **task['kwargs'])
+            task['success_count'] += 1
+            self.logger.info(f"Task {task_id} completed successfully")
+        except Exception as e:
+            task['fail_count'] += 1
+            self.logger.error(f"Task {task_id} failed: {e}")
+
+        task['next_run'] = time.time() + task['interval']
+        await self.save_tasks()
+
+    async def stop(self):
+        self.running = False
+        if self._task:
+            self._task.cancel()
+            try:
+                await self._task
+            except asyncio.CancelledError:
+                pass
+        await self.save_tasks()
+
+
+class TerraformIntegration:
+    """ ﬂ«„· Terraform · Ê·Ìœ Ê ‘€Ì·  ﬂÊÌ‰«  «·»‰Ì… «· Õ Ì…"""
+    def __init__(self, config: Dict = None, cloud_mgr: CloudManager = None):
+        self.config = config or {}
+        self.cloud = cloud_mgr
+        self.terraform_dir = self.config.get('terraform_dir', '/opt/alkhaled/terraform')
+        os.makedirs(self.terraform_dir, exist_ok=True)
+        self.logger = logging.getLogger('TerraformIntegration')
+
+    async def generate_oracle_config(self, compartment_id: str, availability_domain: str,
+                                     shape: str, subnet_id: str, image_id: str,
+                                     count: int = 1) -> str:
+        config = f"""
+provider "oci" {{
+  tenancy_ocid     = var.tenancy_ocid
+  user_ocid        = var.user_ocid
+  fingerprint      = var.fingerprint
+  private_key_path = var.private_key_path
+  region           = var.region
+}}
+resource "oci_core_instance" "alkhaled" {{
+  count               = {count}
+  availability_domain = "{availability_domain}"
+  compartment_id      = "{compartment_id}"
+  shape               = "{shape}"
+  subnet_id           = "{subnet_id}"
+  source_details {{
+    source_type = "image"
+    source_id   = "{image_id}"
+  }}
+  display_name = "alkhaled-instance-${{count.index}}"
+}}
+"""
+        path = os.path.join(self.terraform_dir, "oracle.tf")
+        async with aiofiles.open(path, 'w') as f:
+            await f.write(config)
+        return path
+
+    async def generate_aws_config(self, region: str, ami: str, instance_type: str,
+                                  count: int = 1, subnet_id: str = None) -> str:
+        subnet_param = f'subnet_id = "{subnet_id}"' if subnet_id else ''
+        config = f"""
+provider "aws" {{
+  region = "{region}"
+}}
+resource "aws_instance" "alkhaled" {{
+  count         = {count}
+  ami           = "{ami}"
+  instance_type = "{instance_type}"
+  {subnet_param}
+  tags = {{
+    Name = "alkhaled-instance-${{count.index}}"
+  }}
+}}
+"""
+        path = os.path.join(self.terraform_dir, "aws.tf")
+        async with aiofiles.open(path, 'w') as f:
+            await f.write(config)
+        return path
+
+    async def apply(self, target: str = None) -> Tuple[bool, str]:
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                'terraform', 'init', cwd=self.terraform_dir,
+                stdout=asyncio.PIPE, stderr=asyncio.PIPE
+            )
+            await proc.communicate()
+
+            if target:
+                cmd = ['terraform', 'apply', '-auto-approve', f'-target={target}']
+            else:
+                cmd = ['terraform', 'apply', '-auto-approve']
+            proc = await asyncio.create_subprocess_exec(
+                *cmd, cwd=self.terraform_dir,
+                stdout=asyncio.PIPE, stderr=asyncio.PIPE
+            )
+            stdout, stderr = await proc.communicate()
+            success = proc.returncode == 0
+            return success, stdout.decode() if success else stderr.decode()
+        except Exception as e:
+            return False, str(e)
+
+
+class WalletGeneratorAgent:
+    """≈‰‘«¡ „Õ«›Ÿ Ê Œ“Ì‰ «·„›« ÌÕ „‘›—…"""
+    def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
+                 key_manager: KeyManager = None):
+        self.config = config or {}
+        self.exp_db = exp_db
+        self.key_manager = key_manager
+        self.wallets = {}
+        self.wallet_list_key = "wallets:list"
+        self.logger = logging.getLogger('WalletGeneratorAgent')
+
+    async def setup(self):
+        if self.exp_db:
+            wallets_data = await self.exp_db.db_get(self.wallet_list_key)
+            if wallets_data:
+                try:
+                    self.wallets = json.loads(wallets_data)
+                except:
+                    self.wallets = {}
+
+    async def save_wallets(self):
+        if self.exp_db:
+            wallet_meta = {addr: {'chain': info['chain'], 'testnet': info['testnet']}
+                           for addr, info in self.wallets.items()}
+            await self.exp_db.db_set(self.wallet_list_key, json.dumps(wallet_meta), expire=86400*30)
+
+    async def generate_wallet(self, chain: str = 'ethereum', testnet: bool = False) -> Dict[str, str]:
+        account = Account.create()
+        private_key = account.key.hex()
+        address = account.address
+        if self.key_manager:
+            encrypted_key = await self.key_manager.encrypt_value(private_key.encode())
+            key_id = f"wallet:{address}"
+            await self.key_manager.set_key(key_id, encrypted_key)
+        self.wallets[address] = {'chain': chain, 'testnet': testnet, 'created_at': time.time()}
+        await self.save_wallets()
+        self.logger.info(f"Generated new wallet: {address} (testnet={testnet})")
+        return {'address': address, 'chain': chain, 'testnet': testnet}
+
+    async def get_private_key(self, address: str) -> Optional[str]:
+        if not self.key_manager:
+            return None
+        key_id = f"wallet:{address}"
+        encrypted = await self.key_manager.get_key(key_id)
+        if not encrypted:
+            return None
+        return (await self.key_manager.decrypt_value(encrypted)).decode()
+
+    async def sign_message(self, address: str, message: str) -> Optional[str]:
+        private_key = await self.get_private_key(address)
+        if not private_key:
+            self.logger.error(f"Private key not found for {address}")
+            return None
+        account = Account.from_key(private_key)
+        message_hash = encode_defunct(text=message)
+        signed = account.sign_message(message_hash)
+        return signed.signature.hex()
+
+    async def sign_transaction(self, address: str, tx_dict: Dict) -> Optional[str]:
+        private_key = await self.get_private_key(address)
+        if not private_key:
+            return None
+        account = Account.from_key(private_key)
+        signed = account.sign_transaction(tx_dict)
+        return signed.rawTransaction.hex()
+
+
+class SignatureOpportunityAgent:
+    """—’œ ›—’ Airdrops Ê«· ÊﬁÌ⁄ ⁄·ÌÂ«"""
+    def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
+                 god_pulse: GodPulse = None, wallet_gen: WalletGeneratorAgent = None):
+        self.config = config or {}
+        self.exp_db = exp_db
+        self.god_pulse = god_pulse
+        self.wallet_gen = wallet_gen
+        self.logger = logging.getLogger('SignatureOpportunityAgent')
+
+    async def scan_airdrop_opportunities(self) -> List[CoreOpportunity]:
+        opportunities = []
+        # Â‰« Ì„ﬂ‰ Ã·» »Ì«‰«  ÕﬁÌﬁÌ… „‰ DefiLlama √Ê „’«œ— √Œ—Ï
+        airdrops = [
+            {
+                'name': 'Arbitrum Airdrop',
+                'contract': '0x...',
+                'claim_data': '0x...',
+                'profit_estimate': 500,
+                'deadline': time.time() + 86400*30,
+                'chain': 'arbitrum'
+            },
+            {
+                'name': 'Optimism Airdrop',
+                'contract': '0x...',
+                'claim_data': '0x...',
+                'profit_estimate': 300,
+                'deadline': time.time() + 86400*15,
+                'chain': 'optimism'
+            }
+        ]
+        for a in airdrops:
+            if a['deadline'] > time.time():
+                opp = CoreOpportunity(
+                    category=StrategyCategory.AIRDROP,
+                    name=f"Claim {a['name']}",
+                    profit=a['profit_estimate'],
+                    action="claim_airdrop",
+                    params={'contract': a['contract'], 'data': a['claim_data'], 'deadline': a['deadline']},
+                    chain=a['chain'],
+                    confidence=0.7,
+                    gas_cost=0,
+                    need_approval=False
+                )
+                opportunities.append(opp)
+        return opportunities
+
+    async def execute_opportunity(self, opp: CoreOpportunity, wallet_address: str) -> Optional[Dict]:
+        if opp.action == 'claim_airdrop':
+            chain = opp.chain
+            gp = self.god_pulse.get(chain) if self.god_pulse else None
+            if not gp:
+                return None
+            node = await gp.get_best_node()
+            if not node:
+                return None
+            w3 = node.w3
+            tx = {
+                'to': opp.params['contract'],
+                'data': opp.params['data'],
+                'gas': 200000,
+                'gasPrice': await w3.eth.gas_price,
+                'nonce': await w3.eth.get_transaction_count(wallet_address),
+                'chainId': SUPPORTED_CHAINS[chain]['chain_id'] if SUPPORTED_CHAINS else 1
+            }
+            signed_tx = await self.wallet_gen.sign_transaction(wallet_address, tx)
+            if not signed_tx:
+                return None
+            tx_hash = await w3.eth.send_raw_transaction(signed_tx)
+            receipt = await w3.eth.wait_for_transaction_receipt(tx_hash)
+            return {'tx_hash': tx_hash.hex(), 'receipt': receipt}
+        return None
+
+
+class ZeroWalletAgent:
+    """≈œ«—… «·„Õ«›Ÿ «·’›—Ì… (Testnet) Ê«· ›«⁄· „⁄ «·’‰«»Ì—"""
+    def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
+                 wallet_gen: WalletGeneratorAgent = None):
+        self.config = config or {}
+        self.exp_db = exp_db
+        self.wallet_gen = wallet_gen
+        self.testnet_wallets = []
+        self.faucet_urls = {
+            'ethereum_sepolia': 'https://faucet.sepolia.dev/',
+            'ethereum_goerli': 'https://goerli-faucet.pk910.de/',
+            'bsc_testnet': 'https://testnet.binance.org/faucet-smart',
+            'polygon_mumbai': 'https://faucet.polygon.technology/'
+        }
+        self.logger = logging.getLogger('ZeroWalletAgent')
+
+    async def setup(self):
+        if self.exp_db:
+            data = await self.exp_db.db_get("zero_wallets")
+            if data:
+                self.testnet_wallets = json.loads(data)
+
+    async def create_testnet_wallet(self, chain: str, testnet_name: str) -> Dict:
+        wallet_info = await self.wallet_gen.generate_wallet(chain=chain, testnet=True)
+        self.testnet_wallets.append({
+            'address': wallet_info['address'],
+            'chain': chain,
+            'testnet': testnet_name,
+            'created_at': time.time()
+        })
+        if self.exp_db:
+            await self.exp_db.db_set("zero_wallets", json.dumps(self.testnet_wallets))
+        return wallet_info
+
+    async def request_faucet(self, address: str, testnet: str) -> bool:
+        self.logger.info(f"Requesting faucet for {address} on {testnet}")
+        # Â‰« Ì„ﬂ‰ ≈÷«›… «” œ⁄«¡ API ÕﬁÌﬁÌ ··’‰»Ê—
+        # ⁄·Ï ”»Ì· «·„À«·° ·‹ Sepolia:
+        if testnet == 'sepolia':
+            async with aiohttp.ClientSession() as session:
+                try:
+                    async with session.post('https://faucet.sepolia.dev/api/claim', json={'address': address}) as resp:
+                        return resp.status == 200
+                except:
+                    pass
+        return True
+
+# =============================================================================
+# 2. «·Êﬂ·«¡ «·√Œ·«ﬁÌÊ‰ (29 ÊﬂÌ·)
+# =============================================================================
+
+class BlockchainConnector:
+    """« ’«· ¬„‰ Ê„ ⁄œœ «·‘»ﬂ« """
+    def __init__(self, network: str, private_key: str = None):
+        self.network = network
+        self.private_key = private_key or os.getenv("PRIVATE_KEY", "0xYOUR_PRIVATE_KEY")
+        self.w3 = self._connect()
+        self.account = Account.from_key(self.private_key) if self.private_key and self.private_key != "0xYOUR_PRIVATE_KEY" else None
+        self.address = self.account.address if self.account else None
+        self.chain_id = self._chain_id()
+        self.scan_api_key = self._scan_api_key()
+        self.scan_url = f"https://api.{network}.scan.io/api"
+        self.cache = TTLCache(maxsize=1000, ttl=300)
+        self.nonce_lock = asyncio.Lock()
+        self.current_nonce = None
+
+    def _connect(self) -> Web3:
+        rpc_map = {
+            'ethereum': f"https://mainnet.infura.io/v3/{os.getenv('INFURA_KEY', '')}",
+            'arbitrum': f"https://arbitrum-mainnet.infura.io/v3/{os.getenv('INFURA_KEY', '')}",
+            'polygon': f"https://polygon-mainnet.infura.io/v3/{os.getenv('INFURA_KEY', '')}",
+            'optimism': f"https://optimism-mainnet.infura.io/v3/{os.getenv('INFURA_KEY', '')}",
+            'bsc': "https://bsc-dataseed.binance.org/",
+        }
+        w3 = Web3(HTTPProvider(rpc_map.get(self.network, rpc_map['ethereum'])))
+        if self.network in ['polygon', 'arbitrum', 'bsc']:
+            w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        return w3
+
+    def _chain_id(self) -> int:
+        return {'ethereum': 1, 'arbitrum': 42161, 'polygon': 137,
+                'optimism': 10, 'bsc': 56}
