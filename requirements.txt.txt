@@ -1,0 +1,6 @@
+aiohttp
+web3
+eth-account
+aiofiles
+aiosqlite
+numpy
