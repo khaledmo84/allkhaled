@@ -1,0 +1,17 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# نسخ ملف المتطلبات
+COPY requirements.txt .
+
+# تثبيت المتطلبات - هذه هي الخطوة المفقودة
+RUN pip install --no-cache-dir -r requirements.txt
+
+# نسخ باقي الكود
+COPY . .
+
+# تشغيل التطبيق
+CMD ["python", "app.py"]
+
+EXPOSE 8080
