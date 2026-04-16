@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for allkhaled-gccdqa on 2026-04-16T08:49:50Z
+# fly.toml app configuration file generated for allkhaled on 2026-04-16T12:58:26Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'allkhaled-gccdqa'
+app = 'allkhaled'
 primary_region = 'fra'
 
 [build]
