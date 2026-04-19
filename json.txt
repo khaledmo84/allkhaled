@@ -1,0 +1,171 @@
+{
+  "cloudflare_workers": {
+    "account_id": "",
+    "api_token": "",
+    "workers_dev": true,
+    "routes": []
+  },
+  "vercel": {
+    "api_token": "",
+    "team_id": "",
+    "project_id": ""
+  },
+  "netlify": {
+    "api_token": "",
+    "site_id": ""
+  },
+  "render": {
+    "api_key": "",
+    "service_id": ""
+  },
+  "railway": {
+    "project_id": "",
+    "environment": "production"
+  },
+  "koyeb": {
+    "api_key": "",
+    "app_name": "alkhaled"
+  },
+  "zeabur": {
+    "api_key": "",
+    "project_id": ""
+  },
+  "flyio": {
+    "app_name": "alkhaled",
+    "region": "iad",
+    "primary_region": "iad"
+  },
+  "supabase": {
+    "url": "",
+    "anon_key": "",
+    "service_role_key": ""
+  },
+  "neon": {
+    "connection_string": ""
+  },
+  "turso": {
+    "db_url": "",
+    "auth_token": ""
+  },
+  "mongodb": {
+    "connection_string": "",
+    "database_name": "alkhaled"
+  },
+  "planetscale": {
+    "connection_string": ""
+  },
+  "ai_horde": {
+    "api_key": ""
+  },
+  "replicate": {
+    "api_token": ""
+  },
+  "r2": {
+    "bucket": "",
+    "access_key": "",
+    "secret_key": "",
+    "endpoint": ""
+  },
+  "spaces": {
+    "bucket": "",
+    "access_key": "",
+    "secret_key": "",
+    "region": "nyc3"
+  },
+  "portainer": {
+    "url": "http://localhost:9000",
+    "api_key": ""
+  },
+  "prometheus": {
+    "port": 9090,
+    "push_gateway": "http://localhost:9091"
+  },
+  "grafana": {
+    "url": "http://localhost:3000",
+    "admin_user": "admin",
+    "admin_password": "admin"
+  },
+  "loki": {
+    "url": "http://localhost:3100"
+  },
+  "signoz": {
+    "endpoint": "http://localhost:4317"
+  },
+  "sentry": {
+    "dsn": ""
+  },
+  "telegram": {
+    "bot_token": "",
+    "chat_id": ""
+  },
+  "discord": {
+    "webhook_url": ""
+  },
+  "slack": {
+    "webhook_url": ""
+  },
+  "pagerduty": {
+    "integration_key": ""
+  },
+  "redis": {
+    "url": "redis://localhost:6379/0",
+    "password": ""
+  },
+  "postgres": {
+    "url": "postgresql://user:password@localhost:5432/alkhaled"
+  },
+  "timescaledb": {
+    "url": "postgresql://user:password@localhost:5433/alkhaled_ts"
+  },
+  "ipfs": {
+    "api_url": "/ip4/127.0.0.1/tcp/5001",
+    "gateway_url": "https://ipfs.io/ipfs/"
+  },
+  "p2p": {
+    "listen_address": "/ip4/0.0.0.0/tcp/0",
+    "bootstrap_peers": [
+      "/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ"
+    ]
+  },
+  "bot": {
+    "min_profit": 10.0,
+    "min_confidence": 0.3,
+    "max_opps": 100,
+    "max_gas_units": 300000,
+    "max_slippage": 0.01,
+    "max_daily_loss": 1000.0,
+    "max_position_size": 10000.0,
+    "scan_interval": 10.0,
+    "execution_timeout": 30.0
+  },
+  "http_client": {
+    "max_retries": 3,
+    "base_delay": 1.0,
+    "max_delay": 30.0,
+    "circuit_breaker_threshold": 5,
+    "circuit_breaker_timeout": 60.0
+  },
+  "idempotency": {
+    "ttl": 3600,
+    "cleanup_interval": 300,
+    "use_upstash": true
+  },
+  "memory_guard": {
+    "max_memory_mb": 500,
+    "check_interval": 60
+  },
+  "shutdown": {
+    "timeout": 30.0
+  },
+  "rollback": {
+    "max_versions": 5,
+    "storage_dir": ".rollback_snapshots"
+  },
+  "crash_reporter": {
+    "storage_dir": ".crash_reports",
+    "max_reports": 20
+  },
+  "chaos_mode": false,
+  "environment": "production",
+  "log_level": "INFO"
+}

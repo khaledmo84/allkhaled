@@ -1,0 +1,102 @@
+#!/bin/bash
+# =============================================================================
+# entrypoint.sh – نقطة الدخول لحاوية Docker
+# =============================================================================
+# الإصدار: 5.0.0
+# التاريخ: 2025-04-19
+# =============================================================================
+
+set -e
+
+echo "============================================================"
+echo "ALKHALED ULTIMATE – Starting Container"
+echo "============================================================"
+echo "Date: $(date)"
+echo "User: $(whoami)"
+echo "Python: $(python --version)"
+echo "Working directory: $(pwd)"
+echo "============================================================"
+
+# -----------------------------------------------------------------------------
+# 1. التحقق من وجود المتغيرات البيئية الأساسية
+# -----------------------------------------------------------------------------
+if [ -z "$ETHEREUM_RPC_URL" ]; then
+    echo "Warning: ETHEREUM_RPC_URL not set"
+fi
+
+if [ -z "$DEPLOYER_PRIVATE_KEY" ]; then
+    echo "Error: DEPLOYER_PRIVATE_KEY is required"
+    exit 1
+fi
+
+if [ -z "$ALKHALED_MASTER_KEY" ]; then
+    echo "Error: ALKHALED_MASTER_KEY is required"
+    exit 1
+fi
+
+# -----------------------------------------------------------------------------
+# 2. إنشاء المجلدات اللازمة
+# -----------------------------------------------------------------------------
+mkdir -p logs data .rollback_snapshots .crash_reports
+mkdir -p /tmp/alkhaled_cache
+
+# -----------------------------------------------------------------------------
+# 3. انتظار الخدمات الاعتماديات (إذا كانت متوفرة)
+# -----------------------------------------------------------------------------
+wait_for_service() {
+    local host=$1
+    local port=$2
+    local name=$3
+    local max_attempts=30
+    local attempt=1
+
+    echo "Waiting for $name ($host:$port)..."
+    while ! nc -z "$host" "$port" 2>/dev/null; do
+        if [ $attempt -ge $max_attempts ]; then
+            echo "Warning: $name not available after $max_attempts attempts"
+            return 1
+        fi
+        echo "Attempt $attempt/$max_attempts: $name not ready, waiting..."
+        sleep 2
+        attempt=$((attempt + 1))
+    done
+    echo "$name is ready!"
+    return 0
+}
+
+# انتظار Redis إذا كان متاحاً
+if [ -n "$REDIS_URL" ]; then
+    REDIS_HOST=$(echo "$REDIS_URL" | sed -n 's/.*\/\/\([^:]*\).*/\1/p')
+    REDIS_PORT=$(echo "$REDIS_URL" | sed -n 's/.*:\([0-9]*\).*/\1/p')
+    if [ -n "$REDIS_HOST" ] && [ -n "$REDIS_PORT" ]; then
+        wait_for_service "$REDIS_HOST" "$REDIS_PORT" "Redis" || true
+    fi
+fi
+
+# انتظار PostgreSQL إذا كان متاحاً
+if [ -n "$POSTGRES_URL" ]; then
+    PG_HOST=$(echo "$POSTGRES_URL" | sed -n 's/.*\/\/\([^:]*\).*/\1/p')
+    PG_PORT=$(echo "$POSTGRES_URL" | sed -n 's/.*:\([0-9]*\)\/.*/\1/p')
+    if [ -n "$PG_HOST" ] && [ -n "$PG_PORT" ]; then
+        wait_for_service "$PG_HOST" "$PG_PORT" "PostgreSQL" || true
+    fi
+fi
+
+# -----------------------------------------------------------------------------
+# 4. التحقق من تثبيت المكتبات
+# -----------------------------------------------------------------------------
+echo "Checking Python packages..."
+python -c "import aiohttp, web3, cryptography" 2>/dev/null || {
+    echo "Warning: Some packages may be missing. Run: pip install -r requirements.txt"
+}
+
+# -----------------------------------------------------------------------------
+# 5. إعداد مسار المكتبات
+# -----------------------------------------------------------------------------
+export PYTHONPATH="${PYTHONPATH}:/app"
+
+# -----------------------------------------------------------------------------
+# 6. تشغيل الأمر المطلوب
+# -----------------------------------------------------------------------------
+echo "Starting command: $@"
+exec "$@"

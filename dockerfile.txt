@@ -1,0 +1,91 @@
+# =============================================================================
+# Dockerfile – بناء صورة الحاوية الكاملة للنظام
+# =============================================================================
+# الإصدار: 5.0.0
+# التاريخ: 2025-04-19
+# =============================================================================
+# طريقة الاستخدام:
+#   docker build -t alkhaled:latest .
+#   docker run -d --name alkhaled -p 8080:8080 --env-file .env alkhaled:latest
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 1. مرحلة البناء (Builder Stage)
+# -----------------------------------------------------------------------------
+FROM python:3.11-slim-bookworm AS builder
+
+# تثبيت أدوات البناء الأساسية
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    make \
+    libssl-dev \
+    libffi-dev \
+    libpq-dev \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# تعيين مجلد العمل
+WORKDIR /build
+
+# نسخ ملف المتطلبات
+COPY requirements.txt .
+
+# تثبيت المكتبات في مجلد منفصل
+RUN pip install --user --no-cache-dir -r requirements.txt
+
+# -----------------------------------------------------------------------------
+# 2. المرحلة النهائية (Final Stage)
+# -----------------------------------------------------------------------------
+FROM python:3.11-slim-bookworm AS runtime
+
+# تثبيت الأدوات الأساسية فقط
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq-dev \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# إنشاء مستخدم غير جذر
+RUN useradd -m -u 1000 -s /bin/bash alkhaled
+
+# تعيين مجلد العمل
+WORKDIR /app
+
+# نسخ المكتبات من مرحلة البناء
+COPY --from=builder /root/.local /home/alkhaled/.local
+
+# نسخ ملفات المشروع
+COPY --chown=alkhaled:alkhaled . .
+
+# نسخ ملفات الإعدادات
+COPY docker-compose.yml .
+COPY config.json .
+COPY entrypoint.sh /entrypoint.sh
+
+# تعيين متغيرات البيئة
+ENV PATH=/home/alkhaled/.local/bin:$PATH
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# فتح المنافذ
+EXPOSE 8080
+EXPOSE 8081
+EXPOSE 9090
+
+# إنشاء مجلدات السجلات والبيانات
+RUN mkdir -p logs data .rollback_snapshots .crash_reports && \
+    chown -R alkhaled:alkhaled /app /entrypoint.sh
+
+# جعل ملف الدخول قابلاً للتنفيذ
+RUN chmod +x /entrypoint.sh
+
+# التبديل إلى المستخدم غير الجذر
+USER alkhaled
+
+# نقطة الدخول
+ENTRYPOINT ["/entrypoint.sh"]
+
+# الأمر الافتراضي
+CMD ["python", "run.py"]

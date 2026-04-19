@@ -1,0 +1,318 @@
+# =============================================================================
+# docker-compose.yml – تشغيل جميع الخدمات المساعدة للنظام
+# =============================================================================
+# الإصدار: 3.8
+# التاريخ: 2025-04-19
+# =============================================================================
+
+version: '3.8'
+
+services:
+  # =========================================================================
+  # 1. Redis – للتخزين المؤقت الموزع و Idempotency Keys
+  # =========================================================================
+  redis:
+    image: redis:7.4-alpine
+    container_name: alkhaled-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: redis-server /usr/local/etc/redis/redis.conf --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =========================================================================
+  # 2. PostgreSQL – قاعدة البيانات الرئيسية (لـ ExperienceDB)
+  # =========================================================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: alkhaled-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: alkhaled
+      POSTGRES_PASSWORD: alkhaled_secure_password_2025
+      POSTGRES_DB: alkhaled
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alkhaled -d alkhaled"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =========================================================================
+  # 3. TimescaleDB – للبيانات الزمنية (الأسعار، التداولات)
+  # =========================================================================
+  timescaledb:
+    image: timescale/timescaledb:2.15-pg15-alpine
+    container_name: alkhaled-timescaledb
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: alkhaled
+      POSTGRES_PASSWORD: alkhaled_secure_password_2025
+      POSTGRES_DB: alkhaled_ts
+      TIMESCALEDB_TELEMETRY: off
+    ports:
+      - "5433:5432"
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+      - ./timescaledb/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alkhaled -d alkhaled_ts"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =========================================================================
+  # 4. Prometheus – جمع المقاييس ومراقبة الأداء
+  # =========================================================================
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    container_name: alkhaled-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_data:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =========================================================================
+  # 5. Grafana – لوحات تحكم مرئية
+  # =========================================================================
+  grafana:
+    image: grafana/grafana:10.4.0
+    container_name: alkhaled-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: alkhaled_admin_2025
+      GF_INSTALL_PLUGINS: grafana-piechart-panel
+      GF_SERVER_ROOT_URL: http://localhost:3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - prometheus
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =========================================================================
+  # 6. SigNoz – مراقبة الأداء والتتبع (بديل مفتوح المصدر لـ DataDog)
+  # =========================================================================
+  signoz:
+    image: signoz/query-service:latest
+    container_name: alkhaled-signoz
+    restart: unless-stopped
+    environment:
+      SIGNOZ_LOCAL_DB_PATH: /var/lib/signoz
+    ports:
+      - "3301:3301"
+      - "4317:4317"
+      - "4318:4318"
+    volumes:
+      - signoz_data:/var/lib/signoz
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3301/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =========================================================================
+  # 7. Loki – تجميع السجلات المركزية
+  # =========================================================================
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: alkhaled-loki
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki_data:/loki
+      - ./loki/loki-config.yaml:/etc/loki/loki-config.yaml:ro
+    command: -config.file=/etc/loki/loki-config.yaml
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3100/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =========================================================================
+  # 8. Vector – جمع السجلات من الملفات وإرسالها إلى Loki
+  # =========================================================================
+  vector:
+    image: timberio/vector:0.37-alpine
+    container_name: alkhaled-vector
+    restart: unless-stopped
+    volumes:
+      - ./vector/vector.toml:/etc/vector/vector.toml:ro
+      - ./logs:/var/log/alkhaled:ro
+    command: --config /etc/vector/vector.toml
+    depends_on:
+      - loki
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =========================================================================
+  # 9. IPFS – التخزين اللامركزي
+  # =========================================================================
+  ipfs:
+    image: ipfs/kubo:v0.28.0
+    container_name: alkhaled-ipfs
+    restart: unless-stopped
+    ports:
+      - "4001:4001"
+      - "5001:5001"
+      - "8080:8080"
+    volumes:
+      - ipfs_data:/data/ipfs
+    environment:
+      IPFS_PROFILE: server
+    healthcheck:
+      test: ["CMD", "ipfs", "id"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # =========================================================================
+  # 10. Nginx – عكس الخادم (Reverse Proxy) لإدارة المنافذ
+  # =========================================================================
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: alkhaled-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - grafana
+      - prometheus
+    networks:
+      - alkhaled-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# =============================================================================
+# الشبكات
+# =============================================================================
+networks:
+  alkhaled-network:
+    driver: bridge
+    name: alkhaled-network
+
+# =============================================================================
+# وحدات التخزين (Volumes)
+# =============================================================================
+volumes:
+  redis_data:
+    name: alkhaled-redis-data
+  postgres_data:
+    name: alkhaled-postgres-data
+  timescaledb_data:
+    name: alkhaled-timescaledb-data
+  prometheus_data:
+    name: alkhaled-prometheus-data
+  grafana_data:
+    name: alkhaled-grafana-data
+  signoz_data:
+    name: alkhaled-signoz-data
+  loki_data:
+    name: alkhaled-loki-data
+  ipfs_data:
+    name: alkhaled-ipfs-data
