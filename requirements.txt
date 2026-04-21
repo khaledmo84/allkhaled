@@ -139,7 +139,7 @@ flower==2.0.0
 requests==2.31.0
 httpx==0.25.2
 beautifulsoup4==4.12.2
-lxml==4.9.3
+lxml==6.1.0
 pytz==2023.3
 dateparser==1.2.0
 python-dateutil==2.8.2
