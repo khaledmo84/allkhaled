@@ -1,0 +1,28 @@
+groups:
+  - name: alkhaled_alerts
+    rules:
+      - alert: HighGasPrice
+        expr: gas_price_gwei > 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Gas price is high"
+          description: "Gas price is {{ $value }} Gwei"
+
+      - alert: LowProfitability
+        expr: profit_usd < 0
+        for: 10m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Unprofitable trades detected"
+          description: "Recent trade resulted in loss"
+
+      - alert: NodeDown
+        expr: up{job="alkhaled"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "AlKhaled node is down"

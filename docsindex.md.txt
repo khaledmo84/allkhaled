@@ -1,0 +1,22 @@
+# AlKhaled Ultimate Documentation
+
+Welcome to the official documentation.
+
+## Quick Start
+
+1. Installation
+2. Configuration
+3. Running the bot
+
+## Modules
+
+- Core
+- Agents
+- ThinkingCore
+- P2P Network
+- Quantum Computing
+- MEV Strategies
+
+## API Reference
+
+See [API](api.md) for details.

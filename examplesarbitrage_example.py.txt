@@ -1,0 +1,22 @@
+import asyncio
+from alkhaled.agents import ArbitrageAgent
+from alkhaled.core import MarketData
+
+async def main():
+    agent = ArbitrageAgent()
+    market_data = MarketData(
+        timestamp=0,
+        chain="ethereum",
+        eth_price=3000,
+        gas_gwei=30,
+        uniswap_prices={"WETH": 3000, "USDC": 1.0},
+        sushiswap_prices={"WETH": 3010, "USDC": 1.0}
+    )
+    opp = await agent.process(market_data)
+    if opp:
+        print(f"Opportunity found: {opp.profit} USD")
+    else:
+        print("No opportunity")
+
+if __name__ == "__main__":
+    asyncio.run(main())

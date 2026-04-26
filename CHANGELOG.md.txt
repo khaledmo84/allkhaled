@@ -1,0 +1,23 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [1.0.0] - 2025-04-21
+
+### Added
+- Initial release
+- 780+ RPC endpoints across 70+ chains
+- 25+ quantum computing platforms
+- P2P network with libp2p and mDNS
+- IPFS viral code distribution
+- MEV scanner (frontrun, backrun, sandwich)
+- Geo arbitrage
+- MAB agent, PPO agent, Federated learning
+- Quantum optimizer, FHE layer
+- ThinkingCore with Arabic commands
+- ExperienceDB (SQLite)
+- ErrorShield: auto-healing, deadlock detector, memory guard
+- Multi-version rollback
+- Graceful shutdown, crash reporter, health check server
+- Support for 20+ blockchains
+- Docker, Kubernetes, Fly.io, Render, Railway deployment

@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+echo "Setting up AlKhaled Ultimate environment..."
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Upgrade pip
+pip install --upgrade pip
+
+# Install dependencies
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+
+# Copy environment file
+if [ ! -f .env ]; then
+    cp .env.example .env
+    echo "Please edit .env file with your configuration"
+fi
+
+# Create directories
+mkdir -p logs data .rollback_snapshots .crash_reports
+
+echo "Setup complete. Run 'source venv/bin/activate' and then 'python run.py'"

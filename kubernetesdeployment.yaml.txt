@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alkhaled-bot
+  namespace: default
+  labels:
+    app: alkhaled
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alkhaled
+  template:
+    metadata:
+      labels:
+        app: alkhaled
+    spec:
+      containers:
+      - name: alkhaled
+        image: alkhaled:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        - containerPort: 8081
+        envFrom:
+        - secretRef:
+            name: alkhaled-secrets
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+        - name: logs
+          mountPath: /app/logs
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: alkhaled-pvc
+      - name: logs
+        emptyDir: {}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: alkhaled-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

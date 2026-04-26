@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "=== AlKhaled Monitoring ==="
+echo "CPU Usage:"
+top -bn1 | grep "Cpu(s)"
+echo "Memory Usage:"
+free -h
+echo "Disk Usage:"
+df -h .
+echo "Log size:"
+du -sh logs/
+echo "Process status:"
+ps aux | grep "python run.py" | grep -v grep

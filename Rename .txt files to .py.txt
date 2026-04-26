@@ -1,0 +1,1 @@
+for f in *.py.txt; do mv "$f" "${f%.txt}"; done

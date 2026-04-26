@@ -1,0 +1,27 @@
+[tox]
+envlist = py310, py311, lint, typing
+skipsdist = True
+
+[testenv]
+deps =
+    -rrequirements-dev.txt
+commands =
+    pytest tests/ -v --cov=alkhaled --cov-report=term
+
+[testenv:lint]
+deps =
+    flake8
+    black
+    isort
+commands =
+    flake8 alkhaled/ tests/
+    black --check alkhaled/ tests/
+    isort --check-only alkhaled/ tests/
+
+[testenv:typing]
+deps =
+    mypy
+    types-redis
+    types-requests
+commands =
+    mypy alkhaled/ --ignore-missing-imports

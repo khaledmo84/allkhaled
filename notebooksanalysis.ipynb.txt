@@ -1,0 +1,32 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# AlKhaled Data Analysis\n",
+    "This notebook analyzes trading performance and market data."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import sqlite3\n",
+    "conn = sqlite3.connect('alkhaled_exp.db')\n",
+    "df_trades = pd.read_sql_query(\"SELECT * FROM trades\", conn)\n",
+    "df_trades.head()"
+   ]
+  }
+ ],
+ "metadata": {
+  "language_info": {
+   "name": "python"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

@@ -1,0 +1,32 @@
+# API Reference
+
+## Core Classes
+
+### `UltimateNode`
+Main entry point.
+
+- `start()`: Start the bot
+- `stop()`: Graceful shutdown
+
+### `ThinkingCore`
+Arabic command processor.
+
+- `execute_arabic(cmd)`: Process Arabic commands
+
+### `RPCManager`
+Manages blockchain RPC endpoints.
+
+- `get_best(chain)`: Returns best RPC URL
+
+### `QuantumManager`
+Executes quantum circuits on available platforms.
+
+- `execute(circuit_data)`: Run quantum job
+
+## Agents
+
+### `ArbitrageAgent`
+Detects arbitrage opportunities.
+
+### `MEVScanner`
+Scans mempool for MEV opportunities.

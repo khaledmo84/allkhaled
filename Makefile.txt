@@ -1,0 +1,57 @@
+.PHONY: help install install-dev test lint format clean build docker-build docker-up docker-down run deploy
+
+help:
+	@echo "Available commands:"
+	@echo "  install      Install production dependencies"
+	@echo "  install-dev  Install development dependencies"
+	@echo "  test         Run tests"
+	@echo "  lint         Run linters (flake8, mypy)"
+	@echo "  format       Format code with black and isort"
+	@echo "  clean        Remove cache and temporary files"
+	@echo "  build        Build Python package"
+	@echo "  docker-build Build Docker image"
+	@echo "  docker-up    Start Docker Compose services"
+	@echo "  docker-down  Stop Docker Compose services"
+	@echo "  run          Run the bot"
+	@echo "  deploy       Deploy to Fly.io"
+
+install:
+	pip install -r requirements.txt
+
+install-dev:
+	pip install -r requirements-dev.txt
+
+test:
+	pytest tests/ -v --cov=alkhaled --cov-report=term
+
+lint:
+	flake8 alkhaled/ tests/ --count --statistics
+	mypy alkhaled/ --ignore-missing-imports
+	bandit -r alkhaled/ -ll
+
+format:
+	black alkhaled/ tests/
+	isort alkhaled/ tests/
+
+clean:
+	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+	find . -type f -name "*.pyc" -delete
+	rm -rf .pytest_cache/ .coverage htmlcov/ .mypy_cache/ .tox/ dist/ build/ *.egg-info/
+
+build: clean
+	python -m build
+
+docker-build:
+	docker build -t alkhaled:latest .
+
+docker-up:
+	docker-compose up -d
+
+docker-down:
+	docker-compose down
+
+run:
+	python run.py
+
+deploy:
+	flyctl deploy

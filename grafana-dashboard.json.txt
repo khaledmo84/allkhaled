@@ -1,0 +1,45 @@
+{
+  "dashboard": {
+    "title": "AlKhaled Ultimate Metrics",
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Profit per Strategy",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "sum(profit_usd) by (strategy)",
+            "legendFormat": "{{strategy}}"
+          }
+        ]
+      },
+      {
+        "title": "MEV Opportunities Detected",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "sum(mev_detected_total)"
+          }
+        ]
+      },
+      {
+        "title": "Gas Price (Gwei)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "gas_price_gwei"
+          }
+        ]
+      },
+      {
+        "title": "Active Peers",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "peers_found"
+          }
+        ]
+      }
+    ]
+  }
+}

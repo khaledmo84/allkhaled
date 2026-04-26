@@ -1,0 +1,19 @@
+# Configuration
+
+AlKhaled uses environment variables (`.env` file) and optional `config.json`.
+
+## Required Variables
+
+- `ETHEREUM_RPC_URL`: Ethereum RPC endpoint
+- `DEPLOYER_PRIVATE_KEY`: Private key for transactions
+- `ALKHALED_MASTER_KEY`: Master key for encryption
+
+## Optional Variables
+
+- `REDIS_URL`: Redis for idempotency
+- `SENTRY_DSN`: Sentry error tracking
+- `SIGNOZ_ENDPOINT`: SigNoz tracing endpoint
+
+## config.json
+
+For advanced platform settings (Cloudflare, Supabase, etc.)
