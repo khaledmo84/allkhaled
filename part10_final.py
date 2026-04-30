@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-«·Ã“¡ «·⁄«‘— ñ «·≈’œ«— «·‰Â«∆Ì 15.0.0 (53 „Ì“…)
-Ã„Ì⁄ «·„Ì“«  «·√”«”Ì… (1-42) Ê«·≈÷«›«  (43-53) ›Ì „·› Ê«Õœ.
- „ ≈’·«Õ Ã„Ì⁄ ‰ﬁ«ÿ «·÷⁄› Ê«· ﬂ«„· „⁄ «·ﬂÊœ «·÷Œ„.
+√á√°√å√í√Å √á√°√ö√á√î√ë ‚Äì √á√°√Ö√ï√è√á√ë √á√°√§√•√á√Ü√≠ 15.0.0 (53 √£√≠√í√â)
+√å√£√≠√ö √á√°√£√≠√í√á√ä √á√°√É√ì√á√ì√≠√â (1-42) √¶√á√°√Ö√ñ√á√ù√á√ä (43-53) √ù√≠ √£√°√ù √¶√á√ç√è.
+√ä√£ √Ö√ï√°√á√ç √å√£√≠√ö √§√û√á√ò √á√°√ñ√ö√ù √¶√á√°√ä√ü√á√£√° √£√ö √á√°√ü√¶√è √á√°√ñ√é√£.
 -----------------------------------------------------------------------------
-«·„ €Ì—«  «·»Ì∆Ì… «·„ÿ·Ê»…:
-- DEPLOYER_PRIVATE_KEY: «·„› «Õ «·Œ«’ ··‰‘— Ê«·„⁄«„·«  (hex)
-- SECONDARY_WALLET: ⁄‰Ê«‰ «·„Õ›Ÿ… «·À«‰ÊÌ… · ÕÊÌ· «·√„Ê«· («Œ Ì«—Ì)
-- ALKHALED_MASTER_KEY: „› «Õ —∆Ì”Ì · ‘›Ì— «·„›« ÌÕ (32 »«Ì  hex)
-- ETHERSCAN_API_KEY, ARBISCAN_API_KEY, ... : „›« ÌÕ APIs ··”·«”·
-- ETHEREUM_RPC_URL, ARBITRUM_RPC_URL, ... : ⁄‰«ÊÌ‰ RPC ·ﬂ· ‘»ﬂ…
-- OPENSEA_API_KEY, BLUR_API_KEY: „›« ÌÕ APIs ·√”Ê«ﬁ NFT («Œ Ì«—Ì)
-- USE_REDIS: true/false ·«” Œœ«„ Redis ·· Œ“Ì‰ «·„ƒﬁ  («Œ Ì«—Ì)
+√á√°√£√ä√õ√≠√ë√á√ä √á√°√à√≠√Ü√≠√â √á√°√£√ò√°√¶√à√â:
+- DEPLOYER_PRIVATE_KEY: √á√°√£√ù√ä√á√ç √á√°√é√á√ï √°√°√§√î√ë √¶√á√°√£√ö√á√£√°√á√ä (hex)
+- SECONDARY_WALLET: √ö√§√¶√á√§ √á√°√£√ç√ù√ô√â √á√°√ã√á√§√¶√≠√â √°√ä√ç√¶√≠√° √á√°√É√£√¶√á√° (√á√é√ä√≠√á√ë√≠)
+- ALKHALED_MASTER_KEY: √£√ù√ä√á√ç √ë√Ü√≠√ì√≠ √°√ä√î√ù√≠√ë √á√°√£√ù√á√ä√≠√ç (32 √à√á√≠√ä hex)
+- ETHERSCAN_API_KEY, ARBISCAN_API_KEY, ... : √£√ù√á√ä√≠√ç APIs √°√°√ì√°√á√ì√°
+- ETHEREUM_RPC_URL, ARBITRUM_RPC_URL, ... : √ö√§√á√¶√≠√§ RPC √°√ü√° √î√à√ü√â
+- OPENSEA_API_KEY, BLUR_API_KEY: √£√ù√á√ä√≠√ç APIs √°√É√ì√¶√á√û NFT (√á√é√ä√≠√á√ë√≠)
+- USE_REDIS: true/false √°√á√ì√ä√é√è√á√£ Redis √°√°√ä√é√í√≠√§ √á√°√£√Ñ√û√ä (√á√é√ä√≠√á√ë√≠)
 -----------------------------------------------------------------------------
 """
 
@@ -43,7 +43,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # =============================================================================
-# «” Ì—«œ«  «·‰Ÿ«„ «·√”«”Ì („—‰…)
+# √á√ì√ä√≠√ë√á√è√á√ä √á√°√§√ô√á√£ √á√°√É√ì√á√ì√≠ (√£√ë√§√â)
 # =============================================================================
 try:
     from core import GodPulse, ExperienceDB, ExecutionEngine, AtomicNonceManager
@@ -98,7 +98,7 @@ except ImportError:
     ADDRESS_MANAGER_AVAILABLE = False
 
 # =============================================================================
-# „ﬂ »«  Œ«—ÃÌ… („⁄ fallback ¬„‰)
+# √£√ü√ä√à√á√ä √é√á√ë√å√≠√â (√£√ö fallback √Ç√£√§)
 # =============================================================================
 NUMPY_AVAILABLE = False
 try:
@@ -173,7 +173,7 @@ except ImportError:
     pass
 
 # =============================================================================
-# ≈⁄œ«œ «· ”ÃÌ·
+# √Ö√ö√è√á√è √á√°√ä√ì√å√≠√°
 # =============================================================================
 logging.basicConfig(
     level=logging.INFO,
@@ -194,7 +194,7 @@ class SensitiveDataFilter(logging.Filter):
 logger.addFilter(SensitiveDataFilter())
 
 # =============================================================================
-# «” À‰«¡«  „Œ’’…
+# √á√ì√ä√ã√§√á√Å√á√ä √£√é√ï√ï√â
 # =============================================================================
 class DataUnavailableError(Exception): pass
 class ExternalServiceError(Exception): pass
@@ -203,7 +203,7 @@ class ConfigurationError(Exception): pass
 class MarketRiskError(Exception): pass
 
 # =============================================================================
-# √œÊ«  „”«⁄œ… „Õ”‰…
+# √É√è√¶√á√ä √£√ì√á√ö√è√â √£√ç√ì√§√â
 # =============================================================================
 def retry_async(max_attempts=3, delay=1, backoff=2, retry_on=(Exception,)):
     def decorator(func):
@@ -445,11 +445,11 @@ class SolanaConnector:
         await self.client.close()
 
 # =============================================================================
-# ExtendedGodPulse («·„Õ—ﬂ «·—∆Ì”Ì)
+# ExtendedGodPulse (√á√°√£√ç√ë√ü √á√°√ë√Ü√≠√ì√≠)
 # =============================================================================
 class ExtendedGodPulse:
     def __init__(self, original_god: Optional[GodPulse] = None):
-        # ≈–« „——‰« ﬂ«∆‰ GodPulse √’·Ì° ‰‰”Œ „‰Â «·Œ’«∆’ «·÷—Ê—Ì… · Ã‰» «“œÊ«ÃÌ… «·« ’«·« 
+        # √Ö√ê√á √£√ë√ë√§√á √ü√á√Ü√§ GodPulse √É√ï√°√≠¬° √§√§√ì√é √£√§√• √á√°√é√ï√á√Ü√ï √á√°√ñ√ë√¶√ë√≠√â √°√ä√å√§√à √á√í√è√¶√á√å√≠√â √á√°√á√ä√ï√á√°√á√ä
         if original_god is not None:
             self._session = getattr(original_god, '_session', None)
             self._cache = getattr(original_god, '_cache', CacheManager())
@@ -469,7 +469,7 @@ class ExtendedGodPulse:
             self._lock = asyncio.Lock()
             self._solana = None
 
-        # „’«œ— «·»Ì«‰«  (À«» …)
+        # √£√ï√á√è√ë √á√°√à√≠√á√§√á√ä (√ã√á√à√ä√â)
         self._defillama_base = "https://api.llama.fi"
         self._coingecko_base = "https://api.coingecko.com/api/v3"
         self._opensea_base = "https://api.opensea.io/api/v2"
