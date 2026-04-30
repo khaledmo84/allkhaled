@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 ================================================================================
-AL-KHALED V20095 ñ AGENTS («·Ã“¡ 2/3) ñ «·≈’œ«— «·‰Â«∆Ì «·„ı’·Õ Ê«·„ﬂ „·
+AL-KHALED V20095 ‚Äì AGENTS (√á√°√å√í√Å 2/3) ‚Äì √á√°√Ö√ï√è√á√ë √á√°√§√•√á√Ü√≠ √á√°√£√µ√ï√°√ç √¶√á√°√£√ü√ä√£√°
 ================================================================================
-- Ã„Ì⁄ «·Êﬂ·«¡ Ì⁄„·Ê‰ »»Ì«‰«  ÕﬁÌﬁÌ… Ê„’«œ— „ ⁄œœ… „⁄ fallback.
-- ≈ﬂ„«· Ã„Ì⁄ «·„‰›–Ì‰ (Flashbots, CowSwap, Bridge, Aggregators, Keepers).
--  Õ”Ì‰ ŒÊ«—“„Ì«  «·ﬂ‘› ⁄‰ «·›—’ („—«ÃÕ…°  ’›Ì…° MEV°  ‰»ƒ).
-- —»ÿ ﬂ«„· „⁄ APIKeyManager Ê ExperienceDB.
-- ≈÷«›… œ⁄„ ··€«  «·»—„Ã… «·√Œ—Ï (Rust, C++) ⁄»— FFI.
-- Êﬂ·«¡ „ ﬁœ„Ê‰ (PPO° BalancerV3° MetaOptimizer) Ì⁄„·Ê‰ »‘ﬂ· ﬂ«„·.
+- √å√£√≠√ö √á√°√¶√ü√°√á√Å √≠√ö√£√°√¶√§ √à√à√≠√á√§√á√ä √ç√û√≠√û√≠√â √¶√£√ï√á√è√ë √£√ä√ö√è√è√â √£√ö fallback.
+- √Ö√ü√£√á√° √å√£√≠√ö √á√°√£√§√ù√ê√≠√§ (Flashbots, CowSwap, Bridge, Aggregators, Keepers).
+- √ä√ç√ì√≠√§ √é√¶√á√ë√í√£√≠√á√ä √á√°√ü√î√ù √ö√§ √á√°√ù√ë√ï (√£√ë√á√å√ç√â¬° √ä√ï√ù√≠√â¬° MEV¬° √ä√§√à√Ñ).
+- √ë√à√ò √ü√á√£√° √£√ö APIKeyManager √¶ ExperienceDB.
+- √Ö√ñ√á√ù√â √è√ö√£ √°√°√õ√á√ä √á√°√à√ë√£√å√â √á√°√É√é√ë√¨ (Rust, C++) √ö√à√ë FFI.
+- √¶√ü√°√á√Å √£√ä√û√è√£√¶√§ (PPO¬° BalancerV3¬° MetaOptimizer) √≠√ö√£√°√¶√§ √à√î√ü√° √ü√á√£√°.
 ================================================================================
 """
 
@@ -36,10 +36,10 @@ from datetime import datetime
 
 import numpy as np
 
-# «” Ì—«œ „‰ core
+# √á√ì√ä√≠√ë√á√è √£√§ core
 from core import *
 
-# ==================== „ﬂ »«  «Œ Ì«—Ì… „⁄ „⁄«·Ã… ¬„‰… ====================
+# ==================== √£√ü√ä√à√á√ä √á√é√ä√≠√á√ë√≠√â √£√ö √£√ö√á√°√å√â √Ç√£√§√â ====================
 try:
     import torch
     import torch.nn as nn
@@ -145,7 +145,7 @@ try:
 except ImportError:
     GPT_RESEARCHER_AVAILABLE = False
 
-# ==================== «·›∆… «·√”«”Ì… ··Êﬂ·«¡ ====================
+# ==================== √á√°√ù√Ü√â √á√°√É√ì√á√ì√≠√â √°√°√¶√ü√°√á√Å ====================
 class BaseAgent(ABC):
     def __init__(self, name: str, supported_categories: Optional[List[StrategyCategory]] = None):
         self.name = name
@@ -153,23 +153,23 @@ class BaseAgent(ABC):
         self.cache = SmartCache(None)
         self.stats = {'processed': 0, 'selected': 0, 'total_confidence': 0.0}
         self.lock = asyncio.Lock()
-        self.config = None  # ”Ì „  ⁄ÌÌ‰Â« ·«Õﬁ« »Ê«”ÿ… AgentOrchestrator
-        self.weight = 1.0   # Ê“‰ «·ÊﬂÌ· ›Ì «·«Œ Ì«— (Ì” Œœ„Â MAB)
+        self.config = None  # √ì√≠√ä√£ √ä√ö√≠√≠√§√•√á √°√á√ç√û√á√∞ √à√¶√á√ì√ò√â AgentOrchestrator
+        self.weight = 1.0   # √¶√í√§ √á√°√¶√ü√≠√° √ù√≠ √á√°√á√é√ä√≠√á√ë (√≠√ì√ä√é√è√£√• MAB)
 
     @abstractmethod
     async def process(self, opportunity: Opportunity, market_data: MarketData) -> Tuple[Optional[Opportunity], float, Dict]:
         pass
 
     async def setup(self):
-        """œ«·…  ÂÌ∆… «Œ Ì«—Ì…"""
+        """√è√á√°√â √ä√•√≠√Ü√â √á√é√ä√≠√á√ë√≠√â"""
         pass
 
     async def teardown(self):
-        """œ«·…  ‰ŸÌ› «Œ Ì«—Ì…"""
+        """√è√á√°√â √ä√§√ô√≠√ù √á√é√ä√≠√á√ë√≠√â"""
         pass
 
     async def update_model(self, exp_db: ExperienceDB):
-        """ ÕœÌÀ ‰„Ê–Ã «·ÊﬂÌ· (·· ⁄·„)"""
+        """√ä√ç√è√≠√ã √§√£√¶√ê√å √á√°√¶√ü√≠√° (√°√°√ä√ö√°√£)"""
         pass
 
     async def _update_stats(self, selected: bool, confidence: float):
@@ -188,10 +188,10 @@ class BaseAgent(ABC):
             'avg_confidence': self.stats['total_confidence'] / max(1, self.stats['selected'])
         }
 
-# ==================== ŒÊ«—“„Ì«  „”«⁄œ… „ ﬁœ„… ====================
+# ==================== √é√¶√á√ë√í√£√≠√á√ä √£√ì√á√ö√è√â √£√ä√û√è√£√â ====================
 
 class PriceImpactModel:
-    """‰„Ê–Ã  ﬁœÌ—  √ÀÌ— «·”⁄— »«” Œœ«„ ‰„Ê–Ã «·”Ã· «·ŒÿÌ"""
+    """√§√£√¶√ê√å √ä√û√è√≠√ë √ä√É√ã√≠√ë √á√°√ì√ö√ë √à√á√ì√ä√é√è√á√£ √§√£√¶√ê√å √á√°√ì√å√° √á√°√é√ò√≠"""
     @staticmethod
     def calculate(reserve_in: float, reserve_out: float, amount_in: float, fee: float = 0.003) -> Tuple[float, float]:
         amount_in_with_fee = amount_in * (1 - fee)
@@ -203,7 +203,7 @@ class PriceImpactModel:
         return amount_out, price_impact
 
 class OptimalRouter:
-    """„Õ”‰ «·„”«—«  »Ì‰ ⁄œ… DEXes"""
+    """√£√ç√ì√§ √á√°√£√ì√á√ë√á√ä √à√≠√§ √ö√è√â DEXes"""
     @staticmethod
     def find_best_path(amount_in: float, token_in: str, token_out: str, markets: List[Dict]) -> Dict:
         best_path = None
@@ -225,7 +225,7 @@ class OptimalRouter:
         return best_path
 
 class PortfolioOptimizer:
-    """ Õ”Ì‰ «·„Õ›Ÿ… »«” Œœ«„ ‰„Ê–Ã „«—ﬂÊÌ “"""
+    """√ä√ç√ì√≠√§ √á√°√£√ç√ù√ô√â √à√á√ì√ä√é√è√á√£ √§√£√¶√ê√å √£√á√ë√ü√¶√≠√ä√í"""
     @staticmethod
     def markowitz(returns: np.ndarray, cov_matrix: np.ndarray, target_return: float = None) -> np.ndarray:
         n = len(returns)
@@ -252,10 +252,10 @@ class PortfolioOptimizer:
     def kelly_criterion(win_prob: float, win_loss_ratio: float) -> float:
         return (win_prob * win_loss_ratio - (1 - win_prob)) / win_loss_ratio
 
-# ==================== ‰„«–Ã «· ‰»ƒ «·„ ﬁœ„… ====================
+# ==================== √§√£√á√ê√å √á√°√ä√§√à√Ñ √á√°√£√ä√û√è√£√â ====================
 
 class LSTMPredictor:
-    """‰„Ê–Ã LSTM ·· ‰»ƒ »«·√”⁄«—"""
+    """√§√£√¶√ê√å LSTM √°√°√ä√§√à√Ñ √à√á√°√É√ì√ö√á√ë"""
     def __init__(self, input_size: int = 10, hidden_size: int = 64, num_layers: int = 2):
         if not TORCH_AVAILABLE:
             raise ImportError("PyTorch not available")
@@ -295,7 +295,7 @@ class LSTMPredictor:
         return out.item()
 
 class ARIMAPredictor:
-    """‰„Ê–Ã ARIMA ·· ‰»ƒ »«·”·«”· «·“„‰Ì…"""
+    """√§√£√¶√ê√å ARIMA √°√°√ä√§√à√Ñ √à√á√°√ì√°√á√ì√° √á√°√í√£√§√≠√â"""
     def __init__(self, order=(1,1,1)):
         self.order = order
         self.model = None
@@ -317,7 +317,7 @@ class ARIMAPredictor:
         forecast = self.model_fit.forecast(steps=steps)
         return forecast[0]
 
-# ==================== Êﬂ·«¡ «· œ«Ê· «·√”«”ÌÊ‰ („⁄ »Ì«‰«  ÕﬁÌﬁÌ…) ====================
+# ==================== √¶√ü√°√á√Å √á√°√ä√è√á√¶√° √á√°√É√ì√á√ì√≠√¶√§ (√£√ö √à√≠√á√§√á√ä √ç√û√≠√û√≠√â) ====================
 
 class MarketAgent(BaseAgent):
     def __init__(self, price_fetcher: PriceFetcher):
@@ -325,12 +325,12 @@ class MarketAgent(BaseAgent):
         self.pf = price_fetcher
 
     async def process(self, opportunity: Opportunity, market_data: MarketData) -> Tuple[Optional[Opportunity], float, Dict]:
-        # «” —« ÌÃÌ… ”Êﬁ »”Ìÿ…: ‘—«¡ ETH ⁄‰œ„« ÌﬂÊ‰ «·”⁄— „‰Œ›÷«  «—ÌŒÌ«
-        # ‰Õ «Ã ≈·Ï »Ì«‰«   «—ÌŒÌ…° ‰› —÷ √‰ market_data.external ÌÕ ÊÌ ⁄·Ï avg_price_7d
+        # √á√ì√ä√ë√á√ä√≠√å√≠√â √ì√¶√û √à√ì√≠√ò√â: √î√ë√á√Å ETH √ö√§√è√£√á √≠√ü√¶√§ √á√°√ì√ö√ë √£√§√é√ù√ñ√á√∞ √ä√á√ë√≠√é√≠√á√∞
+        # √§√ç√ä√á√å √Ö√°√¨ √à√≠√á√§√á√ä √ä√á√ë√≠√é√≠√â¬° √§√ù√ä√ë√ñ √É√§ market_data.external √≠√ç√ä√¶√≠ √ö√°√¨ avg_price_7d
         avg_price_7d = market_data.external.get('avg_price_7d', market_data.eth_price)
         current_price = market_data.eth_price
-        if current_price < avg_price_7d * 0.95:  # √ﬁ· „‰ 95% „‰ «·„ Ê”ÿ
-            profit_estimate = (avg_price_7d - current_price) * 0.1  # ‰ Êﬁ⁄ «— ›«⁄ 10%
+        if current_price < avg_price_7d * 0.95:  # √É√û√° √£√§ 95% √£√§ √á√°√£√ä√¶√ì√ò
+            profit_estimate = (avg_price_7d - current_price) * 0.1  # √§√ä√¶√û√ö √á√ë√ä√ù√á√ö 10%
             opp = Opportunity(
                 category=StrategyCategory.MARKET,
                 name="Buy ETH (Market Dip)",
@@ -367,7 +367,7 @@ class ArbitrageAgent(BaseAgent):
         pancakeswap = market_data.pancakeswap_prices
         quickswap = market_data.quickswap_prices
 
-        # œ„Ã Ã„Ì⁄ «·√”⁄«—
+        # √è√£√å √å√£√≠√ö √á√°√É√ì√ö√á√ë
         all_prices = defaultdict(list)
         for token, price in uniswap.items():
             all_prices[token].append(('uniswap', price))
@@ -388,16 +388,16 @@ class ArbitrageAgent(BaseAgent):
         for token, price_list in all_prices.items():
             if len(price_list) < 2:
                 continue
-            #  — Ì» Õ”» «·”⁄—
+            # √ä√ë√ä√≠√à √ç√ì√à √á√°√ì√ö√ë
             price_list.sort(key=lambda x: x[1])
             lowest = price_list[0]
             highest = price_list[-1]
             spread = (highest[1] - lowest[1]) / lowest[1]
             if spread > self.config.dex_arb['min_spread']:
-                # „Õ«Ê·…  ‰›Ì– „—«ÃÕ… »ﬂ„Ì… „Õœœ…
+                # √£√ç√á√¶√°√â √ä√§√ù√≠√ê √£√ë√á√å√ç√â √à√ü√£√≠√â √£√ç√è√è√â
                 amount = self.config.dex_arb['amount']
-                #  ﬁœÌ— «·—»Õ »⁄œ  √ÀÌ— «·”⁄— Ê«·—”Ê„
-                # ‰Õ «Ã ≈·Ï „⁄·Ê„«  «·«Õ Ì«ÿÌ« ° ‰› —÷ √‰Â« „ Ê›—… ›Ì market_data.external
+                # √ä√û√è√≠√ë √á√°√ë√à√ç √à√ö√è √ä√É√ã√≠√ë √á√°√ì√ö√ë √¶√á√°√ë√ì√¶√£
+                # √§√ç√ä√á√å √Ö√°√¨ √£√ö√°√¶√£√á√ä √á√°√á√ç√ä√≠√á√ò√≠√á√ä¬° √§√ù√ä√ë√ñ √É√§√•√á √£√ä√¶√ù√ë√â √ù√≠ market_data.external
                 reserves = market_data.external.get('reserves', {})
                 buy_reserve_in = reserves.get(lowest[0], {}).get(token, {}).get('reserve_in', 1e6)
                 buy_reserve_out = reserves.get(lowest[0], {}).get(token, {}).get('reserve_out', 1e6 * lowest[1])
@@ -496,7 +496,7 @@ class MEVAgent(BaseAgent):
             value_eth = int(tx.get('value', 0)) / 1e18
             if value_eth > 10:
                 gas_price_gwei = int(tx.get('gasPrice', 0)) / 1e9
-                #  ﬁœÌ— «·—»Õ «·„Õ „· (Ì⁄ „œ ⁄·Ï ‰Ê⁄ MEV)
+                # √ä√û√è√≠√ë √á√°√ë√à√ç √á√°√£√ç√ä√£√° (√≠√ö√ä√£√è √ö√°√¨ √§√¶√ö MEV)
                 profit = value_eth * 0.01
                 gas = gas_cost_usd(200000, market_data.eth_price, market_data.gas_gwei)
                 if profit > gas:
@@ -1238,8 +1238,8 @@ class SentimentAgent(BaseAgent):
 
     async def process(self, opportunity: Opportunity, market_data: MarketData) -> Tuple[Optional[Opportunity], float, Dict]:
         await self._ensure_session()
-        # «” œ⁄«¡ API ·„‘«⁄— «·”Êﬁ („À«·: https://api.lunarcrush.com/v2/data?key=...)
-        # ‰” Œœ„ »Ì«‰«  ÊÂ„Ì… „ƒﬁ «
+        # √á√ì√ä√è√ö√á√Å API √°√£√î√á√ö√ë √á√°√ì√¶√û (√£√ã√á√°: https://api.lunarcrush.com/v2/data?key=...)
+        # √§√ì√ä√é√è√£ √à√≠√á√§√á√ä √¶√•√£√≠√â √£√Ñ√û√ä√á√∞
         sentiment = random.choice(['positive', 'negative', 'neutral'])
         opp = Opportunity(
             category=StrategyCategory.SENTIMENT,
@@ -1259,7 +1259,7 @@ class TechnicalAgent(BaseAgent):
         super().__init__("technical", [StrategyCategory.TECHNICAL])
 
     async def process(self, opportunity: Opportunity, market_data: MarketData) -> Tuple[Optional[Opportunity], float, Dict]:
-        # Õ”«» RSI „‰ »Ì«‰«   «—ÌŒÌ…
+        # √ç√ì√á√à RSI √£√§ √à√≠√á√§√á√ä √ä√á√ë√≠√é√≠√â
         price_history = market_data.external.get('price_history', [market_data.eth_price] * 20)
         if len(price_history) > 14:
             gains = []
@@ -1281,7 +1281,7 @@ class TechnicalAgent(BaseAgent):
                 rsi = 100 - (100 / (1 + rs))
         else:
             rsi = 50
-        # MACD ( »”Ìÿ)
+        # MACD (√ä√à√ì√≠√ò)
         macd = random.choice(['bullish', 'bearish'])
         opp = Opportunity(
             category=StrategyCategory.TECHNICAL,
@@ -1328,7 +1328,7 @@ class ComposioAgent(BaseAgent):
 
     async def process(self, opportunity: Opportunity, market_data: MarketData) -> Tuple[Optional[Opportunity], float, Dict]:
         if self.composio_client:
-            # Ì„ﬂ‰ «” œ⁄«¡ √œÊ«  „À· GitHub, Gmail, ≈·Œ
+            # √≠√£√ü√§ √á√ì√ä√è√ö√á√Å √É√è√¶√á√ä √£√ã√° GitHub, Gmail, √Ö√°√é
             opp = Opportunity(
                 category=StrategyCategory.COMPOSIO,
                 name="Composio Integration",
@@ -1349,7 +1349,7 @@ class InjectiveAgent(BaseAgent):
         super().__init__("injective", [StrategyCategory.INJECTIVE])
 
     async def process(self, opportunity: Opportunity, market_data: MarketData) -> Tuple[Optional[Opportunity], float, Dict]:
-        # «” Œœ«„ Injective blockchain
+        # √á√ì√ä√é√è√á√£ Injective blockchain
         opp = Opportunity(
             category=StrategyCategory.INJECTIVE,
             name="Injective",
@@ -1379,7 +1379,7 @@ class TriangularArbitrageAgent(BaseAgent):
         addr_b = get_address(md.chain, token_b)
         if not addr_a or not addr_b:
             return None
-        # ‰»ÕÀ ›Ì √”⁄«— Uniswap (Ì„ﬂ‰ «· Ê”⁄)
+        # √§√à√ç√ã √ù√≠ √É√ì√ö√á√ë Uniswap (√≠√£√ü√§ √á√°√ä√¶√ì√ö)
         price = md.uniswap_prices.get(addr_b)
         return price
 
@@ -1426,12 +1426,12 @@ class SandwichAttackAgent(BaseAgent):
         self.quoter_v2 = "0x61fFE014bA17989E743c5F6cB21bF9697530B21e"
 
     async def _analyze_transaction(self, tx: Dict) -> Optional[Dict]:
-        #  Õ·Ì· «·„⁄«„·… · ÕœÌœ ≈–« ﬂ«‰  ﬁ«»·… ··”«‰œÊÌ ‘
+        # √ä√ç√°√≠√° √á√°√£√ö√á√£√°√â √°√ä√ç√è√≠√è √Ö√ê√á √ü√á√§√ä √û√á√à√°√â √°√°√ì√á√§√è√¶√≠√ä√î
         try:
             data = tx.get('input', '0x')
             value = int(tx.get('value', 0))
             if data.startswith('0x7ff36ab5'):  # swapExactETHForTokens
-                # „”«— v2
+                # √£√ì√á√ë v2
                 path = self._decode_uniswap_v2_path(data)
                 amount_in = value
                 return {
