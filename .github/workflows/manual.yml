@@ -29,5 +29,4 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-    
-          run: python run.py.txt
+      run: python run.py.txt
