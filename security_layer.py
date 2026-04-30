@@ -1,5 +1,5 @@
 # =============================================================================
-# ≈÷«›«  „ ﬂ«„·…: ÿ»ﬁ… «·√„«‰ «·ﬁ’ÊÏ + ÊﬂÌ· «·”Õ» «· ·ﬁ«∆Ì
+# √Ö√ñ√á√ù√á√ä √£√ä√ü√á√£√°√â: √ò√à√û√â √á√°√É√£√á√§ √á√°√û√ï√¶√¨ + √¶√ü√≠√° √á√°√ì√ç√à √á√°√ä√°√û√á√Ü√≠
 # =============================================================================
 
 import tempfile
@@ -10,11 +10,11 @@ from typing import Dict, List, Optional, Tuple, Any, Set
 from dataclasses import dataclass
 
 # -----------------------------------------------------------------------------
-# 1. œÊ«· ≈÷«›Ì… ·‹ ExtendedGodPulse (≈‰ ·„  ﬂ‰ „ÊÃÊœ…)
+# 1. √è√¶√á√° √Ö√ñ√á√ù√≠√â √°√ú ExtendedGodPulse (√Ö√§ √°√£ √ä√ü√§ √£√¶√å√¶√è√â)
 # -----------------------------------------------------------------------------
 if not hasattr(ExtendedGodPulse, 'get_balance'):
     async def get_balance(self, address: str, chain: str, token_address: Optional[str] = None) -> float:
-        """«” —œ«œ —’Ìœ ETH √Ê ERC20 ·⁄‰Ê«‰ „⁄Ì‰."""
+        """√á√ì√ä√ë√è√á√è √ë√ï√≠√è ETH √É√¶ ERC20 √°√ö√§√¶√á√§ √£√ö√≠√§."""
         if not WEB3_AVAILABLE:
             raise RuntimeError("web3.py not installed")
         rpc_url = os.environ.get(f"{chain.upper()}_RPC_URL")
@@ -72,7 +72,7 @@ if not hasattr(ExtendedGodPulse, 'send_transaction'):
         gas_limit: int = 150000,
         gas_price_multiplier: float = 1.2
     ) -> str:
-        """≈—”«· „⁄«„·… (ETH √Ê ERC20) »«” Œœ«„ «·„› «Õ «·Œ«’."""
+        """√Ö√ë√ì√á√° √£√ö√á√£√°√â (ETH √É√¶ ERC20) √à√á√ì√ä√é√è√á√£ √á√°√£√ù√ä√á√ç √á√°√é√á√ï."""
         if not WEB3_AVAILABLE:
             raise RuntimeError("web3.py not installed")
         pk = private_key or os.environ.get('DEPLOYER_PRIVATE_KEY')
@@ -147,7 +147,7 @@ if not hasattr(ExtendedGodPulse, 'send_transaction'):
     logger.info("ExtendedGodPulse.send_transaction added")
 
 # -----------------------------------------------------------------------------
-# 2. ÿ»ﬁ… «·√„«‰ «·ﬁ’ÊÏ (Ã„Ì⁄ «·„Ì“«  «· Ì √—”· Â«)
+# 2. √ò√à√û√â √á√°√É√£√á√§ √á√°√û√ï√¶√¨ (√å√£√≠√ö √á√°√£√≠√í√á√ä √á√°√ä√≠ √É√ë√ì√°√ä√•√á)
 # -----------------------------------------------------------------------------
 class OpenZeppelinContractGenerator:
     @staticmethod
@@ -367,7 +367,7 @@ class HardwareSecurityModule:
     async def sign_transaction(self, tx_hash: bytes) -> bytes:
         if not self._initialized:
             raise RuntimeError("HSM not initialized")
-        return secrets.token_bytes(64)  # „Õ«ﬂ«…
+        return secrets.token_bytes(64)  # √£√ç√á√ü√á√â
     async def get_public_key(self) -> str:
         return "0x" + secrets.token_hex(64)
 
@@ -428,7 +428,7 @@ class UltraSecureDeployer:
         require_slither_score: float = 90.0
     ) -> Dict[str, Any]:
         result = {'success': False, 'steps': {}, 'error': None, 'contract_address': None, 'timelock_address': None}
-        # 1.  Ê·Ìœ «·⁄ﬁœ
+        # 1. √ä√¶√°√≠√è √á√°√ö√û√è
         logger.info("Step 1: Generating contract using OpenZeppelin templates")
         if contract_type == 'erc20':
             source = OpenZeppelinContractGenerator.generate_erc20(
@@ -444,7 +444,7 @@ class UltraSecureDeployer:
             return result
         result['steps']['generated'] = {'source_hash': hashlib.sha256(source.encode()).hexdigest()}
 
-        # 2. «· Õﬁﬁ «·—”„Ì
+        # 2. √á√°√ä√ç√û√û √á√°√ë√ì√£√≠
         verification = {'overall_score': 0, 'is_verified': False}
         if require_formal_verification:
             logger.info("Step 2: Running formal verification (Slither, Mythril)")
@@ -464,11 +464,11 @@ class UltraSecureDeployer:
         else:
             result['steps']['formal_verification'] = {'skipped': True}
 
-        # 3. „Õ«ﬂ«… (‰„Ê–ÃÌ…)
+        # 3. √£√ç√á√ü√á√â (√§√£√¶√ê√å√≠√â)
         logger.info("Step 3: Simulation (basic checks)")
         result['steps']['simulation'] = {'status': 'skipped', 'message': 'Full simulation requires ganache-cli'}
 
-        # 4. ‰‘— Timelock
+        # 4. √§√î√ë Timelock
         timelock_address = None
         if use_timelock:
             logger.info(f"Step 4: Deploying TimelockController with {timelock_delay}s delay")
@@ -487,7 +487,7 @@ class UltraSecureDeployer:
                     return result
             result['steps']['timelock'] = {'address': timelock_address, 'delay': timelock_delay}
 
-        # 5. ‰‘— «·⁄ﬁœ «·—∆Ì”Ì
+        # 5. √§√î√ë √á√°√ö√û√è √á√°√ë√Ü√≠√ì√≠
         if not simulate_only:
             logger.info("Step 5: Deploying main contract")
             private_key = os.environ.get('DEPLOYER_PRIVATE_KEY')
@@ -521,7 +521,7 @@ class UltraSecureDeployer:
         return result
 
 # -----------------------------------------------------------------------------
-# 3. ÊﬂÌ·  ÕÊÌ· «·√„Ê«· (FundSweeperAgent)
+# 3. √¶√ü√≠√° √ä√ç√¶√≠√° √á√°√É√£√¶√á√° (FundSweeperAgent)
 # -----------------------------------------------------------------------------
 class FundSweeperAgent(BaseAgent if AGENTS_AVAILABLE else object):
     def __init__(
@@ -610,7 +610,7 @@ class FundSweeperAgent(BaseAgent if AGENTS_AVAILABLE else object):
                 except Exception as e:
                     logger.error(f"ETH sweep failed for {contract_address}: {e}")
 
-        # «·—„Ê“
+        # √á√°√ë√£√¶√í
         to_check = tokens if tokens else set(self.token_whitelist)
         for token in to_check:
             bal = await self.god_pulse.get_balance(contract_address, chain, token)
@@ -687,11 +687,11 @@ class FundSweeperAgent(BaseAgent if AGENTS_AVAILABLE else object):
         logger.info("FundSweeperAgent stopped")
 
 # -----------------------------------------------------------------------------
-# 4. —»ÿ  ·ﬁ«∆Ì »‹ UltimateOrchestrator ( ⁄œÌ· ÿ›Ì› ›ﬁÿ ·≈÷«›… «·„ €Ì—« )
+# 4. √ë√à√ò √ä√°√û√á√Ü√≠ √à√ú UltimateOrchestrator (√ä√ö√è√≠√° √ò√ù√≠√ù √ù√û√ò √°√Ö√ñ√á√ù√â √á√°√£√ä√õ√≠√ë√á√ä)
 # -----------------------------------------------------------------------------
-# ‰÷Ì› «·Œ«’Ì Ì‰ ≈·Ï UltimateOrchestrator ≈–« ·„  ﬂÊ‰« „ÊÃÊœ Ì‰
+# √§√ñ√≠√ù √á√°√é√á√ï√≠√ä√≠√§ √Ö√°√¨ UltimateOrchestrator √Ö√ê√á √°√£ √ä√ü√¶√§√á √£√¶√å√¶√è√ä√≠√§
 if not hasattr(UltimateOrchestrator, 'ultra_secure_deployer'):
-    # ‰Œ“‰ «·„—Ã⁄ «·√’·Ì ·‹ __init__ Ê initialize Ê stop
+    # √§√é√í√§ √á√°√£√ë√å√ö √á√°√É√ï√°√≠ √°√ú __init__ √¶ initialize √¶ stop
     _orig_init = UltimateOrchestrator.__init__
     _orig_initialize = UltimateOrchestrator.initialize
     _orig_stop = UltimateOrchestrator.stop
