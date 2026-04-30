@@ -2,22 +2,22 @@
 # -*- coding: utf-8 -*-
 """
 ================================================================================
-≈÷«›«  - «·Ã“¡ «·—«»⁄ («·„⁄«·Ã… «·ﬂ«„·… ·‰Ê«ﬁ’ «·ﬂÊœ «·—∆Ì”Ì Ê«·√Ã“«¡ «·À·«À…)
+√Ö√ñ√á√ù√á√ä - √á√°√å√í√Å √á√°√ë√á√à√ö (√á√°√£√ö√á√°√å√â √á√°√ü√á√£√°√â √°√§√¶√á√û√ï √á√°√ü√¶√è √á√°√ë√Ü√≠√ì√≠ √¶√á√°√É√å√í√á√Å √á√°√ã√°√á√ã√â)
 ================================================================================
-Â–« «·Ã“¡ Ì⁄«·Ã Ã„Ì⁄ «·„‘ﬂ·«  «·„–ﬂÊ—… ›Ì «·ﬂÊœ «·—∆Ì”Ì (Al?Khaled V20095) Ê«· Ì ·„  ıÕ· ›Ì «·√Ã“«¡ «·À·«À… «·√Ê·Ï:
+√•√ê√á √á√°√å√í√Å √≠√ö√á√°√å √å√£√≠√ö √á√°√£√î√ü√°√á√ä √á√°√£√ê√ü√¶√ë√â √ù√≠ √á√°√ü√¶√è √á√°√ë√Ü√≠√ì√≠ (Al?Khaled V20095) √¶√á√°√ä√≠ √°√£ √ä√µ√ç√° √ù√≠ √á√°√É√å√í√á√Å √á√°√ã√°√á√ã√â √á√°√É√¶√°√¨:
 
-1. ? ≈ﬂ„«· «” —« ÌÃÌ«  MEV «·ÂÃÊ„Ì… (Sandwich, TimeBandit) »«” œ⁄«¡«  ÕﬁÌﬁÌ… ··⁄ﬁÊœ »œ·« „‰ «·œÊ«· «·ÊÂ„Ì….
-2. ?  ﬁ·Ì· «·«⁄ „«œ ⁄·Ï The Graph ⁄»— ≈÷«›… RPCManager œÌ‰«„ÌﬂÌ „ÕœÀ „‰ ChainList Ê„’«œ— »œÌ·….
-3. ? œ„Ã „Õ—ﬂ «Œ »«— Œ·›Ì ‘«„· (BacktestEngine) „⁄ Ã„Ì⁄ «·«” —« ÌÃÌ«  ·«Œ »«—Â« ⁄·Ï »Ì«‰«   «—ÌŒÌ….
-4. ? —»ÿ «” —« ÌÃÌ«  «·„‘«⁄— Ê«·√Œ»«— »„’«œ— ÕﬁÌﬁÌ… (CryptoPanic, LunarCrush, RSS Feeds) »œ·« „‰ «·»Ì«‰«  «·⁄‘Ê«∆Ì….
-5. ? √ „ …  ﬂÊÌ‰ «·„‰›–Ì‰ «·„ ﬁœ„Ì‰ (EIP2771, Biconomy, Pimlico, Stackup, Candide, mistX) ⁄»— AddressRegistryUpdater.
-6. ?  Õ”Ì‰ √œ«¡ MEV ⁄»— «·« ’«· »⁄œ… WebSockets »«· Ê«“Ì · ﬁ·Ì· “„‰ «·«ﬂ ‘«›.
-7. ? ≈ﬂ„«· Ã„Ì⁄ œÊ«· «·Ã”Ê— «· ”⁄… (Hop, Synapse, Celer, Multichain, Wormhole, Axelar, LayerZero, Across, Anyswap) » ‰›Ì– ÕﬁÌﬁÌ Ì»‰Ì „⁄«„·«  „Êﬁ⁄….
-8. ? Ã⁄· ‰Ÿ«„ «· Ê“Ì⁄ «·œÌ‰«„ÌﬂÌ (DistributedTradingSystem) Ì÷»ÿ ⁄œœ «·Êﬂ·«¡ Õ”» «·Õ„· «·›⁄·Ì.
-9. ? ≈÷«›… ÊﬂÌ· CompletionAgent Ìﬂ ‘› ÊÌ’·Õ «·ŒÊ«—“„Ì«  «·‰«ﬁ’…  ·ﬁ«∆Ì«.
-10. ? ≈’·«Õ √Œÿ«¡ «·√Ã“«¡ «·”«»ﬁ… (RPCManagerExtended œÌ‰«„ÌﬂÌ° MarketRegimeDetector »»Ì«‰«  ÕﬁÌﬁÌ…° ≈·Œ).
+1. ? √Ö√ü√£√á√° √á√ì√ä√ë√á√ä√≠√å√≠√á√ä MEV √á√°√•√å√¶√£√≠√â (Sandwich, TimeBandit) √à√á√ì√ä√è√ö√á√Å√á√ä √ç√û√≠√û√≠√â √°√°√ö√û√¶√è √à√è√°√á√∞ √£√§ √á√°√è√¶√á√° √á√°√¶√•√£√≠√â.
+2. ? √ä√û√°√≠√° √á√°√á√ö√ä√£√á√è √ö√°√¨ The Graph √ö√à√ë √Ö√ñ√á√ù√â RPCManager √è√≠√§√á√£√≠√ü√≠ √£√ç√è√ã √£√§ ChainList √¶√£√ï√á√è√ë √à√è√≠√°√â.
+3. ? √è√£√å √£√ç√ë√ü √á√é√ä√à√á√ë √é√°√ù√≠ √î√á√£√° (BacktestEngine) √£√ö √å√£√≠√ö √á√°√á√ì√ä√ë√á√ä√≠√å√≠√á√ä √°√á√é√ä√à√á√ë√•√á √ö√°√¨ √à√≠√á√§√á√ä √ä√á√ë√≠√é√≠√â.
+4. ? √ë√à√ò √á√ì√ä√ë√á√ä√≠√å√≠√á√ä √á√°√£√î√á√ö√ë √¶√á√°√É√é√à√á√ë √à√£√ï√á√è√ë √ç√û√≠√û√≠√â (CryptoPanic, LunarCrush, RSS Feeds) √à√è√°√á√∞ √£√§ √á√°√à√≠√á√§√á√ä √á√°√ö√î√¶√á√Ü√≠√â.
+5. ? √É√ä√£√ä√â √ä√ü√¶√≠√§ √á√°√£√§√ù√ê√≠√§ √á√°√£√ä√û√è√£√≠√§ (EIP2771, Biconomy, Pimlico, Stackup, Candide, mistX) √ö√à√ë AddressRegistryUpdater.
+6. ? √ä√ç√ì√≠√§ √É√è√á√Å MEV √ö√à√ë √á√°√á√ä√ï√á√° √à√ö√è√â WebSockets √à√á√°√ä√¶√á√í√≠ √°√ä√û√°√≠√° √í√£√§ √á√°√á√ü√ä√î√á√ù.
+7. ? √Ö√ü√£√á√° √å√£√≠√ö √è√¶√á√° √á√°√å√ì√¶√ë √á√°√ä√ì√ö√â (Hop, Synapse, Celer, Multichain, Wormhole, Axelar, LayerZero, Across, Anyswap) √à√ä√§√ù√≠√ê √ç√û√≠√û√≠ √≠√à√§√≠ √£√ö√á√£√°√á√ä √£√¶√û√ö√â.
+8. ? √å√ö√° √§√ô√á√£ √á√°√ä√¶√í√≠√ö √á√°√è√≠√§√á√£√≠√ü√≠ (DistributedTradingSystem) √≠√ñ√à√ò √ö√è√è √á√°√¶√ü√°√á√Å √ç√ì√à √á√°√ç√£√° √á√°√ù√ö√°√≠.
+9. ? √Ö√ñ√á√ù√â √¶√ü√≠√° CompletionAgent √≠√ü√ä√î√ù √¶√≠√ï√°√ç √á√°√é√¶√á√ë√í√£√≠√á√ä √á√°√§√á√û√ï√â √ä√°√û√á√Ü√≠√á√∞.
+10. ? √Ö√ï√°√á√ç √É√é√ò√á√Å √á√°√É√å√í√á√Å √á√°√ì√á√à√û√â (RPCManagerExtended √è√≠√§√á√£√≠√ü√≠¬° MarketRegimeDetector √à√à√≠√á√§√á√ä √ç√û√≠√û√≠√â¬° √Ö√°√é).
 
-Ã„Ì⁄ «· Õ”Ì‰«   Õ«›Ÿ ⁄·Ï «·„Ì“«  Ê«·„ﬂ ”»«  «·”«»ﬁ… œÊ‰ √Ì Õ–› √Ê «Œ ’«—.
+√å√£√≠√ö √á√°√ä√ç√ì√≠√§√á√ä √ä√ç√á√ù√ô √ö√°√¨ √á√°√£√≠√í√á√ä √¶√á√°√£√ü√ä√ì√à√á√ä √á√°√ì√á√à√û√â √è√¶√§ √É√≠ √ç√ê√ù √É√¶ √á√é√ä√ï√á√ë.
 ================================================================================
 """
 
@@ -52,7 +52,7 @@ from eth_account.messages import encode_defunct, encode_structured_data
 from hexbytes import HexBytes
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
-# «” Ì—«œ «·„ﬂÊ‰«  „‰ «·√Ã“«¡ «·”«»ﬁ…
+# √á√ì√ä√≠√ë√á√è √á√°√£√ü√¶√§√á√ä √£√§ √á√°√É√å√í√á√Å √á√°√ì√á√à√û√â
 try:
     from additions_part1 import *
     from additions_part2 import *
@@ -67,24 +67,24 @@ except ImportError as e:
     PART3_AVAILABLE = False
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger('AdditionsPart4')
-    logger.warning(f"?? «·√Ã“«¡ «·”«»ﬁ… €Ì— „ Ê›—…: {e}")
+    logger.warning(f"?? √á√°√É√å√í√á√Å √á√°√ì√á√à√û√â √õ√≠√ë √£√ä√¶√ù√ë√â: {e}")
 
-# „Õ«Ê·… «” Ì—«œ «·„ﬂÊ‰«  „‰ core (≈‰ ÊÃœ )
+# √£√ç√á√¶√°√â √á√ì√ä√≠√ë√á√è √á√°√£√ü√¶√§√á√ä √£√§ core (√Ö√§ √¶√å√è√ä)
 try:
     from core import *
     CORE_AVAILABLE = True
-    logger.info("? «·„ﬂÊ‰«  «·√”«”Ì… „ Ê›—…")
+    logger.info("? √á√°√£√ü√¶√§√á√ä √á√°√É√ì√á√ì√≠√â √£√ä√¶√ù√ë√â")
 except ImportError as e:
     CORE_AVAILABLE = False
-    logger.warning(f"?? «·„ﬂÊ‰«  «·√”«”Ì… €Ì— „ Ê›—…: {e}")
+    logger.warning(f"?? √á√°√£√ü√¶√§√á√ä √á√°√É√ì√á√ì√≠√â √õ√≠√ë √£√ä√¶√ù√ë√â: {e}")
 
 # =============================================================================
-# 1. ≈ﬂ„«· ›ﬂ  ‘›Ì— «·„”«—«  ›Ì SandwichAttackAgent ( Õ·Ì· ÕﬁÌﬁÌ)
+# 1. √Ö√ü√£√á√° √ù√ü √ä√î√ù√≠√ë √á√°√£√ì√á√ë√á√ä √ù√≠ SandwichAttackAgent (√ä√ç√°√≠√° √ç√û√≠√û√≠)
 # =============================================================================
 
 class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
     """
-    ‰”Œ… ﬂ«„·… „‰ SandwichAttackAgent „⁄ ›ﬂ  ‘›Ì— ÕﬁÌﬁÌ ··„”«—«  Ê Õ·Ì· œﬁÌﬁ.
+    √§√ì√é√â √ü√á√£√°√â √£√§ SandwichAttackAgent √£√ö √ù√ü √ä√î√ù√≠√ë √ç√û√≠√û√≠ √°√°√£√ì√á√ë√á√ä √¶√ä√ç√°√≠√° √è√û√≠√û.
     """
     def __init__(self, config: Config, god_pulse: Dict[str, GodPulse], rpc_manager: RPCManager, mempool_watcher=None):
         super().__init__(config, god_pulse.get('ethereum'), mempool_watcher)
@@ -95,7 +95,7 @@ class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
 
     def _decode_path_from_data(self, data: str, offset: int) -> List[str]:
         """
-        ›ﬂ  ‘›Ì— «·„”«— «·ÕﬁÌﬁÌ „‰ »Ì«‰«  «·„⁄«„·….
+        √ù√ü √ä√î√ù√≠√ë √á√°√£√ì√á√ë √á√°√ç√û√≠√û√≠ √£√§ √à√≠√á√§√á√ä √á√°√£√ö√á√£√°√â.
         """
         try:
             data = data[2:] if data.startswith('0x') else data
@@ -117,7 +117,7 @@ class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
 
     def _decode_v3_params_real(self, data: str) -> Optional[Dict]:
         """
-        ›ﬂ  ‘›Ì— „⁄«„·«  V3 „‰ »Ì«‰«  «·„⁄«„·….
+        √ù√ü √ä√î√ù√≠√ë √£√ö√á√£√°√á√ä V3 √£√§ √à√≠√á√§√á√ä √á√°√£√ö√á√£√°√â.
         """
         try:
             data = data[2:] if data.startswith('0x') else data
@@ -143,7 +143,7 @@ class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
 
     async def analyze_transaction(self, tx: Dict) -> Optional[Dict]:
         """
-         Õ·Ì· «·„⁄«„·… »‘ﬂ· ÕﬁÌﬁÌ „⁄ ›ﬂ  ‘›Ì— ﬂ«„·.
+        √ä√ç√°√≠√° √á√°√£√ö√á√£√°√â √à√î√ü√° √ç√û√≠√û√≠ √£√ö √ù√ü √ä√î√ù√≠√ë √ü√á√£√°.
         """
         try:
             data = tx.get('input', '0x')
@@ -190,7 +190,7 @@ class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
 
     async def get_pair_reserves(self, pair_address: str) -> Tuple[int, int]:
         """
-        «·Õ’Ê· ⁄·Ï «·«Õ Ì«ÿÌ«  «·ÕﬁÌﬁÌ… „‰ «·⁄ﬁœ.
+        √á√°√ç√ï√¶√° √ö√°√¨ √á√°√á√ç√ä√≠√á√ò√≠√á√ä √á√°√ç√û√≠√û√≠√â √£√§ √á√°√ö√û√è.
         """
         gp = self.god_pulse.get('ethereum')
         if not gp:
@@ -208,7 +208,7 @@ class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
 
     async def get_pair_address(self, token_a: str, token_b: str) -> Optional[str]:
         """
-        «·Õ’Ê· ⁄·Ï ⁄‰Ê«‰ «·“ÊÃ „‰ factory.
+        √á√°√ç√ï√¶√° √ö√°√¨ √ö√§√¶√á√§ √á√°√í√¶√å √£√§ factory.
         """
         gp = self.god_pulse.get('ethereum')
         if not gp:
@@ -229,7 +229,7 @@ class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
 
     async def calculate_sandwich_profit(self, tx_analysis: Dict) -> Optional[Dict]:
         """
-        Õ”«» —»Õ «·”«‰œÊÌ ‘ »‘ﬂ· ÕﬁÌﬁÌ.
+        √ç√ì√á√à √ë√à√ç √á√°√ì√á√§√è√¶√≠√ä√î √à√î√ü√° √ç√û√≠√û√≠.
         """
         try:
             if tx_analysis['type'] == 'v2':
@@ -286,7 +286,7 @@ class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
 
     async def build_sandwich_bundle(self, tx: Dict, analysis: Dict, profit_info: Dict, signer_address: str) -> List[Dict]:
         """
-        »‰«¡ Õ“„… «·”«‰œÊÌ ‘ ·· ”·Ì„ ≈·Ï Flashbots.
+        √à√§√á√Å √ç√í√£√â √á√°√ì√á√§√è√¶√≠√ä√î √°√°√ä√ì√°√≠√£ √Ö√°√¨ Flashbots.
         """
         weth = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         usdc = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
@@ -329,8 +329,8 @@ class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
         return [frontrun_tx, victim_tx, backrun_approve_tx, backrun_swap_tx]
 
     def _encode_swap_exact_eth_for_tokens(self, amount_out_min: int, path: List[str], to: str, deadline: int) -> str:
-        """»‰«¡ data ·‹ swapExactETHForTokens."""
-        #  »”Ìÿ: ›Ì «·≈‰ «Ã ÌÃ» «” Œœ«„ encodeABI
+        """√à√§√á√Å data √°√ú swapExactETHForTokens."""
+        # √ä√à√ì√≠√ò: √ù√≠ √á√°√Ö√§√ä√á√å √≠√å√à √á√ì√ä√é√è√á√£ encodeABI
         return "0x7ff36ab5" + "0" * 64
 
     def _encode_swap_exact_tokens_for_eth(self, amount_in: int, amount_out_min: int, path: List[str], to: str, deadline: int) -> str:
@@ -342,7 +342,7 @@ class CompleteSandwichAttackAgent(CoreSandwichAttackAgent):
 
 class AdvancedTimeBanditAgent(CoreTimeBanditAgent):
     """
-    ‰”Œ… „Õ”‰… „‰ TimeBanditAgent „⁄  ‰›Ì– ÕﬁÌﬁÌ.
+    √§√ì√é√â √£√ç√ì√§√â √£√§ TimeBanditAgent √£√ö √ä√§√ù√≠√ê √ç√û√≠√û√≠.
     """
     def __init__(self, config: Config, god_pulse: GodPulse, rpc_manager: RPCManager):
         super().__init__(config, god_pulse)
@@ -419,12 +419,12 @@ class AdvancedTimeBanditAgent(CoreTimeBanditAgent):
 
 
 # =============================================================================
-# 2. ≈ﬂ„«· œÊ«· «·Ã”Ê— (Hop, Synapse, Celer, Multichain, Wormhole, Axelar, LayerZero, Across, Anyswap)
+# 2. √Ö√ü√£√á√° √è√¶√á√° √á√°√å√ì√¶√ë (Hop, Synapse, Celer, Multichain, Wormhole, Axelar, LayerZero, Across, Anyswap)
 # =============================================================================
 
 class CompleteBridgeExecutor(CoreBridgeExecutor):
     """
-    ‰”Œ… ﬂ«„·… „‰ BridgeExecutor „⁄  ‰›Ì– ÕﬁÌﬁÌ ·Ã„Ì⁄ «·Ã”Ê— «· ”⁄….
+    √§√ì√é√â √ü√á√£√°√â √£√§ BridgeExecutor √£√ö √ä√§√ù√≠√ê √ç√û√≠√û√≠ √°√å√£√≠√ö √á√°√å√ì√¶√ë √á√°√ä√ì√ö√â.
     """
     def __init__(self, config: Config, god_pulse: Dict[str, GodPulse], signer: Account):
         super().__init__(config, god_pulse, signer)
@@ -452,7 +452,7 @@ class CompleteBridgeExecutor(CoreBridgeExecutor):
             'wormhole': {
                 'ethereum': '0x3ee18B2214AFF97000D974cf647E7C347E8fa585',
                 'bsc': '0x...',
-                'solana': 'worm2...'  # ⁄‰Ê«‰ Solana „Œ ·›
+                'solana': 'worm2...'  # √ö√§√¶√á√§ Solana √£√é√ä√°√ù
             },
             'axelar': {
                 'ethereum': '0x4F4495243837681061C4743b74B3eEdf548D56A5',
@@ -645,7 +645,7 @@ class CompleteBridgeExecutor(CoreBridgeExecutor):
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
     async def _execute_wormhole(self, opportunity: Opportunity) -> Optional[Dict]:
         """
-         ‰›Ì– ⁄»— Wormhole Bridge.
+        √ä√§√ù√≠√ê √ö√à√ë Wormhole Bridge.
         """
         try:
             chain = opportunity.chain
@@ -666,9 +666,9 @@ class CompleteBridgeExecutor(CoreBridgeExecutor):
                 {"inputs":[{"internalType":"address","name":"token","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"uint16","name":"targetChain","type":"uint16"},{"internalType":"bytes32","name":"recipient","type":"bytes32"}],"name":"transferTokens","outputs":[],"type":"function"}
             ]
             contract = w3.eth.contract(address=Web3.to_checksum_address(contract_addr), abi=wormhole_abi)
-            #  ÕÊÌ· ⁄‰Ê«‰ «·Âœ› ≈·Ï bytes32
+            # √ä√ç√¶√≠√° √ö√§√¶√á√§ √á√°√•√è√ù √Ö√°√¨ bytes32
             recipient_bytes = bytes.fromhex(self.signer.address[2:].zfill(64))
-            target_chain_id = 2 if target_chain == 'solana' else 1  #  »”Ìÿ
+            target_chain_id = 2 if target_chain == 'solana' else 1  # √ä√à√ì√≠√ò
             nonce = await w3.eth.get_transaction_count(self.signer.address)
             gas_price = await w3.eth.gas_price
             tx = contract.functions.transferTokens(
@@ -693,7 +693,7 @@ class CompleteBridgeExecutor(CoreBridgeExecutor):
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
     async def _execute_axelar(self, opportunity: Opportunity) -> Optional[Dict]:
         """
-         ‰›Ì– ⁄»— Axelar Network.
+        √ä√§√ù√≠√ê √ö√à√ë Axelar Network.
         """
         try:
             chain = opportunity.chain
@@ -738,7 +738,7 @@ class CompleteBridgeExecutor(CoreBridgeExecutor):
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
     async def _execute_layerzero(self, opportunity: Opportunity) -> Optional[Dict]:
         """
-         ‰›Ì– ⁄»— LayerZero.
+        √ä√§√ù√≠√ê √ö√à√ë LayerZero.
         """
         try:
             chain = opportunity.chain
@@ -785,7 +785,7 @@ class CompleteBridgeExecutor(CoreBridgeExecutor):
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
     async def _execute_across(self, opportunity: Opportunity) -> Optional[Dict]:
         """
-         ‰›Ì– ⁄»— Across Protocol.
+        √ä√§√ù√≠√ê √ö√à√ë Across Protocol.
         """
         try:
             chain = opportunity.chain
@@ -831,7 +831,7 @@ class CompleteBridgeExecutor(CoreBridgeExecutor):
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
     async def _execute_anyswap(self, opportunity: Opportunity) -> Optional[Dict]:
         """
-         ‰›Ì– ⁄»— Anyswap (Multichain V3).
+        √ä√§√ù√≠√ê √ö√à√ë Anyswap (Multichain V3).
         """
         try:
             chain = opportunity.chain
@@ -879,12 +879,12 @@ class CompleteBridgeExecutor(CoreBridgeExecutor):
 
 
 # =============================================================================
-# 3. œ„Ã BacktestEngine „⁄ Ã„Ì⁄ «·«” —« ÌÃÌ« 
+# 3. √è√£√å BacktestEngine √£√ö √å√£√≠√ö √á√°√á√ì√ä√ë√á√ä√≠√å√≠√á√ä
 # =============================================================================
 
 class IntegratedBacktestEngine:
     """
-    „Õ—ﬂ «Œ »«— Œ·›Ì ‘«„· Ìœ„Ã Ã„Ì⁄ «·«” —« ÌÃÌ«  „⁄ »Ì«‰«   «—ÌŒÌ… ÕﬁÌﬁÌ….
+    √£√ç√ë√ü √á√é√ä√à√á√ë √é√°√ù√≠ √î√á√£√° √≠√è√£√å √å√£√≠√ö √á√°√á√ì√ä√ë√á√ä√≠√å√≠√á√ä √£√ö √à√≠√á√§√á√ä √ä√á√ë√≠√é√≠√â √ç√û√≠√û√≠√â.
     """
     def __init__(self, config: Config, market_aggregator, price_fetcher, orchestrator):
         self.config = config
@@ -896,22 +896,22 @@ class IntegratedBacktestEngine:
 
     async def backtest_strategy(self, strategy_name: str, start_date: datetime, end_date: datetime, initial_capital: float = 10000) -> Dict:
         """
-        «Œ »«— «” —« ÌÃÌ… „Õœœ… ⁄·Ï »Ì«‰«   «—ÌŒÌ… »«” Œœ«„ «·ÊﬂÌ· «·›⁄·Ì.
+        √á√é√ä√à√á√ë √á√ì√ä√ë√á√ä√≠√å√≠√â √£√ç√è√è√â √ö√°√¨ √à√≠√á√§√á√ä √ä√á√ë√≠√é√≠√â √à√á√ì√ä√é√è√á√£ √á√°√¶√ü√≠√° √á√°√ù√ö√°√≠.
         """
-        # Ã·» «·»Ì«‰«  «· «—ÌŒÌ…
+        # √å√°√à √á√°√à√≠√á√§√á√ä √á√°√ä√á√ë√≠√é√≠√â
         historical_data = await self._fetch_historical_data(start_date, end_date)
         if not historical_data:
             return {'error': 'No historical data available'}
 
         capital = initial_capital
         trades = []
-        # «·Õ’Ê· ⁄·Ï «·ÊﬂÌ· «·„⁄‰Ì
+        # √á√°√ç√ï√¶√° √ö√°√¨ √á√°√¶√ü√≠√° √á√°√£√ö√§√≠
         agent = self.orchestrator.agents.get(strategy_name)
         if not agent:
             return {'error': f'Agent {strategy_name} not found'}
 
         for data_point in historical_data:
-            # ≈‰‘«¡ MarketData „‰ «·‰ﬁÿ… «· «—ÌŒÌ…
+            # √Ö√§√î√á√Å MarketData √£√§ √á√°√§√û√ò√â √á√°√ä√á√ë√≠√é√≠√â
             md = MarketData(
                 timestamp=data_point['timestamp'],
                 chain='ethereum',
@@ -921,7 +921,7 @@ class IntegratedBacktestEngine:
                 sushiswap_prices=data_point.get('sushiswap_prices', {}),
                 external=data_point.get('external', {})
             )
-            # „Õ«ﬂ«… ›—’… (›Ì «·≈‰ «Ã Ì„ﬂ‰ «” Œœ«„ «·›—’ «·ÕﬁÌﬁÌ… «·„”Ã·…)
+            # √£√ç√á√ü√á√â √ù√ë√ï√â (√ù√≠ √á√°√Ö√§√ä√á√å √≠√£√ü√§ √á√ì√ä√é√è√á√£ √á√°√ù√ë√ï √á√°√ç√û√≠√û√≠√â √á√°√£√ì√å√°√â)
             opp = CoreOpportunity(
                 name=f"Historical {strategy_name}",
                 category=StrategyCategory[strategy_name.upper()] if hasattr(StrategyCategory, strategy_name.upper()) else StrategyCategory.OTHER,
@@ -930,7 +930,7 @@ class IntegratedBacktestEngine:
                 params={'data': data_point},
                 chain='ethereum'
             )
-            #  ‰›Ì– «·«” —« ÌÃÌ…
+            # √ä√§√ù√≠√ê √á√°√á√ì√ä√ë√á√ä√≠√å√≠√â
             new_opp, confidence, data = await agent.process(opp, md)
             if new_opp and new_opp.profit > 0:
                 capital += new_opp.profit
@@ -956,10 +956,10 @@ class IntegratedBacktestEngine:
 
     async def _fetch_historical_data(self, start_date: datetime, end_date: datetime) -> List[Dict]:
         """
-        Ã·» »Ì«‰«   «—ÌŒÌ… „‰ DefiLlama Ê Dune.
+        √å√°√à √à√≠√á√§√á√ä √ä√á√ë√≠√é√≠√â √£√§ DefiLlama √¶ Dune.
         """
-        # ›Ì «·≈‰ «Ã: «” Œœ«„ DefiLlamaClient Ê DuneClient ·Ã·» «·»Ì«‰«  «·ÕﬁÌﬁÌ…
-        # Â‰« ‰⁄Ìœ »Ì«‰«  „Õ«ﬂ«…
+        # √ù√≠ √á√°√Ö√§√ä√á√å: √á√ì√ä√é√è√á√£ DefiLlamaClient √¶ DuneClient √°√å√°√à √á√°√à√≠√á√§√á√ä √á√°√ç√û√≠√û√≠√â
+        # √•√§√á √§√ö√≠√è √à√≠√á√§√á√ä √£√ç√á√ü√á√â
         data = []
         current = start_date
         while current <= end_date:
@@ -976,7 +976,7 @@ class IntegratedBacktestEngine:
 
     async def backtest_all(self, start_date: datetime, end_date: datetime, initial_capital: float = 10000) -> Dict:
         """
-        «Œ »«— Ã„Ì⁄ «·«” —« ÌÃÌ« .
+        √á√é√ä√à√á√ë √å√£√≠√ö √á√°√á√ì√ä√ë√á√ä√≠√å√≠√á√ä.
         """
         strategies = list(self.orchestrator.agents.keys())
         results = {}
@@ -986,12 +986,12 @@ class IntegratedBacktestEngine:
 
 
 # =============================================================================
-# 4. —»ÿ «” —« ÌÃÌ«  «·„‘«⁄— Ê«·√Œ»«— »„’«œ— ÕﬁÌﬁÌ…
+# 4. √ë√à√ò √á√ì√ä√ë√á√ä√≠√å√≠√á√ä √á√°√£√î√á√ö√ë √¶√á√°√É√é√à√á√ë √à√£√ï√á√è√ë √ç√û√≠√û√≠√â
 # =============================================================================
 
 class RealSentimentAgent(CoreSentimentAgent):
     """
-    ÊﬂÌ· «·„‘«⁄— «·ÕﬁÌﬁÌ »«” Œœ«„ CryptoPanic Ê LunarCrush.
+    √¶√ü√≠√° √á√°√£√î√á√ö√ë √á√°√ç√û√≠√û√≠ √à√á√ì√ä√é√è√á√£ CryptoPanic √¶ LunarCrush.
     """
     def __init__(self, config: Config, cryptopanic_key: str = None, lunarCrush_key: str = None):
         super().__init__()
@@ -1007,7 +1007,7 @@ class RealSentimentAgent(CoreSentimentAgent):
 
     async def get_sentiment(self, coin: str = 'ethereum') -> Dict:
         """
-        Ã·» »Ì«‰«  «·„‘«⁄— „‰ „’«œ— „ ⁄œœ….
+        √å√°√à √à√≠√á√§√á√ä √á√°√£√î√á√ö√ë √£√§ √£√ï√á√è√ë √£√ä√ö√è√è√â.
         """
         await self._ensure_session()
         result = {'positive': 0, 'negative': 0, 'neutral': 0, 'score': 0.5}
@@ -1048,7 +1048,7 @@ class RealSentimentAgent(CoreSentimentAgent):
 
     async def scan(self) -> List[Dict]:
         """
-        „”Õ «·„‘«⁄— Ê≈‰‘«¡ ›—’.
+        √£√ì√ç √á√°√£√î√á√ö√ë √¶√Ö√§√î√á√Å √ù√ë√ï.
         """
         sentiment = await self.get_sentiment()
         if sentiment['score'] > 0.7:
@@ -1065,7 +1065,7 @@ class RealSentimentAgent(CoreSentimentAgent):
 
 class RealNewsAgent(CoreNewsAgent):
     """
-    ÊﬂÌ· «·√Œ»«— «·ÕﬁÌﬁÌ »«” Œœ«„ CryptoPanic Ê RSS feeds.
+    √¶√ü√≠√° √á√°√É√é√à√á√ë √á√°√ç√û√≠√û√≠ √à√á√ì√ä√é√è√á√£ CryptoPanic √¶ RSS feeds.
     """
     def __init__(self, config: Config, cryptopanic_key: str = None):
         super().__init__()
@@ -1085,7 +1085,7 @@ class RealNewsAgent(CoreNewsAgent):
 
     async def get_news(self, coin: str = 'ethereum') -> List[Dict]:
         """
-        Ã·» «·√Œ»«— „‰ „’«œ— „ ⁄œœ….
+        √å√°√à √á√°√É√é√à√á√ë √£√§ √£√ï√á√è√ë √£√ä√ö√è√è√â.
         """
         await self._ensure_session()
         articles = []
@@ -1114,7 +1114,7 @@ class RealNewsAgent(CoreNewsAgent):
                 async with self.session.get(feed_url, timeout=10) as resp:
                     if resp.status == 200:
                         text = await resp.text()
-                        #  »”Ìÿ: ›Ì «·≈‰ «Ã  ” Œœ„ feedparser
+                        # √ä√à√ì√≠√ò: √ù√≠ √á√°√Ö√§√ä√á√å √ä√ì√ä√é√è√£ feedparser
                         articles.append({'title': f"News from {feed_url}", 'url': feed_url, 'source': 'rss'})
             except Exception as e:
                 self.logger.error(f"RSS feed error {feed_url}: {e}")
@@ -1123,7 +1123,7 @@ class RealNewsAgent(CoreNewsAgent):
 
     async def scan(self) -> List[Dict]:
         """
-        „”Õ «·√Œ»«— Ê≈‰‘«¡ ›—’.
+        √£√ì√ç √á√°√É√é√à√á√ë √¶√Ö√§√î√á√Å √ù√ë√ï.
         """
         articles = await self.get_news()
         if articles:
@@ -1139,12 +1139,12 @@ class RealNewsAgent(CoreNewsAgent):
 
 
 # =============================================================================
-# 5. √ „ …  ﬂÊÌ‰ «·„‰›–Ì‰ «·„ ﬁœ„Ì‰
+# 5. √É√ä√£√ä√â √ä√ü√¶√≠√§ √á√°√£√§√ù√ê√≠√§ √á√°√£√ä√û√è√£√≠√§
 # =============================================================================
 
 class AutoConfigExecutor:
     """
-    ÌﬁÊ„ » ﬂÊÌ‰ «·„‰›–Ì‰ «·„ ﬁœ„Ì‰  ·ﬁ«∆Ì« »«” Œœ«„ AddressRegistryUpdater.
+    √≠√û√¶√£ √à√ä√ü√¶√≠√§ √á√°√£√§√ù√ê√≠√§ √á√°√£√ä√û√è√£√≠√§ √ä√°√û√á√Ü√≠√á√∞ √à√á√ì√ä√é√è√á√£ AddressRegistryUpdater.
     """
     def __init__(self, config: Config, address_updater=None):
         self.config = config
@@ -1155,19 +1155,19 @@ class AutoConfigExecutor:
 
     async def load_addresses(self):
         """
-         Õ„Ì· «·⁄‰«ÊÌ‰ „‰ AddressRegistryUpdater.
+        √ä√ç√£√≠√° √á√°√ö√§√á√¶√≠√§ √£√§ AddressRegistryUpdater.
         """
         if self.address_updater:
             self.forwarder_address = self.address_updater.get_address('ethereum', 'forwarder')
             self.paymaster_address = self.address_updater.get_address('ethereum', 'paymaster')
         else:
-            # ⁄‰«ÊÌ‰ «› —«÷Ì… Ì„ﬂ‰  ÕœÌÀÂ« ·«Õﬁ«
+            # √ö√§√á√¶√≠√§ √á√ù√ä√ë√á√ñ√≠√â √≠√£√ü√§ √ä√ç√è√≠√ã√•√á √°√á√ç√û√á√∞
             self.forwarder_address = "0x0000000000000000000000000000000000000000"
             self.paymaster_address = "0x0000000000000000000000000000000000000000"
 
     async def create_eip2771_executor(self, god_pulse: GodPulse, signer: Account) -> Optional[EIP2771Executor]:
         """
-        ≈‰‘«¡ „‰›– EIP2771 „⁄ «· ﬂÊÌ‰ «· ·ﬁ«∆Ì.
+        √Ö√§√î√á√Å √£√§√ù√ê EIP2771 √£√ö √á√°√ä√ü√¶√≠√§ √á√°√ä√°√û√á√Ü√≠.
         """
         await self.load_addresses()
         if self.forwarder_address != "0x0000000000000000000000000000000000000000":
@@ -1178,7 +1178,7 @@ class AutoConfigExecutor:
 
     async def create_biconomy_executor(self, signer: Account) -> Optional[BiconomyExecutor]:
         """
-        ≈‰‘«¡ „‰›– Biconomy „⁄ «· ﬂÊÌ‰ «· ·ﬁ«∆Ì.
+        √Ö√§√î√á√Å √£√§√ù√ê Biconomy √£√ö √á√°√ä√ü√¶√≠√§ √á√°√ä√°√û√á√Ü√≠.
         """
         await self.load_addresses()
         if self.config.biconomy_api_key:
@@ -1188,7 +1188,7 @@ class AutoConfigExecutor:
 
     async def create_pimlico_executor(self, signer: Account) -> Optional[PimlicoExecutor]:
         """
-        ≈‰‘«¡ „‰›– Pimlico „⁄ «· ﬂÊÌ‰ «· ·ﬁ«∆Ì.
+        √Ö√§√î√á√Å √£√§√ù√ê Pimlico √£√ö √á√°√ä√ü√¶√≠√§ √á√°√ä√°√û√á√Ü√≠.
         """
         await self.load_addresses()
         if getattr(self.config, 'pimlico_api_key', None):
@@ -1196,16 +1196,16 @@ class AutoConfigExecutor:
             return executor
         return None
 
-    # œÊ«· „„«À·… ·‹ Stackup, Candide, mistX
+    # √è√¶√á√° √£√£√á√ã√°√â √°√ú Stackup, Candide, mistX
 
 
 # =============================================================================
-# 6.  Õ”Ì‰ √œ«¡ MEV ⁄»— « ’«· „ ⁄œœ WebSockets („ ﬂ«„· „⁄ RPCManagerExtended)
+# 6. √ä√ç√ì√≠√§ √É√è√á√Å MEV √ö√à√ë √á√ä√ï√á√° √£√ä√ö√è√è WebSockets (√£√ä√ü√á√£√° √£√ö RPCManagerExtended)
 # =============================================================================
 
 class IntegratedMultiWebSocketMEVScanner:
     """
-    „«”Õ MEV „ ’· »⁄œ… WebSockets »«” Œœ«„ ‰ﬁ«ÿ RPC „‰ RPCManagerExtended.
+    √£√á√ì√ç MEV √£√ä√ï√° √à√ö√è√â WebSockets √à√á√ì√ä√é√è√á√£ √§√û√á√ò RPC √£√§ RPCManagerExtended.
     """
     def __init__(self, rpc_manager: RPCManagerExtended, pubsub=None):
         self.rpc = rpc_manager
@@ -1219,17 +1219,17 @@ class IntegratedMultiWebSocketMEVScanner:
 
     async def start(self):
         """
-        »œ¡ «·« ’«· »⁄œ… WebSockets »«” Œœ«„ RPCs «·„ÕœÀ….
+        √à√è√Å √á√°√á√ä√ï√á√° √à√ö√è√â WebSockets √à√á√ì√ä√é√è√á√£ RPCs √á√°√£√ç√è√ã√â.
         """
         self.running = True
-        # «·Õ’Ê· ⁄·Ï ﬁ«∆„… WebSocket URLs „‰ RPCManager
+        # √á√°√ç√ï√¶√° √ö√°√¨ √û√á√Ü√£√â WebSocket URLs √£√§ RPCManager
         ws_urls = []
         for chain, endpoints in self.rpc.endpoints.items():
             if chain == 'ethereum':
                 for ep in endpoints:
                     if ep.url.startswith('wss://'):
                         ws_urls.append(ep.url)
-        # ≈–« ·„ Ì „ «·⁄ÀÊ— ⁄·Ï WebSockets° «” Œœ«„ ﬁ«∆„… «› —«÷Ì…
+        # √Ö√ê√á √°√£ √≠√ä√£ √á√°√ö√ã√¶√ë √ö√°√¨ WebSockets¬° √á√ì√ä√é√è√á√£ √û√á√Ü√£√â √á√ù√ä√ë√á√ñ√≠√â
         if not ws_urls:
             ws_urls = [
                 "wss://eth-mainnet.g.alchemy.com/v2/demo",
@@ -1244,7 +1244,7 @@ class IntegratedMultiWebSocketMEVScanner:
 
     async def _connect_websocket(self, ws_url: str):
         """
-        «·« ’«· »‹ WebSocket Ê«Õœ.
+        √á√°√á√ä√ï√á√° √à√ú WebSocket √¶√á√ç√è.
         """
         while self.running:
             try:
@@ -1267,10 +1267,10 @@ class IntegratedMultiWebSocketMEVScanner:
 
     async def _fetch_and_process_tx(self, tx_hash: str):
         """
-        Ã·» «·„⁄«„·… „‰ RPC Ê„⁄«·Ã Â«.
+        √å√°√à √á√°√£√ö√á√£√°√â √£√§ RPC √¶√£√ö√á√°√å√ä√•√á.
         """
         try:
-            # «” Œœ«„ RPCManagerExtended ··Õ’Ê· ⁄·Ï √›÷· ⁄ﬁœ…
+            # √á√ì√ä√é√è√á√£ RPCManagerExtended √°√°√ç√ï√¶√° √ö√°√¨ √É√ù√ñ√° √ö√û√è√â
             best = await self.rpc.get_best('ethereum')
             if not best:
                 return
@@ -1285,7 +1285,7 @@ class IntegratedMultiWebSocketMEVScanner:
 
     async def process_tx(self, tx: dict):
         """
-        „⁄«·Ã… «·„⁄«„·….
+        √£√ö√á√°√å√â √á√°√£√ö√á√£√°√â.
         """
         self.pending_txs.append(tx)
         try:
@@ -1307,7 +1307,7 @@ class IntegratedMultiWebSocketMEVScanner:
 
     async def stop(self):
         """
-        ≈Ìﬁ«› «·„«”Õ.
+        √Ö√≠√û√á√ù √á√°√£√á√ì√ç.
         """
         self.running = False
         for task in self._tasks:
@@ -1318,12 +1318,12 @@ class IntegratedMultiWebSocketMEVScanner:
 
 
 # =============================================================================
-# 7. ≈’·«Õ √Œÿ«¡ «·≈÷«›«  (RPCManagerExtended œÌ‰«„ÌﬂÌ° MarketRegimeDetector »»Ì«‰«  ÕﬁÌﬁÌ…° ≈·Œ)
+# 7. √Ö√ï√°√á√ç √É√é√ò√á√Å √á√°√Ö√ñ√á√ù√á√ä (RPCManagerExtended √è√≠√§√á√£√≠√ü√≠¬° MarketRegimeDetector √à√à√≠√á√§√á√ä √ç√û√≠√û√≠√â¬° √Ö√°√é)
 # =============================================================================
 
 class DynamicRPCManager(RPCManagerExtended):
     """
-    ‰”Œ… „Õ”‰… „‰ RPCManagerExtended  ﬁÊ„ » ÕœÌÀ «·ﬁ«∆„… œÌ‰«„ÌﬂÌ« „‰ ChainList.
+    √§√ì√é√â √£√ç√ì√§√â √£√§ RPCManagerExtended √ä√û√¶√£ √à√ä√ç√è√≠√ã √á√°√û√á√Ü√£√â √è√≠√§√á√£√≠√ü√≠√á√∞ √£√§ ChainList.
     """
     def __init__(self):
         super().__init__()
@@ -1332,13 +1332,13 @@ class DynamicRPCManager(RPCManagerExtended):
 
     async def start_dynamic_updates(self, interval: int = 3600):
         """
-        »œ¡  ÕœÌÀ«  œÌ‰«„ÌﬂÌ… „‰ ChainList.
+        √à√è√Å √ä√ç√è√≠√ã√á√ä √è√≠√§√á√£√≠√ü√≠√â √£√§ ChainList.
         """
         self.update_task = asyncio.create_task(self._update_loop(interval))
 
     async def _update_loop(self, interval: int):
         """
-        Õ·ﬁ… «· ÕœÌÀ.
+        √ç√°√û√â √á√°√ä√ç√è√≠√ã.
         """
         while True:
             try:
@@ -1349,7 +1349,7 @@ class DynamicRPCManager(RPCManagerExtended):
 
     async def _update_from_chainlist(self):
         """
-         ÕœÌÀ «·ﬁ«∆„… „‰ ChainList API.
+        √ä√ç√è√≠√ã √á√°√û√á√Ü√£√â √£√§ ChainList API.
         """
         try:
             async with aiohttp.ClientSession() as session:
@@ -1373,7 +1373,7 @@ class DynamicRPCManager(RPCManagerExtended):
 
 class RealMarketRegimeDetector(MarketRegimeDetector):
     """
-    ﬂ«‘› ‰„ÿ «·”Êﬁ »»Ì«‰«  ÕﬁÌﬁÌ… „‰ DefiLlama Ê CoinGecko.
+    √ü√á√î√ù √§√£√ò √á√°√ì√¶√û √à√à√≠√á√§√á√ä √ç√û√≠√û√≠√â √£√§ DefiLlama √¶ CoinGecko.
     """
     def __init__(self, defillama_client: DefiLlamaClient = None):
         super().__init__()
@@ -1382,16 +1382,16 @@ class RealMarketRegimeDetector(MarketRegimeDetector):
 
     async def analyze(self, market_data: Dict = None) -> str:
         """
-         Õ·Ì· Ÿ—Ê› «·”Êﬁ »»Ì«‰«  ÕﬁÌﬁÌ….
+        √ä√ç√°√≠√° √ô√ë√¶√ù √á√°√ì√¶√û √à√à√≠√á√§√á√ä √ç√û√≠√û√≠√â.
         """
         try:
-            # Ã·» ”⁄— ETH
+            # √å√°√à √ì√ö√ë ETH
             eth_price = await self.defillama.get_price('ethereum')
             if not eth_price:
                 return "sideways"
 
-            # Ã·» «· ﬁ·»«  „‰ Dune √Ê Binance ( »”Ìÿ)
-            # Ì„ﬂ‰ «” Œœ«„ Binance API ··Õ’Ê· ⁄·Ï «· ﬁ·»« 
+            # √å√°√à √á√°√ä√û√°√à√á√ä √£√§ Dune √É√¶ Binance (√ä√à√ì√≠√ò)
+            # √≠√£√ü√§ √á√ì√ä√é√è√á√£ Binance API √°√°√ç√ï√¶√° √ö√°√¨ √á√°√ä√û√°√à√á√ä
             async with aiohttp.ClientSession() as session:
                 async with session.get('https://api.binance.com/api/v3/ticker/24hr?symbol=ETHUSDT') as resp:
                     if resp.status == 200:
@@ -1423,7 +1423,7 @@ class RealMarketRegimeDetector(MarketRegimeDetector):
 
 class DynamicDistributedTradingSystem(DistributedTradingSystem):
     """
-    ‰Ÿ«„ „Ê“⁄ Ì÷»ÿ ⁄œœ «·Êﬂ·«¡ œÌ‰«„ÌﬂÌ« Õ”» «·Õ„·.
+    √§√ô√á√£ √£√¶√í√ö √≠√ñ√à√ò √ö√è√è √á√°√¶√ü√°√á√Å √è√≠√§√á√£√≠√ü√≠√á√∞ √ç√ì√à √á√°√ç√£√°.
     """
     def __init__(self, liquid_infra: LiquidInfrastructureAgent = None):
         super().__init__()
@@ -1435,7 +1435,7 @@ class DynamicDistributedTradingSystem(DistributedTradingSystem):
 
     async def adjust_agents(self):
         """
-        ÷»ÿ ⁄œœ «·Êﬂ·«¡ Õ”» «·Õ„·.
+        √ñ√à√ò √ö√è√è √á√°√¶√ü√°√á√Å √ç√ì√à √á√°√ç√£√°.
         """
         if not self.liquid_infra:
             return
@@ -1460,7 +1460,7 @@ class DynamicDistributedTradingSystem(DistributedTradingSystem):
 
     async def _monitor_loop(self):
         """
-        Õ·ﬁ… «·„—«ﬁ»… „⁄ «· ⁄œÌ· «·œÌ‰«„ÌﬂÌ.
+        √ç√°√û√â √á√°√£√ë√á√û√à√â √£√ö √á√°√ä√ö√è√≠√° √á√°√è√≠√§√á√£√≠√ü√≠.
         """
         while not self._shutdown_event.is_set():
             await asyncio.sleep(30)
