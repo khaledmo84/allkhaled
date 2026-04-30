@@ -2,35 +2,35 @@
 # -*- coding: utf-8 -*-
 """
 ================================================================================
-≈÷«›«  - «·Ã“¡ «·√Ê· (Innovations V2 + RPCs ≈÷«›Ì… + „‰’«  «·‰‘— + «·√œÊ«  «·„”«⁄œ…)
+√Ö√ñ√á√ù√á√ä - √á√°√å√í√Å √á√°√É√¶√° (Innovations V2 + RPCs √Ö√ñ√á√ù√≠√â + √£√§√ï√á√ä √á√°√§√î√ë + √á√°√É√è√¶√á√ä √á√°√£√ì√á√ö√è√â)
 ================================================================================
-«·„Ì“«  «·ÃœÌœ… (€Ì— «·„ÊÃÊœ… ›Ì core/agents/unified/thinking_core/tests):
+√á√°√£√≠√í√á√ä √á√°√å√è√≠√è√â (√õ√≠√ë √á√°√£√¶√å√¶√è√â √ù√≠ core/agents/unified/thinking_core/tests):
 --------------------------------------------------------------------------------
-1. Innovations V2 (4 „ﬂÊ‰« ):
-   - AutoStrategyAdvisor: „Õ·· «” —« ÌÃÌ«  –« Ì Ì‰‘∆ ÊÌ‰‘— «” —« ÌÃÌ«  ÃœÌœ….
-   - NeuralEarlyWarningSystem: ‰Ÿ«„ ≈‰–«— „»ﬂ— ⁄’»Ì „⁄ „—«Ê€…  ·ﬁ«∆Ì….
-   - AdaptiveGasWall: Ãœ«— €«“ „ ﬂÌ› „⁄ ÂÃÊ„ „÷«œ.
-   - SelfHealingContractGuardian: Õ«—” ⁄ﬁÊœ –« Ì «·‘›«¡ „⁄  ’ÊÌ  «·√ﬁ—«‰.
-2. 1000+ ‰ﬁÿ… RPC ≈÷«›Ì… (€Ì— „ÊÃÊœ… ›Ì core.py):
-   - RPCManagerExtended: ÌœÌ— ‰ﬁ«ÿ RPC ≈÷«›Ì… ·‹ 20+ ‘»ﬂ….
-   - Ì„ﬂ‰ œ„ÃÂ« „⁄ RPCManager «·√”«”Ì ·«Õﬁ«.
-3. „‰’«  «·‰‘— Leapcell Ê SlapOS:
-   - LeapcellDeployer, SlapOSDeployer (Ê«ÃÂ«  ÕﬁÌﬁÌ… „⁄ API).
-   - »«·≈÷«›… ≈·Ï Vercel, Railway, Netlify „‰ Nexus (‰÷Ì›Â« Â‰« √Ì÷«).
-4. «·√œÊ«  «·„”«⁄œ… (12 √œ«…):
-   - AdvancedBackupSystem: ‰Ÿ«„ ‰”Œ «Õ Ì«ÿÌ „⁄  ‘›Ì— Ê÷€ÿ.
-   - PreDeploymentTester: «Œ »«— «· ÕœÌÀ«  ﬁ»· «·‰‘—.
-   - NodeDiscovery: «ﬂ ‘«› «·⁄ﬁœ «·ÃœÌœ… Ê ﬁÌÌ„Â«.
-   - PerformanceEvaluator:  ﬁÌÌ„ √œ«¡ «·‰Ÿ«„.
-   - CloudCostMonitor: „—«ﬁ»…  ﬂ·›… «·”Õ«»«  Ê„‰⁄  Ã«Ê“ «·ÕœÊœ.
-   - DeploymentPlatformManager: „œÌ— „‰’«  «·‰‘—.
-   - DefiLlamaClient Ê DuneClient: Ã·» »Ì«‰«  DeFi Ê Dune.
-   - SelfUpdater:  ÕœÌÀ –« Ì »À·«À ¬·Ì«  (GitHub, IPFS/P2P, Rollback).
-   - TerminationManager: √œ«…  ‰ŸÌ› ﬂ«„·….
-   - PluginLoader:  Õ„Ì· ≈÷«›«  œÌ‰«„ÌﬂÌ „⁄ «ﬂ ‘«›  ⁄«—÷.
-   - KeyRotationManager:  œÊÌ— «·„›« ÌÕ «· ·ﬁ«∆Ì.
-   - MultiSigManager Ê TemporaryWalletManager: „Õ«›Ÿ „ ⁄œœ… «· ÊﬁÌ⁄ Ê„ƒﬁ ….
-5. œ„Ã „⁄ «·ﬂÊœ «·√”«”Ì ⁄»— «·«” Ì—«œ«  «·„‰«”»….
+1. Innovations V2 (4 √£√ü√¶√§√á√ä):
+   - AutoStrategyAdvisor: √£√ç√°√° √á√ì√ä√ë√á√ä√≠√å√≠√á√ä √ê√á√ä√≠ √≠√§√î√Ü √¶√≠√§√î√ë √á√ì√ä√ë√á√ä√≠√å√≠√á√ä √å√è√≠√è√â.
+   - NeuralEarlyWarningSystem: √§√ô√á√£ √Ö√§√ê√á√ë √£√à√ü√ë √ö√ï√à√≠ √£√ö √£√ë√á√¶√õ√â √ä√°√û√á√Ü√≠√â.
+   - AdaptiveGasWall: √å√è√á√ë √õ√á√í √£√ä√ü√≠√ù √£√ö √•√å√¶√£ √£√ñ√á√è.
+   - SelfHealingContractGuardian: √ç√á√ë√ì √ö√û√¶√è √ê√á√ä√≠ √á√°√î√ù√á√Å √£√ö √ä√ï√¶√≠√ä √á√°√É√û√ë√á√§.
+2. 1000+ √§√û√ò√â RPC √Ö√ñ√á√ù√≠√â (√õ√≠√ë √£√¶√å√¶√è√â √ù√≠ core.py):
+   - RPCManagerExtended: √≠√è√≠√ë √§√û√á√ò RPC √Ö√ñ√á√ù√≠√â √°√ú 20+ √î√à√ü√â.
+   - √≠√£√ü√§ √è√£√å√•√á √£√ö RPCManager √á√°√É√ì√á√ì√≠ √°√á√ç√û√á√∞.
+3. √£√§√ï√á√ä √á√°√§√î√ë Leapcell √¶ SlapOS:
+   - LeapcellDeployer, SlapOSDeployer (√¶√á√å√•√á√ä √ç√û√≠√û√≠√â √£√ö API).
+   - √à√á√°√Ö√ñ√á√ù√â √Ö√°√¨ Vercel, Railway, Netlify √£√§ Nexus (√§√ñ√≠√ù√•√á √•√§√á √É√≠√ñ√á√∞).
+4. √á√°√É√è√¶√á√ä √á√°√£√ì√á√ö√è√â (12 √É√è√á√â):
+   - AdvancedBackupSystem: √§√ô√á√£ √§√ì√é √á√ç√ä√≠√á√ò√≠ √£√ö √ä√î√ù√≠√ë √¶√ñ√õ√ò.
+   - PreDeploymentTester: √á√é√ä√à√á√ë √á√°√ä√ç√è√≠√ã√á√ä √û√à√° √á√°√§√î√ë.
+   - NodeDiscovery: √á√ü√ä√î√á√ù √á√°√ö√û√è √á√°√å√è√≠√è√â √¶√ä√û√≠√≠√£√•√á.
+   - PerformanceEvaluator: √ä√û√≠√≠√£ √É√è√á√Å √á√°√§√ô√á√£.
+   - CloudCostMonitor: √£√ë√á√û√à√â √ä√ü√°√ù√â √á√°√ì√ç√á√à√á√ä √¶√£√§√ö √ä√å√á√¶√í √á√°√ç√è√¶√è.
+   - DeploymentPlatformManager: √£√è√≠√ë √£√§√ï√á√ä √á√°√§√î√ë.
+   - DefiLlamaClient √¶ DuneClient: √å√°√à √à√≠√á√§√á√ä DeFi √¶ Dune.
+   - SelfUpdater: √ä√ç√è√≠√ã √ê√á√ä√≠ √à√ã√°√á√ã √Ç√°√≠√á√ä (GitHub, IPFS/P2P, Rollback).
+   - TerminationManager: √É√è√á√â √ä√§√ô√≠√ù √ü√á√£√°√â.
+   - PluginLoader: √ä√ç√£√≠√° √Ö√ñ√á√ù√á√ä √è√≠√§√á√£√≠√ü√≠ √£√ö √á√ü√ä√î√á√ù √ä√ö√á√ë√ñ.
+   - KeyRotationManager: √ä√è√¶√≠√ë √á√°√£√ù√á√ä√≠√ç √á√°√ä√°√û√á√Ü√≠.
+   - MultiSigManager √¶ TemporaryWalletManager: √£√ç√á√ù√ô √£√ä√ö√è√è√â √á√°√ä√¶√û√≠√ö √¶√£√Ñ√û√ä√â.
+5. √è√£√å √£√ö √á√°√ü√¶√è √á√°√É√ì√á√ì√≠ √ö√à√ë √á√°√á√ì√ä√≠√ë√á√è√á√ä √á√°√£√§√á√ì√à√â.
 ================================================================================
 """
 
@@ -64,7 +64,7 @@ import uuid
 import pickle
 import numpy as np
 
-# „Õ«Ê·… «” Ì—«œ «·„ﬂÊ‰«  «·√”«”Ì… „‰ core (≈‰ ÊÃœ )
+# √£√ç√á√¶√°√â √á√ì√ä√≠√ë√á√è √á√°√£√ü√¶√§√á√ä √á√°√É√ì√á√ì√≠√â √£√§ core (√Ö√§ √¶√å√è√ä)
 try:
     from core import (
         Config, ExperienceDB, SmartCache, KeyManager, GodPulse,
@@ -83,10 +83,10 @@ except ImportError as e:
     CORE_AVAILABLE = False
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger('AdditionsPart1')
-    logger.warning(f"?? «·„ﬂÊ‰«  «·√”«”Ì… €Ì— „ Ê›—…: {e}")
+    logger.warning(f"?? √á√°√£√ü√¶√§√á√ä √á√°√É√ì√á√ì√≠√â √õ√≠√ë √£√ä√¶√ù√ë√â: {e}")
 
 # =============================================================================
-# ≈⁄œ«œ «· ”ÃÌ·
+# √Ö√ö√è√á√è √á√°√ä√ì√å√≠√°
 # =============================================================================
 LOG_DIR = "logs"
 BACKUP_DIR = "backups"
@@ -121,15 +121,15 @@ logging.getLogger().addHandler(json_handler)
 logger = logging.getLogger('AdditionsPart1')
 
 # =============================================================================
-# √œÊ«  „”«⁄œ… (€Ì— „ÊÃÊœ… ›Ì core)
+# √É√è√¶√á√ä √£√ì√á√ö√è√â (√õ√≠√ë √£√¶√å√¶√è√â √ù√≠ core)
 # =============================================================================
 
 def exponential_backoff(attempt: int, base: float = 1.0, max_delay: float = 60.0) -> float:
-    """ √ŒÌ— √”Ì ·≈⁄«œ… «·„Õ«Ê·…"""
+    """√ä√É√é√≠√ë √É√ì√≠ √°√Ö√ö√á√è√â √á√°√£√ç√á√¶√°√â"""
     return min(base * (2 ** attempt), max_delay)
 
 def compress_zstd(data: bytes) -> bytes:
-    """÷€ÿ »Ì«‰«  »«” Œœ«„ Zstandard"""
+    """√ñ√õ√ò √à√≠√á√§√á√ä √à√á√ì√ä√é√è√á√£ Zstandard"""
     try:
         import zstandard as zstd
         return zstd.compress(data)
@@ -137,7 +137,7 @@ def compress_zstd(data: bytes) -> bytes:
         return data
 
 def decompress_zstd(data: bytes) -> bytes:
-    """›ﬂ ÷€ÿ »Ì«‰« """
+    """√ù√ü √ñ√õ√ò √à√≠√á√§√á√ä"""
     try:
         import zstandard as zstd
         return zstd.decompress(data)
@@ -145,16 +145,16 @@ def decompress_zstd(data: bytes) -> bytes:
         return data
 
 # =============================================================================
-# 1. Innovations V2 (4 „ﬂÊ‰« )
+# 1. Innovations V2 (4 √£√ü√¶√§√á√ä)
 # =============================================================================
 
 class AutoStrategyAdvisor:
     """
-    „” ‘«— «” —« ÌÃÌ«   ·ﬁ«∆Ì:
-    - ÌÕ·· √œ«¡ «·Êﬂ·«¡ „‰ ExperienceDB.
-    - Ìœ„Ã Êﬂ·«¡ ‰«ÃÕÌ‰ · Ê·Ìœ «” —« ÌÃÌ«  ÃœÌœ….
-    - ÌŒ »— «·«” —« ÌÃÌ«  ›Ì «·„Õ«ﬂ«….
-    - Ì‰‘—Â«  ·ﬁ«∆Ì« ≈–« ﬂ«‰  „—»Õ….
+    √£√ì√ä√î√á√ë √á√ì√ä√ë√á√ä√≠√å√≠√á√ä √ä√°√û√á√Ü√≠:
+    - √≠√ç√°√° √É√è√á√Å √á√°√¶√ü√°√á√Å √£√§ ExperienceDB.
+    - √≠√è√£√å √¶√ü√°√á√Å √§√á√å√ç√≠√§ √°√ä√¶√°√≠√è √á√ì√ä√ë√á√ä√≠√å√≠√á√ä √å√è√≠√è√â.
+    - √≠√é√ä√à√ë √á√°√á√ì√ä√ë√á√ä√≠√å√≠√á√ä √ù√≠ √á√°√£√ç√á√ü√á√â.
+    - √≠√§√î√ë√•√á √ä√°√û√á√Ü√≠√á√∞ √Ö√ê√á √ü√á√§√ä √£√ë√à√ç√â.
     """
     def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
                  orchestrator: AgentOrchestrator = None,
@@ -215,7 +215,7 @@ class AutoStrategyAdvisor:
                 await self._deploy_strategy(s)
 
     async def _simulate_strategy(self, strategy: Dict) -> Optional[Dict]:
-        # ›Ì «·Ê«ﬁ⁄ ÌÃ» «” Œœ«„ PreflightSimulator° Â‰« „Õ«ﬂ«… „»”ÿ…
+        # √ù√≠ √á√°√¶√á√û√ö √≠√å√à √á√ì√ä√é√è√á√£ PreflightSimulator¬° √•√§√á √£√ç√á√ü√á√â √£√à√ì√ò√â
         await asyncio.sleep(0.5)
         profit = random.uniform(20, 200)
         return {'profit': profit, 'success': profit > 50}
@@ -246,10 +246,10 @@ class AutoStrategyAdvisor:
 
 class NeuralEarlyWarningSystem:
     """
-    ‰Ÿ«„ ≈‰–«— „»ﬂ— ⁄’»Ì:
-    - Ì” Œœ„ ‘»ﬂ… GNN · Õ·Ì· «·„⁄«„·«  ›Ì «·„Ì„»Ê·.
-    - Ìﬂ ‘› √‰„«ÿ «·ÂÃ„« .
-    - Ì Œ– ≈Ã—«¡«  „—«Ê€…:  €ÌÌ— «·ÂÊÌ…° ≈—”«· „⁄«„·«   ‘ÊÌ‘°  ⁄·Ìﬁ Êﬂ·«¡ Õ”«”Ì‰.
+    √§√ô√á√£ √Ö√§√ê√á√ë √£√à√ü√ë √ö√ï√à√≠:
+    - √≠√ì√ä√é√è√£ √î√à√ü√â GNN √°√ä√ç√°√≠√° √á√°√£√ö√á√£√°√á√ä √ù√≠ √á√°√£√≠√£√à√¶√°.
+    - √≠√ü√ä√î√ù √É√§√£√á√ò √á√°√•√å√£√á√ä.
+    - √≠√ä√é√ê √Ö√å√ë√á√Å√á√ä √£√ë√á√¶√õ√â: √ä√õ√≠√≠√ë √á√°√•√¶√≠√â¬° √Ö√ë√ì√á√° √£√ö√á√£√°√á√ä √ä√î√¶√≠√î¬° √ä√ö√°√≠√û √¶√ü√°√á√Å √ç√ì√á√ì√≠√§.
     """
     def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
                  mev_scanner=None, gnn_tool=None, sandwich_agent=None,
@@ -267,7 +267,7 @@ class NeuralEarlyWarningSystem:
         self.running = False
         self._task = None
         self.logger = logging.getLogger('NeuralWarning')
-        # „Õ«Ê·… »‰«¡ ‰„Ê–Ã GNN »«” Œœ«„ PyTorch ≈‰ √„ﬂ‰
+        # √£√ç√á√¶√°√â √à√§√á√Å √§√£√¶√ê√å GNN √à√á√ì√ä√é√è√á√£ PyTorch √Ö√§ √É√£√ü√§
         try:
             import torch
             import torch.nn as nn
@@ -320,7 +320,7 @@ class NeuralEarlyWarningSystem:
                     if threat > 0.7:
                         await self._evade_attack()
                 else:
-                    # „Õ«ﬂ«… »”Ìÿ…
+                    # √£√ç√á√ü√á√â √à√ì√≠√ò√â
                     if random.random() < 0.1:
                         await self._evade_attack()
             except Exception as e:
@@ -385,10 +385,10 @@ class NeuralEarlyWarningSystem:
 
 class AdaptiveGasWall:
     """
-    Ãœ«— Õ„«Ì… „ ÿÊ— ··€«“:
-    - Ì—’œ √‰„«ÿ «— ›«⁄ «·€«“ (ÂÃ„«  DDoS).
-    - Ì Œ– ≈Ã—«¡«  œ›«⁄Ì…: —›⁄ ”⁄— «·€«“° ≈—”«· „⁄«„·«   ‘ÊÌ‘.
-    - Ì‘‰ ÂÃÊ„« „÷«œ« »≈€—«ﬁ «·„Ì„»Ê· »„⁄«„·«  ÊÂ„Ì… ⁄‰œ «·ÂÃ„«  «·‘œÌœ….
+    √å√è√á√ë √ç√£√á√≠√â √£√ä√ò√¶√ë √°√°√õ√á√í:
+    - √≠√ë√ï√è √É√§√£√á√ò √á√ë√ä√ù√á√ö √á√°√õ√á√í (√•√å√£√á√ä DDoS).
+    - √≠√ä√é√ê √Ö√å√ë√á√Å√á√ä √è√ù√á√ö√≠√â: √ë√ù√ö √ì√ö√ë √á√°√õ√á√í¬° √Ö√ë√ì√á√° √£√ö√á√£√°√á√ä √ä√î√¶√≠√î.
+    - √≠√î√§ √•√å√¶√£√á√∞ √£√ñ√á√è√á√∞ √à√Ö√õ√ë√á√û √á√°√£√≠√£√à√¶√° √à√£√ö√á√£√°√á√ä √¶√•√£√≠√â √ö√§√è √á√°√•√å√£√á√ä √á√°√î√è√≠√è√â.
     """
     def __init__(self, config: Dict = None, gas_manager: GasManager = None,
                  mev_scanner=None, private_mempool=None,
@@ -420,8 +420,8 @@ class AdaptiveGasWall:
             await asyncio.sleep(3)
 
     async def _analyze_gas(self):
-        # ›Ì «·≈‰ «Ã° ÌÃ» Ã·» ”⁄— «·€«“ «·ÕﬁÌﬁÌ „‰ GodPulse √Ê RPC
-        current_gas = random.randint(20, 300)  # „Õ«ﬂ«…
+        # √ù√≠ √á√°√Ö√§√ä√á√å¬° √≠√å√à √å√°√à √ì√ö√ë √á√°√õ√á√í √á√°√ç√û√≠√û√≠ √£√§ GodPulse √É√¶ RPC
+        current_gas = random.randint(20, 300)  # √£√ç√á√ü√á√â
         self.gas_history.append(current_gas)
         if len(self.gas_history) < 100:
             return
@@ -486,11 +486,11 @@ class AdaptiveGasWall:
 
 class SelfHealingContractGuardian:
     """
-    Õ«—” ⁄ﬁÊœ „ ÿÊ—:
-    - Ì—«ﬁ» «·À€—«  «·√„‰Ì… ⁄»— SecurityPatchUpdater.
-    - Ìﬁ —Õ ≈’·«Õ«  „ ⁄œœ… ··⁄ﬁœ.
-    - ÌÃ„⁄  ’ÊÌ  «·√ﬁ—«‰ «·„ÊÀÊﬁÌ‰.
-    - Ì‰‘— «·⁄ﬁœ «·„’ÕÕ ÊÌ Õﬁﬁ „‰ ‰Ã«ÕÂ.
+    √ç√á√ë√ì √ö√û√¶√è √£√ä√ò√¶√ë:
+    - √≠√ë√á√û√à √á√°√ã√õ√ë√á√ä √á√°√É√£√§√≠√â √ö√à√ë SecurityPatchUpdater.
+    - √≠√û√ä√ë√ç √Ö√ï√°√á√ç√á√ä √£√ä√ö√è√è√â √°√°√ö√û√è.
+    - √≠√å√£√ö √ä√ï√¶√≠√ä √á√°√É√û√ë√á√§ √á√°√£√¶√ã√¶√û√≠√§.
+    - √≠√§√î√ë √á√°√ö√û√è √á√°√£√ï√ç√ç √¶√≠√ä√ç√û√û √£√§ √§√å√á√ç√•.
     """
     def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
                  p2p=None, healer=None, security_updater=None,
@@ -528,7 +528,7 @@ class SelfHealingContractGuardian:
             await asyncio.sleep(300)
 
     async def _is_contract_used(self, address: str) -> bool:
-        # Ì„ﬂ‰ «· Õﬁﬁ „‰ ÊÃÊœ „⁄«„·«  ÕœÌÀ… ··⁄ﬁœ
+        # √≠√£√ü√§ √á√°√ä√ç√û√û √£√§ √¶√å√¶√è √£√ö√á√£√°√á√ä √ç√è√≠√ã√â √°√°√ö√û√è
         return True
 
     async def _propose_fix(self, address: str, vuln_info: Dict):
@@ -609,7 +609,7 @@ class SelfHealingContractGuardian:
     async def receive_vote(self, proposal_id: str, peer_id: str, fix_index: int, signature: str):
         if proposal_id not in self.pending_proposals:
             return
-        # «· Õﬁﬁ „‰ «· ÊﬁÌ⁄ (Ì„ﬂ‰  ›⁄Ì·Â ·«Õﬁ«)
+        # √á√°√ä√ç√û√û √£√§ √á√°√ä√¶√û√≠√ö (√≠√£√ü√§ √ä√ù√ö√≠√°√• √°√á√ç√û√á√∞)
         self.pending_proposals[proposal_id]['votes'].add({
             'peer': peer_id,
             'fix_index': fix_index,
@@ -629,11 +629,11 @@ class SelfHealingContractGuardian:
                 pass
 
 # =============================================================================
-# 2. 1000+ ‰ﬁÿ… RPC ≈÷«›Ì… (RPCManagerExtended)
+# 2. 1000+ √§√û√ò√â RPC √Ö√ñ√á√ù√≠√â (RPCManagerExtended)
 # =============================================================================
 
 class RPCEndpointExtended:
-    """‰ﬁÿ… RPC ≈÷«›Ì…"""
+    """√§√û√ò√â RPC √Ö√ñ√á√ù√≠√â"""
     __slots__ = ('url', 'region', 'chain', 'latency', 'last_check', 'failures', 'successes', 'dead_until')
     def __init__(self, url: str, region: str = 'global', chain: str = 'ethereum'):
         self.url = url
@@ -655,8 +655,8 @@ class RPCEndpointExtended:
 
 class RPCManagerExtended:
     """
-    „œÌ— ‰ﬁ«ÿ RPC ≈÷«›Ì (1000+ ‰ﬁÿ…) ·‹ 20+ ‘»ﬂ….
-    Ì„ﬂ‰ œ„ÃÂ „⁄ RPCManager «·√”«”Ì √Ê «” Œœ«„Â »‘ﬂ· „” ﬁ·.
+    √£√è√≠√ë √§√û√á√ò RPC √Ö√ñ√á√ù√≠ (1000+ √§√û√ò√â) √°√ú 20+ √î√à√ü√â.
+    √≠√£√ü√§ √è√£√å√• √£√ö RPCManager √á√°√É√ì√á√ì√≠ √É√¶ √á√ì√ä√é√è√á√£√• √à√î√ü√° √£√ì√ä√û√°.
     """
     def __init__(self):
         self.endpoints: Dict[str, List[RPCEndpointExtended]] = {}
@@ -666,7 +666,7 @@ class RPCManagerExtended:
         self._init_endpoints()
 
     def _init_endpoints(self):
-        # 1000+ ‰ﬁÿ… RPC „Ê“⁄… ⁄·Ï «·‘»ﬂ« 
+        # 1000+ √§√û√ò√â RPC √£√¶√í√ö√â √ö√°√¨ √á√°√î√à√ü√á√ä
         ALL_RPCS_EXTRA = {
             'ethereum': [
                 ('https://eth-mainnet.public.blastapi.io', 'us-east'),
@@ -680,7 +680,7 @@ class RPCManagerExtended:
                 ('https://virginia.rpc.blxrbdn.com', 'us-east'),
                 ('https://uk.rpc.blxrbdn.com', 'eu-west'),
                 ('https://singapore.rpc.blxrbdn.com', 'ap-southeast'),
-                # Ì„ﬂ‰ ≈÷«›… «·„∆«  Â‰«...
+                # √≠√£√ü√§ √Ö√ñ√á√ù√â √á√°√£√Ü√á√ä √•√§√á...
             ],
             'bsc': [
                 ('https://bsc-dataseed1.binance.org', 'ap-east'),
@@ -828,11 +828,11 @@ class RPCManagerExtended:
         await self.session.close()
 
 # =============================================================================
-# 3. „‰’«  «·‰‘— (Leapcell, SlapOS, Vercel, Railway, Netlify)
+# 3. √£√§√ï√á√ä √á√°√§√î√ë (Leapcell, SlapOS, Vercel, Railway, Netlify)
 # =============================================================================
 
 class LeapcellDeployer:
-    """‰‘— ⁄·Ï „‰’… Leapcell"""
+    """√§√î√ë √ö√°√¨ √£√§√ï√â Leapcell"""
     def __init__(self, config: Dict = None):
         self.config = config or {}
         self.api_key = self.config.get('api_key')
@@ -841,7 +841,7 @@ class LeapcellDeployer:
     async def deploy(self, source_path: str, options: Dict = None) -> Dict:
         self.logger.info(f"Deploying to Leapcell from {source_path}")
         async with aiohttp.ClientSession() as session:
-            # ≈‰‘«¡ „‘—Ê⁄ ÃœÌœ («” œ⁄«¡ API ÕﬁÌﬁÌ)
+            # √Ö√§√î√á√Å √£√î√ë√¶√ö √å√è√≠√è (√á√ì√ä√è√ö√á√Å API √ç√û√≠√û√≠)
             async with session.post(
                 'https://api.leapcell.com/v1/projects',
                 json={'name': options.get('name', 'alkhaled')},
@@ -851,8 +851,8 @@ class LeapcellDeployer:
                     return {'error': 'Project creation failed'}
                 project = await resp.json()
                 project_id = project['id']
-            # —›⁄ «·„·›«  ( ›«’Ì· ﬁœ  Õ «Ã ≈·Ï Ê«ÃÂ… upload)
-            # Â‰« Ì „ —›⁄ «·„·›«  ﬂ√—‘Ì›
+            # √ë√ù√ö √á√°√£√°√ù√á√ä (√ä√ù√á√ï√≠√° √û√è √ä√ç√ä√á√å √Ö√°√¨ √¶√á√å√•√â upload)
+            # √•√§√á √≠√ä√£ √ë√ù√ö √á√°√£√°√ù√á√ä √ü√É√ë√î√≠√ù
             with tempfile.NamedTemporaryFile(suffix='.zip') as tmp:
                 shutil.make_archive(tmp.name, 'zip', source_path)
                 async with session.put(
@@ -862,7 +862,7 @@ class LeapcellDeployer:
                 ) as upload_resp:
                     if upload_resp.status != 200:
                         return {'error': 'Source upload failed'}
-            # »œ¡ «·‰‘—
+            # √à√è√Å √á√°√§√î√ë
             async with session.post(
                 f"https://api.leapcell.com/v1/projects/{project_id}/deploy",
                 headers={'Authorization': f'Bearer {self.api_key}'}
@@ -873,22 +873,22 @@ class LeapcellDeployer:
                 return {'platform': 'leapcell', 'project_id': project_id, 'deployment_id': deployment.get('id')}
 
 class SlapOSDeployer:
-    """‰‘— ⁄·Ï SlapOS"""
+    """√§√î√ë √ö√°√¨ SlapOS"""
     def __init__(self, config: Dict = None):
         self.config = config or {}
         self.logger = logging.getLogger('SlapOSDeployer')
 
     async def deploy(self, source_path: str, options: Dict = None) -> Dict:
         self.logger.info(f"Deploying to SlapOS from {source_path}")
-        # SlapOS Ì⁄ „œ ⁄·Ï „·›  ﬂÊÌ‰ .slapos
-        # ‰› —÷ ÊÃÊœÂ ›Ì source_path
+        # SlapOS √≠√ö√ä√£√è √ö√°√¨ √£√°√ù √ä√ü√¶√≠√§ .slapos
+        # √§√ù√ä√ë√ñ √¶√å√¶√è√• √ù√≠ source_path
         config_file = Path(source_path) / "slapos.cfg"
         if not config_file.exists():
-            # ≈‰‘«¡ „·›  ﬂÊÌ‰ √”«”Ì
+            # √Ö√§√î√á√Å √£√°√ù √ä√ü√¶√≠√§ √É√ì√á√ì√≠
             with open(config_file, 'w') as f:
                 f.write("[buildout]\nparts = alkhaled\n\n[alkhaled]\nrecipe = plone.recipe.command\ncommand = python3 alkhaled.py\n")
-        # Ì„ﬂ‰ «” Œœ«„ slapgrid √Ê API ·· ‘€Ì·
-        # Â‰« ‰› —÷ √‰‰« ‰ﬁÊ„ »«·‰‘— ⁄»— Ê«ÃÂ… SlapOS („Õ«ﬂ«…)
+        # √≠√£√ü√§ √á√ì√ä√é√è√á√£ slapgrid √É√¶ API √°√°√ä√î√õ√≠√°
+        # √•√§√á √§√ù√ä√ë√ñ √É√§√§√á √§√û√¶√£ √à√á√°√§√î√ë √ö√à√ë √¶√á√å√•√â SlapOS (√£√ç√á√ü√á√â)
         return {'platform': 'slapos', 'status': 'deployed', 'config': str(config_file)}
 
 class VercelDeployer:
@@ -937,8 +937,8 @@ class NetlifyDeployer:
                 json={'name': options.get('name', 'alkhaled')}
             ) as resp:
                 site = await resp.json()
-                # —›⁄ «·„·›«  ⁄»— deploy API
-                #  »”Ìÿ: ‰⁄Ìœ site_id
+                # √ë√ù√ö √á√°√£√°√ù√á√ä √ö√à√ë deploy API
+                # √ä√à√ì√≠√ò: √§√ö√≠√è site_id
                 return {'platform': 'netlify', 'site_id': site.get('id')}
 
 class DeploymentPlatformManager:
@@ -959,11 +959,11 @@ class DeploymentPlatformManager:
         return await self.platforms[platform].deploy(source_path, config)
 
 # =============================================================================
-# 4. «·√œÊ«  «·„”«⁄œ… (12 √œ«…)
+# 4. √á√°√É√è√¶√á√ä √á√°√£√ì√á√ö√è√â (12 √É√è√á√â)
 # =============================================================================
 
 class AdvancedBackupSystem:
-    """‰Ÿ«„ ‰”Œ «Õ Ì«ÿÌ „ ﬁœ„ „⁄  ‘›Ì— Ê÷€ÿ"""
+    """√§√ô√á√£ √§√ì√é √á√ç√ä√≠√á√ò√≠ √£√ä√û√è√£ √£√ö √ä√î√ù√≠√ë √¶√ñ√õ√ò"""
     def __init__(self, backup_dir: str = BACKUP_DIR, max_backups: int = 30,
                  encryption_key: Optional[bytes] = None, compression: bool = True):
         self.backup_dir = Path(backup_dir)
@@ -1137,7 +1137,7 @@ class AdvancedBackupSystem:
 
 
 class PreDeploymentTester:
-    """«Œ »«— «· ÕœÌÀ«  ﬁ»· «·‰‘— ›Ì »Ì∆… „⁄“Ê·…"""
+    """√á√é√ä√à√á√ë √á√°√ä√ç√è√≠√ã√á√ä √û√à√° √á√°√§√î√ë √ù√≠ √à√≠√Ü√â √£√ö√í√¶√°√â"""
     def __init__(self, sandbox_dir: str = "/tmp/alkhaled_sandbox", test_timeout: int = 300):
         self.sandbox_dir = Path(sandbox_dir)
         self.test_timeout = test_timeout
@@ -1160,7 +1160,7 @@ class PreDeploymentTester:
 
     async def run_tests(self, sandbox_path: str) -> Dict:
         results = {'syntax_check': False, 'import_check': False, 'unit_tests': [], 'integration_tests': [], 'performance_tests': {}, 'errors': []}
-        # ›Õ’ «·‰ÕÊ
+        # √ù√ç√ï √á√°√§√ç√¶
         try:
             for py_file in Path(sandbox_path).rglob("*.py"):
                 with open(py_file, 'r') as f:
@@ -1168,7 +1168,7 @@ class PreDeploymentTester:
             results['syntax_check'] = True
         except SyntaxError as e:
             results['errors'].append(f"Syntax error in {e.filename}: {e}")
-        # ›Õ’ «·«” Ì—«œ« 
+        # √ù√ç√ï √á√°√á√ì√ä√≠√ë√á√è√á√ä
         try:
             sys.path.insert(0, sandbox_path)
             for module in ['core', 'agents', 'unified']:
@@ -1178,7 +1178,7 @@ class PreDeploymentTester:
             results['errors'].append(f"Import error: {e}")
         finally:
             sys.path.pop(0)
-        # «Œ »«—«  «·ÊÕœ… (pytest)
+        # √á√é√ä√à√á√ë√á√ä √á√°√¶√ç√è√â (pytest)
         test_dir = os.path.join(sandbox_path, 'tests')
         if os.path.exists(test_dir):
             try:
@@ -1187,7 +1187,7 @@ class PreDeploymentTester:
                 results['unit_tests'] = {'passed': result.returncode == 0, 'output': result.stdout[:2000]}
             except Exception as e:
                 results['unit_tests'].append({'error': str(e)})
-        # «Œ »«—«  «· ﬂ«„·
+        # √á√é√ä√à√á√ë√á√ä √á√°√ä√ü√á√£√°
         try:
             sys.path.insert(0, sandbox_path)
             from core import Config
@@ -1238,7 +1238,7 @@ class PreDeploymentTester:
 
 
 class NodeDiscovery:
-    """«ﬂ ‘«› «·⁄ﬁœ «·ÃœÌœ… Ê ﬁÌÌ„Â« Ê‰ﬁ· «·„Â«„ ⁄‰œ «· ⁄ÿ·"""
+    """√á√ü√ä√î√á√ù √á√°√ö√û√è √á√°√å√è√≠√è√â √¶√ä√û√≠√≠√£√•√á √¶√§√û√° √á√°√£√•√á√£ √ö√§√è √á√°√ä√ö√ò√°"""
     @dataclass
     class NodeInfo:
         id: str
@@ -1430,7 +1430,7 @@ class NodeDiscovery:
 
 
 class PerformanceEvaluator:
-    """ ﬁÌÌ„ «·√œ«¡ «·ÕﬁÌﬁÌ ··‰Ÿ«„"""
+    """√ä√û√≠√≠√£ √á√°√É√è√á√Å √á√°√ç√û√≠√û√≠ √°√°√§√ô√á√£"""
     def __init__(self, interval: int = 60, report_interval: int = 3600):
         self.interval = interval
         self.report_interval = report_interval
@@ -1512,7 +1512,7 @@ class PerformanceEvaluator:
 
 
 class CloudCostMonitor:
-    """„—«ﬁ»…  ﬂ·›… «·”Õ«»«  Ê„‰⁄  Ã«Ê“ «·ÕœÊœ «·„Ã«‰Ì…"""
+    """√£√ë√á√û√à√â √ä√ü√°√ù√â √á√°√ì√ç√á√à√á√ä √¶√£√§√ö √ä√å√á√¶√í √á√°√ç√è√¶√è √á√°√£√å√á√§√≠√â"""
     def __init__(self, config: Dict = None):
         self.config = config or {}
         self.usage = defaultdict(lambda: {'cpu_hours': 0, 'storage_gb': 0, 'network_gb': 0})
@@ -1542,7 +1542,7 @@ class CloudCostMonitor:
             await asyncio.sleep(300)
 
     async def _update_usage(self):
-        # „Õ«ﬂ«… Ã·» »Ì«‰«  «·«” Œœ«„ ñ Ì„ﬂ‰ «” œ⁄«¡ APIs «·”Õ«»Ì…
+        # √£√ç√á√ü√á√â √å√°√à √à√≠√á√§√á√ä √á√°√á√ì√ä√é√è√á√£ ¬ñ √≠√£√ü√§ √á√ì√ä√è√ö√á√Å APIs √á√°√ì√ç√á√à√≠√â
         for cloud in self.limits:
             self.usage[cloud]['cpu_hours'] += random.uniform(0.1, 2)
             self.usage[cloud]['storage_gb'] = random.
