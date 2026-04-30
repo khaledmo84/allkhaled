@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 """
 ================================================================================
-AL-KHALED V20095 – CORE (ÇáÌÒÁ 1/3) – ÇáÅÕÏÇÑ ÇáäåÇÆí ÇáãõÕáÍ æÇáãßÊãá
+AL-KHALED V20095 â€“ CORE (Ã‡Ã¡ÃŒÃ’Ã 1/3) â€“ Ã‡Ã¡Ã…Ã•ÃÃ‡Ã‘ Ã‡Ã¡Ã¤Ã¥Ã‡Ã†Ã­ Ã‡Ã¡Ã£ÃµÃ•Ã¡Ã Ã¦Ã‡Ã¡Ã£ÃŸÃŠÃ£Ã¡
 ================================================================================
-- ÌãíÚ ÇáãíÒÇÊ ÇáÃÕáíÉ ãÍÝæÙÉ ÈÇáßÇãá.
-- ÅÖÇÝÉ ExecutionEngine æ ProfitReinvestor.
-- ÊÍÓíä PredictiveFailureDetector ÈÇÓÊÎÏÇã EWMA ãÚ ÚÊÈÉ ÏíäÇãíßíÉ.
-- ÊÍÓíä AddressAutoUpdater ÈÊÍÏíË ÍÞíÞí ãä RPC (ãËÇá áÚäÇæíä Uniswap).
-- ÅßãÇá WalletManager.transfer_token.
-- ÅÕáÇÍ ÌãíÚ ÇáÃÎØÇÁ ÇáÈÑãÌíÉ ÇáÓÇÈÞÉ.
-- ÅÖÇÝÉ ÂáíÇÊ ÅÚÇÏÉ ãÍÇæáÉ ÐßíÉ æÊÕäíÝ ÇáÃÎØÇÁ áßá ãÕÏÑ.
-- ÑÈØ ßÇãá ãÚ ãÕÇÏÑ ÈíÇäÇÊ ÍÞíÞíÉ ãÚ æÌæÏ fallbacks.
+- ÃŒÃ£Ã­Ãš Ã‡Ã¡Ã£Ã­Ã’Ã‡ÃŠ Ã‡Ã¡ÃƒÃ•Ã¡Ã­Ã‰ Ã£ÃÃÃ¦Ã™Ã‰ ÃˆÃ‡Ã¡ÃŸÃ‡Ã£Ã¡.
+- Ã…Ã–Ã‡ÃÃ‰ ExecutionEngine Ã¦ ProfitReinvestor.
+- ÃŠÃÃ“Ã­Ã¤ PredictiveFailureDetector ÃˆÃ‡Ã“ÃŠÃŽÃÃ‡Ã£ EWMA Ã£Ãš ÃšÃŠÃˆÃ‰ ÃÃ­Ã¤Ã‡Ã£Ã­ÃŸÃ­Ã‰.
+- ÃŠÃÃ“Ã­Ã¤ AddressAutoUpdater ÃˆÃŠÃÃÃ­Ã‹ ÃÃžÃ­ÃžÃ­ Ã£Ã¤ RPC (Ã£Ã‹Ã‡Ã¡ Ã¡ÃšÃ¤Ã‡Ã¦Ã­Ã¤ Uniswap).
+- Ã…ÃŸÃ£Ã‡Ã¡ WalletManager.transfer_token.
+- Ã…Ã•Ã¡Ã‡Ã ÃŒÃ£Ã­Ãš Ã‡Ã¡ÃƒÃŽÃ˜Ã‡Ã Ã‡Ã¡ÃˆÃ‘Ã£ÃŒÃ­Ã‰ Ã‡Ã¡Ã“Ã‡ÃˆÃžÃ‰.
+- Ã…Ã–Ã‡ÃÃ‰ Ã‚Ã¡Ã­Ã‡ÃŠ Ã…ÃšÃ‡ÃÃ‰ Ã£ÃÃ‡Ã¦Ã¡Ã‰ ÃÃŸÃ­Ã‰ Ã¦ÃŠÃ•Ã¤Ã­Ã Ã‡Ã¡ÃƒÃŽÃ˜Ã‡Ã Ã¡ÃŸÃ¡ Ã£Ã•ÃÃ‘.
+- Ã‘ÃˆÃ˜ ÃŸÃ‡Ã£Ã¡ Ã£Ãš Ã£Ã•Ã‡ÃÃ‘ ÃˆÃ­Ã‡Ã¤Ã‡ÃŠ ÃÃžÃ­ÃžÃ­Ã‰ Ã£Ãš Ã¦ÃŒÃ¦Ã fallbacks.
 ================================================================================
 """
 
@@ -59,7 +59,7 @@ import traceback
 
 import numpy as np
 
-# ==================== ÇáãßÊÈÇÊ ÇáÇÎÊíÇÑíÉ ãÚ ÇÓÊíÑÇÏ Âãä ====================
+# ==================== Ã‡Ã¡Ã£ÃŸÃŠÃˆÃ‡ÃŠ Ã‡Ã¡Ã‡ÃŽÃŠÃ­Ã‡Ã‘Ã­Ã‰ Ã£Ãš Ã‡Ã“ÃŠÃ­Ã‘Ã‡Ã Ã‚Ã£Ã¤ ====================
 try:
     from web3 import AsyncWeb3, Web3
     from web3.providers import AsyncHTTPProvider
@@ -191,7 +191,7 @@ try:
 except ImportError:
     ML_AVAILABLE = False
 
-# ==================== ÇáãßÊÈÇÊ ÇáÅÖÇÝíÉ ááæßáÇÁ ÇáãÊÞÏãíä ====================
+# ==================== Ã‡Ã¡Ã£ÃŸÃŠÃˆÃ‡ÃŠ Ã‡Ã¡Ã…Ã–Ã‡ÃÃ­Ã‰ Ã¡Ã¡Ã¦ÃŸÃ¡Ã‡Ã Ã‡Ã¡Ã£ÃŠÃžÃÃ£Ã­Ã¤ ====================
 try:
     import boto3
     from braket.aws import AwsDevice
@@ -216,7 +216,7 @@ except ImportError:
     APE_AVAILABLE = False
     project = accounts = None
 
-# ==================== ÅÚÏÇÏ ÇáÊÓÌíá ÇáãÊÞÏã ====================
+# ==================== Ã…ÃšÃÃ‡Ã Ã‡Ã¡ÃŠÃ“ÃŒÃ­Ã¡ Ã‡Ã¡Ã£ÃŠÃžÃÃ£ ====================
 AUDIT_LEVEL = 25
 logging.addLevelName(AUDIT_LEVEL, "AUDIT")
 
@@ -250,7 +250,7 @@ audit_handler = logging.FileHandler('alkhaled_audit.log')
 audit_handler.setFormatter(log_formatter)
 audit_logger.addHandler(audit_handler)
 
-# ==================== ÇáäãÇÐÌ ÇáÃÓÇÓíÉ ====================
+# ==================== Ã‡Ã¡Ã¤Ã£Ã‡ÃÃŒ Ã‡Ã¡ÃƒÃ“Ã‡Ã“Ã­Ã‰ ====================
 class GasType(Enum):
     THIRD_PARTY = 1
     LOAN = 2
@@ -518,7 +518,7 @@ class TradeRecord:
     metadata: Dict[str, Any] = field(default_factory=dict)
 
 
-# ==================== ÅÚÏÇÏÇÊ Config ====================
+# ==================== Ã…ÃšÃÃ‡ÃÃ‡ÃŠ Config ====================
 @dataclass
 class DexArbConfig:
     min_spread: float = 0.01
@@ -874,12 +874,12 @@ class Config:
     # Performance config
     performance: PerformanceConfig = field(default_factory=PerformanceConfig)
 
-    # ÅÚÏÇÏÇÊ ÅÖÇÝíÉ ááæßáÇÁ ÇáãÊÞÏãíä
+    # Ã…ÃšÃÃ‡ÃÃ‡ÃŠ Ã…Ã–Ã‡ÃÃ­Ã‰ Ã¡Ã¡Ã¦ÃŸÃ¡Ã‡Ã Ã‡Ã¡Ã£ÃŠÃžÃÃ£Ã­Ã¤
     quantum: Dict[str, Any] = field(default_factory=lambda: {"enabled": True, "use_real_qpu": False})
     fhe: Dict[str, Any] = field(default_factory=lambda: {"enabled": True})
     cross_chain_orchestrator: Dict[str, Any] = field(default_factory=lambda: {"enabled": True})
     adaptive_contracts: Dict[str, Any] = field(default_factory=lambda: {"enabled": True})
-    forwarder_address: str = ""  # ÚäæÇä EIP2771 forwarder
+    forwarder_address: str = ""  # ÃšÃ¤Ã¦Ã‡Ã¤ EIP2771 forwarder
 
     @classmethod
     def from_env(cls) -> 'Config':
@@ -904,7 +904,7 @@ class Config:
         return cfg
 
 
-# ==================== ÃÏæÇÊ ãÓÇÚÏÉ ====================
+# ==================== ÃƒÃÃ¦Ã‡ÃŠ Ã£Ã“Ã‡ÃšÃÃ‰ ====================
 def validate_ethereum_address(address: str) -> bool:
     if not isinstance(address, str) or not address.startswith('0x') or len(address) != 42:
         return False
@@ -969,7 +969,7 @@ def retry(max_retries: int = 3, delay: float = 1.0, backoff: float = 2.0, except
     return decorator
 
 
-# ==================== ErrorClassifier æ smart_retry ====================
+# ==================== ErrorClassifier Ã¦ smart_retry ====================
 class ErrorCategory(Enum):
     NETWORK = "network"
     RPC = "rpc"
@@ -1028,7 +1028,7 @@ def smart_retry(max_retries: int = 3, delay: float = 1.0, backoff: float = 2.0):
     return decorator
 
 
-# ==================== MABAgent ÇáÃÓÇÓí ====================
+# ==================== MABAgent Ã‡Ã¡ÃƒÃ“Ã‡Ã“Ã­ ====================
 class MABAgent:
     def __init__(self, exp_db: 'ExperienceDB', epsilon: float = 0.1):
         self.exp_db = exp_db
@@ -1061,7 +1061,7 @@ class MABAgent:
             self.arms[agent_name]['successes'] += 1
 
 
-# ==================== ÇáÃãÇä ====================
+# ==================== Ã‡Ã¡ÃƒÃ£Ã‡Ã¤ ====================
 class AESGCMEncryptor:
     def __init__(self, password: str, salt: Optional[bytes] = None):
         if not CRYPTO_AVAILABLE:
@@ -1709,7 +1709,7 @@ class AdaptiveCache(SmartCache):
         return value
 
 
-# ==================== RPC Node æ GodPulse ====================
+# ==================== RPC Node Ã¦ GodPulse ====================
 class RPCNode:
     def __init__(self, url: str, chain_id: int, poa: bool):
         self.url = url
@@ -1733,7 +1733,7 @@ class RPCNode:
         self.successes = 0
         self.total_response_time = 0.0
         self.block_diff = 0
-        self.predictor = PredictiveFailureDetector()  # ÏãÌ ÇáãÊäÈÆ
+        self.predictor = PredictiveFailureDetector()  # ÃÃ£ÃŒ Ã‡Ã¡Ã£ÃŠÃ¤ÃˆÃ†
 
     async def check_health(self) -> bool:
         if time.time() - self.last_check < 10:
@@ -1753,7 +1753,7 @@ class RPCNode:
             self.is_healthy = False
             self.latency = float('inf')
             self.failures += 1
-            self.predictor.update(10.0)  # ÞíãÉ ÚÇáíÉ ááÝÔá
+            self.predictor.update(10.0)  # ÃžÃ­Ã£Ã‰ ÃšÃ‡Ã¡Ã­Ã‰ Ã¡Ã¡ÃÃ”Ã¡
         self.last_check = time.time()
         return self.is_healthy
 
