@@ -29,19 +29,5 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-     name: Manual workflow
-
-on:
-  workflow_dispatch:
-
-jobs:
-  greet:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
     
-    - name: List all files
-      run: ls -la
-    
-    - name: Run Python script
-      run: python run.py.txt
+          run: python run.py.txt
