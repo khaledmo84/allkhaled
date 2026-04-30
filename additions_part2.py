@@ -2,53 +2,53 @@
 # -*- coding: utf-8 -*-
 """
 ================================================================================
-≈÷«›«  - «·Ã“¡ «·À«‰Ì (Nexus + «·Êﬂ·«¡ «·√Œ·«ﬁÌÊ‰)
+√Ö√ñ√á√ù√á√ä - √á√°√å√í√Å √á√°√ã√á√§√≠ (Nexus + √á√°√¶√ü√°√á√Å √á√°√É√é√°√á√û√≠√¶√§)
 ================================================================================
-«·„Ì“«  «·ÃœÌœ… ›Ì Â–« «·Ã“¡ (€Ì— «·„ÊÃÊœ… ›Ì core/agents/unified/thinking_core/tests):
+√á√°√£√≠√í√á√ä √á√°√å√è√≠√è√â √ù√≠ √•√ê√á √á√°√å√í√Å (√õ√≠√ë √á√°√£√¶√å√¶√è√â √ù√≠ core/agents/unified/thinking_core/tests):
 --------------------------------------------------------------------------------
-1. Nexus („ﬂÊ‰«  „ ﬁœ„…):
-   - CloudManager «·ﬂ«„· (5 ”Õ«»« ) „⁄ œÊ«· list/launch/terminate.
-   - DeploymentAgent: ‰‘— –« Ì ⁄»— GitHub.
-   - LiquidInfrastructureAgent: »‰Ì…  Õ Ì… ”«∆·… („—«ﬁ»… «·⁄ﬁœ Ê≈⁄«œ… «· Ê«“‰).
-   - DecentralizedStorage:  Œ“Ì‰ ·«„—ﬂ“Ì (IPFS + „Õ·Ì).
-   - EdgeNetwork: ‘»ﬂ… Õ«›… (Cloudflare Workers + R2).
-   - StealthManager: ≈Œ›«¡ «·ÂÊÌ… (User-Agent, Proxy,  ‘›Ì—).
-   - SmartScheduler: ÃœÊ·… –ﬂÌ… „⁄ „—«⁄«… ”«⁄«  «·€«“.
-   - TerraformIntegration:  ﬂ«„· Terraform ·≈œ«—… «·»‰Ì… «· Õ Ì….
-   - WalletGeneratorAgent: ≈‰‘«¡ „Õ«›Ÿ Ê Œ“Ì‰ „›« ÌÕ „‘›—….
-   - SignatureOpportunityAgent: —’œ ›—’ Airdrops Ê«· ÊﬁÌ⁄ ⁄·ÌÂ«.
-   - ZeroWalletAgent: ≈œ«—… „Õ«›Ÿ Testnet Ê«· ›«⁄· „⁄ «·’‰«»Ì—.
-2. «·Êﬂ·«¡ «·√Œ·«ﬁÌÊ‰ (29 ÊﬂÌ·):
-   - DormantContractAgent: ⁄ﬁÊœ „ÂÃÊ—….
-   - BridgeDustAgent: Ã”Ê— ⁄«·ﬁ….
-   - GovernanceRewardsAgent: „ﬂ«›¬  ÕÊﬂ„….
-   - LiquiditySweepAgent: ”ÌÊ·… „‰”Ì….
-   - BugBountyAgent: À€—«  √„‰Ì….
-   - MEVProtectorAgent: Õ„«Ì… MEV.
-   - ArbitrageAgent: „—«ÃÕ… (”Ì „  ÿÊÌ—Â ·«Õﬁ«).
-   - TimeSeriesAgent:  ‰»ƒ ”·«”· “„‰Ì….
-   - FlashblocksAgent: «” €·«· Flashblocks.
-   - WhiteHatMediatorAgent: Ê”«ÿ… √Œ·«ﬁÌ….
-   - V2LiquiditySnipingAgent: ﬁ‰’ ”ÌÊ·… V2.
-   - BountyContractsAgent: ⁄ﬁÊœ „ﬂ«›¬ .
-   - SafeAirdropAgent: Airdrops ¬„‰….
-   - RelayContractsAgent: ⁄ﬁÊœ Relay.
-   - PancakeOldPoolsAgent: „Ã„⁄«  Pancake «·ﬁœÌ„….
-   - OldGovernanceAgent: ÕÊﬂ„… ﬁœÌ„….
-   - UnclaimedBridgeAgent: Ã”Ê— €Ì— „ÿ«·» »Â«.
-   - V1LiquidityAgent: ”ÌÊ·… V1.
-   - ExpiredGovernanceRewardsAgent: „ﬂ«›¬  ÕÊﬂ„… „‰ ÂÌ….
-   - DustHuntingAgent: ’Ìœ «·ﬂ”Ê—.
-   - VulnerabilityReportingAgent: «·≈»·«€ ⁄‰ À€—« .
-   - SmartContractWriterAgent: ﬂ «»… ⁄ﬁÊœ –ﬂÌ….
-   - SecurityAuditorAgent:  œﬁÌﬁ √„‰Ì.
-   - SolverAgent:  ﬂ«„· „⁄ Solvers.
-   - FrontrunProtectorAgent: Õ„«Ì… Frontrunning.
-   - MempoolWatcherAgent: „—«ﬁ»… «·„Ì„»Ê·.
-   - GasOptimizerAgent:  Õ”Ì‰ «·€«“.
-   - ComplianceAgent: «·«„ À«· «·ﬁ«‰Ê‰Ì.
-   - ReportingAgent:  ﬁ«—Ì— √œ«¡.
-3. Ê«ÃÂ… FastAPI + Prometheus ·‰ﬁ«ÿ «·‰Â«Ì… «·ÃœÌœ….
+1. Nexus (√£√ü√¶√§√á√ä √£√ä√û√è√£√â):
+   - CloudManager √á√°√ü√á√£√° (5 √ì√ç√á√à√á√ä) √£√ö √è√¶√á√° list/launch/terminate.
+   - DeploymentAgent: √§√î√ë √ê√á√ä√≠ √ö√à√ë GitHub.
+   - LiquidInfrastructureAgent: √à√§√≠√â √ä√ç√ä√≠√â √ì√á√Ü√°√â (√£√ë√á√û√à√â √á√°√ö√û√è √¶√Ö√ö√á√è√â √á√°√ä√¶√á√í√§).
+   - DecentralizedStorage: √ä√é√í√≠√§ √°√á√£√ë√ü√í√≠ (IPFS + √£√ç√°√≠).
+   - EdgeNetwork: √î√à√ü√â √ç√á√ù√â (Cloudflare Workers + R2).
+   - StealthManager: √Ö√é√ù√á√Å √á√°√•√¶√≠√â (User-Agent, Proxy, √ä√î√ù√≠√ë).
+   - SmartScheduler: √å√è√¶√°√â √ê√ü√≠√â √£√ö √£√ë√á√ö√á√â √ì√á√ö√á√ä √á√°√õ√á√í.
+   - TerraformIntegration: √ä√ü√á√£√° Terraform √°√Ö√è√á√ë√â √á√°√à√§√≠√â √á√°√ä√ç√ä√≠√â.
+   - WalletGeneratorAgent: √Ö√§√î√á√Å √£√ç√á√ù√ô √¶√ä√é√í√≠√§ √£√ù√á√ä√≠√ç √£√î√ù√ë√â.
+   - SignatureOpportunityAgent: √ë√ï√è √ù√ë√ï Airdrops √¶√á√°√ä√¶√û√≠√ö √ö√°√≠√•√á.
+   - ZeroWalletAgent: √Ö√è√á√ë√â √£√ç√á√ù√ô Testnet √¶√á√°√ä√ù√á√ö√° √£√ö √á√°√ï√§√á√à√≠√ë.
+2. √á√°√¶√ü√°√á√Å √á√°√É√é√°√á√û√≠√¶√§ (29 √¶√ü√≠√°):
+   - DormantContractAgent: √ö√û√¶√è √£√•√å√¶√ë√â.
+   - BridgeDustAgent: √å√ì√¶√ë √ö√á√°√û√â.
+   - GovernanceRewardsAgent: √£√ü√á√ù√Ç√ä √ç√¶√ü√£√â.
+   - LiquiditySweepAgent: √ì√≠√¶√°√â √£√§√ì√≠√â.
+   - BugBountyAgent: √ã√õ√ë√á√ä √É√£√§√≠√â.
+   - MEVProtectorAgent: √ç√£√á√≠√â MEV.
+   - ArbitrageAgent: √£√ë√á√å√ç√â (√ì√≠√ä√£ √ä√ò√¶√≠√ë√• √°√á√ç√û√á√∞).
+   - TimeSeriesAgent: √ä√§√à√Ñ √ì√°√á√ì√° √í√£√§√≠√â.
+   - FlashblocksAgent: √á√ì√ä√õ√°√á√° Flashblocks.
+   - WhiteHatMediatorAgent: √¶√ì√á√ò√â √É√é√°√á√û√≠√â.
+   - V2LiquiditySnipingAgent: √û√§√ï √ì√≠√¶√°√â V2.
+   - BountyContractsAgent: √ö√û√¶√è √£√ü√á√ù√Ç√ä.
+   - SafeAirdropAgent: Airdrops √Ç√£√§√â.
+   - RelayContractsAgent: √ö√û√¶√è Relay.
+   - PancakeOldPoolsAgent: √£√å√£√ö√á√ä Pancake √á√°√û√è√≠√£√â.
+   - OldGovernanceAgent: √ç√¶√ü√£√â √û√è√≠√£√â.
+   - UnclaimedBridgeAgent: √å√ì√¶√ë √õ√≠√ë √£√ò√á√°√à √à√•√á.
+   - V1LiquidityAgent: √ì√≠√¶√°√â V1.
+   - ExpiredGovernanceRewardsAgent: √£√ü√á√ù√Ç√ä √ç√¶√ü√£√â √£√§√ä√•√≠√â.
+   - DustHuntingAgent: √ï√≠√è √á√°√ü√ì√¶√ë.
+   - VulnerabilityReportingAgent: √á√°√Ö√à√°√á√õ √ö√§ √ã√õ√ë√á√ä.
+   - SmartContractWriterAgent: √ü√ä√á√à√â √ö√û√¶√è √ê√ü√≠√â.
+   - SecurityAuditorAgent: √ä√è√û√≠√û √É√£√§√≠.
+   - SolverAgent: √ä√ü√á√£√° √£√ö Solvers.
+   - FrontrunProtectorAgent: √ç√£√á√≠√â Frontrunning.
+   - MempoolWatcherAgent: √£√ë√á√û√à√â √á√°√£√≠√£√à√¶√°.
+   - GasOptimizerAgent: √ä√ç√ì√≠√§ √á√°√õ√á√í.
+   - ComplianceAgent: √á√°√á√£√ä√ã√á√° √á√°√û√á√§√¶√§√≠.
+   - ReportingAgent: √ä√û√á√ë√≠√ë √É√è√á√Å.
+3. √¶√á√å√•√â FastAPI + Prometheus √°√§√û√á√ò √á√°√§√•√á√≠√â √á√°√å√è√≠√è√â.
 ================================================================================
 """
 
@@ -78,7 +78,7 @@ import uuid
 import pickle
 import numpy as np
 
-# «” Ì—«œ «·„ﬂÊ‰«  „‰ core (≈‰ ÊÃœ )
+# √á√ì√ä√≠√ë√á√è √á√°√£√ü√¶√§√á√ä √£√§ core (√Ö√§ √¶√å√è√ä)
 try:
     from core import (
         Config, ExperienceDB, SmartCache, KeyManager, GodPulse,
@@ -97,9 +97,9 @@ except ImportError as e:
     CORE_AVAILABLE = False
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger('AdditionsPart2')
-    logger.warning(f"?? «·„ﬂÊ‰«  «·√”«”Ì… €Ì— „ Ê›—…: {e}")
+    logger.warning(f"?? √á√°√£√ü√¶√§√á√ä √á√°√É√ì√á√ì√≠√â √õ√≠√ë √£√ä√¶√ù√ë√â: {e}")
 
-# «” Ì—«œ „‰ «·Ã“¡ «·√Ê· (· Ã‰» ≈⁄«œ…  ⁄—Ì›)
+# √á√ì√ä√≠√ë√á√è √£√§ √á√°√å√í√Å √á√°√É√¶√° (√°√ä√å√§√à √Ö√ö√á√è√â √ä√ö√ë√≠√ù)
 try:
     from additions_part1 import (
         exponential_backoff, compress_zstd, decompress_zstd, with_retry,
@@ -112,10 +112,10 @@ try:
     PART1_AVAILABLE = True
 except ImportError:
     PART1_AVAILABLE = False
-    logger.warning("?? «·Ã“¡ «·√Ê· €Ì— „ Ê›—° ”Ì „  ‘€Ì· »⁄÷ «·„Ì“«  »‘ﬂ· „ÕœÊœ")
+    logger.warning("?? √á√°√å√í√Å √á√°√É√¶√° √õ√≠√ë √£√ä√¶√ù√ë¬° √ì√≠√ä√£ √ä√î√õ√≠√° √à√ö√ñ √á√°√£√≠√í√á√ä √à√î√ü√° √£√ç√è√¶√è")
 
 # =============================================================================
-# ≈⁄œ«œ «· ”ÃÌ· („ÿ«»ﬁ ··Ã“¡ «·√Ê·)
+# √Ö√ö√è√á√è √á√°√ä√ì√å√≠√° (√£√ò√á√à√û √°√°√å√í√Å √á√°√É√¶√°)
 # =============================================================================
 LOG_DIR = "logs"
 BACKUP_DIR = "backups"
@@ -150,13 +150,13 @@ logging.getLogger().addHandler(json_handler)
 logger = logging.getLogger('AdditionsPart2')
 
 # =============================================================================
-# 1. „ﬂÊ‰«  Nexus
+# 1. √£√ü√¶√§√á√ä Nexus
 # =============================================================================
 
 class CloudManager:
     """
-    „œÌ— «·”Õ«»«  «·Œ„” (Oracle, Azure, GCP, AWS, DigitalOcean)
-    œÊ«· ﬂ«„·… ·‹ list, launch, terminate
+    √£√è√≠√ë √á√°√ì√ç√á√à√á√ä √á√°√é√£√ì (Oracle, Azure, GCP, AWS, DigitalOcean)
+    √è√¶√á√° √ü√á√£√°√â √°√ú list, launch, terminate
     """
     def __init__(self, config: Dict = None, key_manager: KeyManager = None,
                  exp_db: ExperienceDB = None, cache: SmartCache = None):
@@ -264,7 +264,7 @@ class CloudManager:
         except Exception as e:
             self.logger.error(f"DigitalOcean init failed: {e}")
 
-    # œÊ«· Oracle
+    # √è√¶√á√° Oracle
     async def list_oracle_instances(self, compartment_id: str) -> List[Dict]:
         if 'oracle_compute' not in self.clients:
             return []
@@ -315,7 +315,7 @@ class CloudManager:
         except Exception as e:
             self.logger.error(f"Oracle terminate failed: {e}")
 
-    # œÊ«· Azure
+    # √è√¶√á√° Azure
     async def list_azure_vms(self, resource_group: str) -> List[Dict]:
         if 'azure_compute' not in self.clients:
             return []
@@ -381,7 +381,7 @@ class CloudManager:
         except Exception as e:
             self.logger.error(f"Azure terminate failed: {e}")
 
-    # œÊ«· GCP
+    # √è√¶√á√° GCP
     async def list_gcp_instances(self, project: str, zone: str) -> List[Dict]:
         if 'gcp_instances' not in self.clients:
             return []
@@ -440,7 +440,7 @@ class CloudManager:
         except Exception as e:
             self.logger.error(f"GCP terminate failed: {e}")
 
-    # œÊ«· AWS
+    # √è√¶√á√° AWS
     async def list_aws_instances(self, region: str = None) -> List[Dict]:
         if 'aws_ec2' not in self.clients:
             return []
@@ -506,7 +506,7 @@ class CloudManager:
         except Exception as e:
             self.logger.error(f"AWS terminate failed: {e}")
 
-    # œÊ«· DigitalOcean
+    # √è√¶√á√° DigitalOcean
     async def list_do_droplets(self) -> List[Dict]:
         if 'do_manager' not in self.clients:
             return []
@@ -562,7 +562,7 @@ class CloudManager:
 
 
 class DeploymentAgent:
-    """ÊﬂÌ· «·‰‘— «·–ﬂÌ ⁄»— GitHub"""
+    """√¶√ü√≠√° √á√°√§√î√ë √á√°√ê√ü√≠ √ö√à√ë GitHub"""
     def __init__(self, config: Dict = None, exp_db: ExperienceDB = None):
         self.config = config or {}
         self.exp_db = exp_db
@@ -737,7 +737,7 @@ class DeploymentAgent:
 
 
 class LiquidInfrastructureAgent:
-    """»‰Ì…  Õ Ì… ”«∆·… ñ „—«ﬁ»… «·⁄ﬁœ Ê≈⁄«œ… «· Ê«“‰"""
+    """√à√§√≠√â √ä√ç√ä√≠√â √ì√á√Ü√°√â ¬ñ √£√ë√á√û√à√â √á√°√ö√û√è √¶√Ö√ö√á√è√â √á√°√ä√¶√á√í√§"""
     def __init__(self, config: Dict = None, cache: SmartCache = None,
                  cloud_mgr: CloudManager = None, agent=None):
         self.config = config or {}
@@ -821,7 +821,7 @@ class LiquidInfrastructureAgent:
     async def _run(self):
         while self.running:
             try:
-                #  ÕœÌÀ «·Õ„· »»Ì«‰«  „Õ«ﬂ«… (›Ì «·≈‰ «Ã  ıﬁ—√ „‰ GodPulse √Ê Prometheus)
+                # √ä√ç√è√≠√ã √á√°√ç√£√° √à√à√≠√á√§√á√ä √£√ç√á√ü√á√â (√ù√≠ √á√°√Ö√§√ä√á√å √ä√µ√û√ë√É √£√§ GodPulse √É√¶ Prometheus)
                 for node in self.nodes:
                     await self.update_node_load(node['id'],
                                                cpu=random.uniform(0.1, 0.9),
@@ -846,7 +846,7 @@ class LiquidInfrastructureAgent:
 
 
 class DecentralizedStorage:
-    """ Œ“Ì‰ ·«„—ﬂ“Ì ⁄»— IPFS „⁄ Fallback „Õ·Ì"""
+    """√ä√é√í√≠√§ √°√á√£√ë√ü√í√≠ √ö√à√ë IPFS √£√ö Fallback √£√ç√°√≠"""
     def __init__(self, config: Dict = None, cache: SmartCache = None):
         self.config = config or {}
         self.cache = cache
@@ -921,7 +921,7 @@ class DecentralizedStorage:
 
 
 class EdgeNetwork:
-    """‘»ﬂ… Õ«›… ⁄»— Cloudflare Workers Ê R2"""
+    """√î√à√ü√â √ç√á√ù√â √ö√à√ë Cloudflare Workers √¶ R2"""
     def __init__(self, config: Dict = None, cache: SmartCache = None,
                  key_manager: KeyManager = None):
         self.config = config or {}
@@ -1027,7 +1027,7 @@ class EdgeNetwork:
 
 
 class StealthManager:
-    """≈œ«—… ≈Œ›«¡ «·ÂÊÌ… (User-Agent, Proxy,  ‘›Ì—)"""
+    """√Ö√è√á√ë√â √Ö√é√ù√á√Å √á√°√•√¶√≠√â (User-Agent, Proxy, √ä√î√ù√≠√ë)"""
     def __init__(self, config: Dict = None, key_manager: KeyManager = None):
         self.config = config or {}
         self.key_manager = key_manager
@@ -1085,7 +1085,7 @@ class StealthManager:
 
 
 class SmartScheduler:
-    """ÃœÊ·… –ﬂÌ… „⁄ „—«⁄«… ”«⁄«  «·€«“ «·„À·Ï"""
+    """√å√è√¶√°√â √ê√ü√≠√â √£√ö √£√ë√á√ö√á√â √ì√á√ö√á√ä √á√°√õ√á√í √á√°√£√ã√°√¨"""
     def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
                  god_pulse: GodPulse = None):
         self.config = config or {}
@@ -1208,7 +1208,7 @@ class SmartScheduler:
 
 
 class TerraformIntegration:
-    """ ﬂ«„· Terraform · Ê·Ìœ Ê ‘€Ì·  ﬂÊÌ‰«  «·»‰Ì… «· Õ Ì…"""
+    """√ä√ü√á√£√° Terraform √°√ä√¶√°√≠√è √¶√ä√î√õ√≠√° √ä√ü√¶√≠√§√á√ä √á√°√à√§√≠√â √á√°√ä√ç√ä√≠√â"""
     def __init__(self, config: Dict = None, cloud_mgr: CloudManager = None):
         self.config = config or {}
         self.cloud = cloud_mgr
@@ -1291,7 +1291,7 @@ resource "aws_instance" "alkhaled" {{
 
 
 class WalletGeneratorAgent:
-    """≈‰‘«¡ „Õ«›Ÿ Ê Œ“Ì‰ «·„›« ÌÕ „‘›—…"""
+    """√Ö√§√î√á√Å √£√ç√á√ù√ô √¶√ä√é√í√≠√§ √á√°√£√ù√á√ä√≠√ç √£√î√ù√ë√â"""
     def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
                  key_manager: KeyManager = None):
         self.config = config or {}
@@ -1358,7 +1358,7 @@ class WalletGeneratorAgent:
 
 
 class SignatureOpportunityAgent:
-    """—’œ ›—’ Airdrops Ê«· ÊﬁÌ⁄ ⁄·ÌÂ«"""
+    """√ë√ï√è √ù√ë√ï Airdrops √¶√á√°√ä√¶√û√≠√ö √ö√°√≠√•√á"""
     def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
                  god_pulse: GodPulse = None, wallet_gen: WalletGeneratorAgent = None):
         self.config = config or {}
@@ -1369,7 +1369,7 @@ class SignatureOpportunityAgent:
 
     async def scan_airdrop_opportunities(self) -> List[CoreOpportunity]:
         opportunities = []
-        # Â‰« Ì„ﬂ‰ Ã·» »Ì«‰«  ÕﬁÌﬁÌ… „‰ DefiLlama √Ê „’«œ— √Œ—Ï
+        # √•√§√á √≠√£√ü√§ √å√°√à √à√≠√á√§√á√ä √ç√û√≠√û√≠√â √£√§ DefiLlama √É√¶ √£√ï√á√è√ë √É√é√ë√¨
         airdrops = [
             {
                 'name': 'Arbitrum Airdrop',
@@ -1432,7 +1432,7 @@ class SignatureOpportunityAgent:
 
 
 class ZeroWalletAgent:
-    """≈œ«—… «·„Õ«›Ÿ «·’›—Ì… (Testnet) Ê«· ›«⁄· „⁄ «·’‰«»Ì—"""
+    """√Ö√è√á√ë√â √á√°√£√ç√á√ù√ô √á√°√ï√ù√ë√≠√â (Testnet) √¶√á√°√ä√ù√á√ö√° √£√ö √á√°√ï√§√á√à√≠√ë"""
     def __init__(self, config: Dict = None, exp_db: ExperienceDB = None,
                  wallet_gen: WalletGeneratorAgent = None):
         self.config = config or {}
@@ -1467,8 +1467,8 @@ class ZeroWalletAgent:
 
     async def request_faucet(self, address: str, testnet: str) -> bool:
         self.logger.info(f"Requesting faucet for {address} on {testnet}")
-        # Â‰« Ì„ﬂ‰ ≈÷«›… «” œ⁄«¡ API ÕﬁÌﬁÌ ··’‰»Ê—
-        # ⁄·Ï ”»Ì· «·„À«·° ·‹ Sepolia:
+        # √•√§√á √≠√£√ü√§ √Ö√ñ√á√ù√â √á√ì√ä√è√ö√á√Å API √ç√û√≠√û√≠ √°√°√ï√§√à√¶√ë
+        # √ö√°√¨ √ì√à√≠√° √á√°√£√ã√á√°¬° √°√ú Sepolia:
         if testnet == 'sepolia':
             async with aiohttp.ClientSession() as session:
                 try:
@@ -1479,11 +1479,11 @@ class ZeroWalletAgent:
         return True
 
 # =============================================================================
-# 2. «·Êﬂ·«¡ «·√Œ·«ﬁÌÊ‰ (29 ÊﬂÌ·)
+# 2. √á√°√¶√ü√°√á√Å √á√°√É√é√°√á√û√≠√¶√§ (29 √¶√ü√≠√°)
 # =============================================================================
 
 class BlockchainConnector:
-    """« ’«· ¬„‰ Ê„ ⁄œœ «·‘»ﬂ« """
+    """√á√ä√ï√á√° √Ç√£√§ √¶√£√ä√ö√è√è √á√°√î√à√ü√á√ä"""
     def __init__(self, network: str, private_key: str = None):
         self.network = network
         self.private_key = private_key or os.getenv("PRIVATE_KEY", "0xYOUR_PRIVATE_KEY")
