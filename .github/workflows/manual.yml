@@ -1,4 +1,4 @@
-name: Manual workflow
+name: سير العمل اليدوي
 
 on:
   workflow_dispatch:
@@ -7,11 +7,16 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: List all files
-        run: ls -la
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-      - name: Run Python script
-        run: python run.py.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        run: python run.py
