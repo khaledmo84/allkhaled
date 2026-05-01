@@ -1453,7 +1453,13 @@ class SandwichAttackAgent(BaseAgent):
             elif data.startswith('0x5c11d795'):  # swapExactTokensForTokens (v2)
                 path = self._decode_uniswap_v2_path(data)
                 amount_in = self._decode_uint256(data, 4)
-                return {"key": "value"}
-                    'type': 'v2',
-                    'path': path,
-              
+                elif data.startswith('0x5c11d795'):  # swapExactTokensForTokens (v2)
+    path = self._decode_uniswap_v2_path(data)
+    amount_in = self._decode_uint256(data, 4)
+    return {
+        'type': 'v2',
+        'path': path,
+        'amount_in': amount_in,
+        'expected_out': await self._get_expected_out_v2(path, amount_in),
+        'victim': tx['from']
+    }
