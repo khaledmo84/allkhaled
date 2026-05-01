@@ -1274,6 +1274,9 @@ class APIKeyManager:
 
 
 # ==================== KeyMaintenanceAgent ====================
+class BaseMaintenanceAgent:
+    """فئة أساسية للصيانة - إضافة مؤقتة لحل الخطأ"""
+    pass
 class KeyMaintenanceAgent(BaseMaintenanceAgent):
     def __init__(self, config: MaintenanceConfig, api_key_manager: APIKeyManager):
         super().__init__("KeyMaintenance", config)
