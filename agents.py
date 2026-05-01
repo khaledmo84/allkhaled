@@ -1450,13 +1450,14 @@ class SandwichAttackAgent(BaseAgent):
                     'expected_out': params['amountOutMinimum'],
                     'victim': tx['from']
                 }
-            elif data.startswith('0x5c11d795'):  # swapExactTokensForTokens (v2)
-                path = self._decode_uniswap_v2_path(data)
-                amount_in = self._decode_uint256(data, 4
-    return {
-        'type': 'v2',
-        'path': path,
-        'amount_in': amount_in,
-        'expected_out': await self._get_expected_out_v2(path, amount_in),
-        'victim': tx['from']
-    }
+            # تحليل المعاملة لاكتشاف نوع الـ MEV
+if data.startswith('0x7ff36ab5'):  # swapExactETHForTokens (v2)
+    return 'v2_eth_for_tokens'
+elif data.startswith('0x18cbafe5'):  # swapExactTokensForETH (v2)
+    return 'v2_tokens_for_eth'
+elif data.startswith('0x5c11d795'):  # swapExactTokensForTokens (v2)
+    return 'v2_tokens_for_tokens'
+elif data.startswith('0x414bf389'):  # exactInputSingle (v3)
+    return 'v3_exact_input_single'
+else:
+    return None
