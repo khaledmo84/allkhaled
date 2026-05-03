@@ -1326,5 +1326,15 @@ async def main():
 if __name__ == "__main__":
     handle_signals()
     asyncio.run(main())
-
+# تعريف UltimateNode (مبسط)
+class UltimateNode:
+    def __init__(self, config):
+        self.config = config
+        print("UltimateNode initialized")
+    
+    async def start(self):
+        print("UltimateNode starting...")
+    
+    async def stop(self):
+        print("UltimateNode stopping...")
 # ==================== نهاية الملف الثالث ====================
