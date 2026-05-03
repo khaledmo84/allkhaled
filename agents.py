@@ -46,6 +46,24 @@ class nn:
     class Module:
         pass
 # ثم استيراد باقي المحتويات من core
+# تعريف torch مؤقت لمنع أخطاء الاستيراد (PyTorch غير مثبت)
+class torch:
+    class Tensor:
+        pass
+    class nn:
+        class Module:
+            pass
+    class optim:
+        pass
+    def no_grad():
+        return lambda x: x
+    def tensor(x):
+        return x
+    def float32(x):
+        return x
+    class device:
+        def __init__(self, x):
+            pass
 from core import *
 # ==================== تعريف الكلاسات المفقودة (مؤقتاً) ====================
 class PriceFetcher:
