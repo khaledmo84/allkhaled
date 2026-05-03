@@ -44,6 +44,37 @@ class ExperienceDB:
 
 # ثم استيراد باقي المحتويات من core
 from core import *
+# ==================== تعريف الكلاسات المفقودة (مؤقتاً) ====================
+class PriceFetcher:
+    """جلب الأسعار - تعريف مؤقت"""
+    pass
+
+class MempoolWatcher:
+    """مراقبة الميمبول - تعريف مؤقت"""
+    pass
+
+class MarketDataAggregator:
+    """تجميع بيانات السوق - تعريف مؤقت"""
+    pass
+
+class ProfitCalculator:
+    """حساب الربح - تعريف مؤقت"""
+    pass
+
+class PreflightSimulator:
+    """محاكاة ما قبل التنفيذ - تعريف مؤقت"""
+    pass
+
+class HoneypotDetector:
+    """كشف هانيبوت - تعريف مؤقت"""
+    def __init__(self, god_pulse=None):
+        pass
+    async def check_honeypot(self, token_address, from_address):
+        return {'is_honeypot': False, 'risk': 0.0}
+
+class GodPulse:
+    """مدير RPC - تعريف مؤقت"""
+    pass
 # ==================== مكتبات اختيارية مع معالجة آمنة ====================
 try:
     import torch
