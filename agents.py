@@ -1718,14 +1718,14 @@ class TimeBanditAgent(BaseAgent):
         await self._update_stats(False, 0)
         return None, 0, {}
 
-class AdvancedLiquidationAgent(BaseAgent):
-    def __init__(self, config: Config, god_pulse: GodPulse):
-        super().__init__("liquidation_advanced", [StrategyCategory.LIQUIDATION])
-        self.config = config
-        self.god_pulse = god_pulse
-        self.aave_pool = "0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9"
-        self.aave_v3_pool = "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
-        self.compound_controller = "0x3d9819210A31b4961b30EF54bE2aeD4B4117786e"
+#class AdvancedLiquidationAgent(BaseAgent):
+    #def __init__(self, config: Config, god_pulse: GodPulse):
+        #super().__init__("liquidation_advanced", [StrategyCategory.LIQUIDATION])
+        #self.config = config
+        #self.god_pulse = god_pulse
+        #self.aave_pool = "0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9"
+        #self.aave_v3_pool = "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2"
+        #self.compound_controller = "0x3d9819210A31b4961b30EF54bE2aeD4B4117786e"
 
     async def scan_aave_positions(self) -> List[Dict]:
         endpoint = "https://api.thegraph.com/subgraphs/name/aave/protocol-v3"
