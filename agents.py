@@ -41,7 +41,10 @@ import numpy as np
 class ExperienceDB:
     """فئة قاعدة بيانات للتجارب - تعريف محلي"""
     pass
-
+# تعريف nn مؤقت لمنع الأخطاء
+class nn:
+    class Module:
+        pass
 # ثم استيراد باقي المحتويات من core
 from core import *
 # ==================== تعريف الكلاسات المفقودة (مؤقتاً) ====================
