@@ -3418,7 +3418,20 @@ class AdaptiveContractAgent(BaseAgent):
         for name in to_remove:
             del self.deployed_contracts[name]
         return {'active_contracts': len(self.deployed_contracts)}
-
+# استيراد PyTorch إذا كان متاحاً
+try:
+    import torch
+    import torch.nn as nn
+    import torch.optim as optim
+    TORCH_AVAILABLE = True
+except ImportError:
+    TORCH_AVAILABLE = False
+    # تعريفات وهمية لتجنب الأخطاء
+    class nn:
+        class Module:
+            pass
+    class optim:
+        pass
 # ==================== دالة حقن الوكلاء المتقدمين ====================
 def inject_advanced_agents(main_agent):
     agents = []
