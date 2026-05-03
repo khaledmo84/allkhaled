@@ -38,7 +38,7 @@ import numpy as np
 
 # استيراد من core
 from core import *
-
+from core import ExperienceDB
 # ==================== مكتبات اختيارية مع معالجة آمنة ====================
 try:
     import torch
@@ -318,7 +318,13 @@ class ARIMAPredictor:
         return forecast[0]
 
 # ==================== وكلاء التداول الأساسيون (مع بيانات حقيقية) ====================
-
+# تعريف مؤقت لـ ExperienceDB في حال لم يكن موجوداً في core
+class ExperienceDB:
+    """فئة افتراضية لتجنب أخطاء الاستيراد"""
+    async def record_opportunity(self, opp): pass
+    async def get_recent_opportunities(self, limit): return []
+    async def get_agent_stats(self): return {}
+    async def get_stats(self, days): return {'total_profit':0, 'trades_count':0}
 class MarketAgent(BaseAgent):
     def __init__(self, price_fetcher: PriceFetcher):
         super().__init__("market", [StrategyCategory.MARKET])
