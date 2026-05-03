@@ -3560,3 +3560,51 @@ class TimeBanditAgent(BaseAgent):
         return None, 0, {}
 
 # أضف أي كلاس آخر قد يكون مفقوداً
+# ==================== تعريف الكلاسات المفقودة (لتوافق unified.py) ====================
+class PPOAgent(BaseAgent):
+    def __init__(self, config, state_dim=4, action_dim=3):
+        super().__init__("ppo", [])
+    async def process(self, opportunity, market_data):
+        return opportunity, opportunity.confidence, {}
+
+class AdvancedLiquidationAgent(BaseAgent):
+    def __init__(self, config, god_pulse):
+        super().__init__("advanced_liquidation", [])
+    async def process(self, opportunity, market_data):
+        return None, 0, {}
+
+class TimeBanditAgent(BaseAgent):
+    def __init__(self, config, god_pulse):
+        super().__init__("time_bandit", [])
+    async def process(self, opportunity, market_data):
+        return None, 0, {}
+
+class HybridQuantumAgent(BaseAgent):
+    def __init__(self, config, god_pulse=None):
+        super().__init__("hybrid_quantum", [])
+    async def process(self, opportunity, market_data):
+        return None, 0, {}
+
+class BalancerV3Agent(BaseAgent):
+    def __init__(self, config, god_pulse):
+        super().__init__("balancer_v3", [])
+    async def process(self, opportunity, market_data):
+        return None, 0, {}
+
+class MetaOptimizerAgent(BaseAgent):
+    def __init__(self, config, exp_db, god_pulse):
+        super().__init__("meta_optimizer", [])
+    async def process(self, opportunity, market_data):
+        return None, 0, {}
+
+class CrossChainOrchestrator(BaseAgent):
+    def __init__(self, config, bridge_executor=None):
+        super().__init__("cross_chain", [])
+    async def process(self, opportunity, market_data):
+        return None, 0, {}
+
+class AdaptiveContractAgent(BaseAgent):
+    def __init__(self, config, god_pulse=None, signer=None):
+        super().__init__("adaptive_contract", [])
+    async def process(self, opportunity, market_data):
+        return None, 0, {}
