@@ -32,8 +32,33 @@ from functools import partial
 
 # استيراد كل شيء من core و agents
 from core import *
-from agents import *
-
+# استيراد آمن من agents (تجنب الأخطاء)
+try:
+    from agents import (
+        BaseAgent, ArbitrageAgent, LiquidationAgent, MEVAgent, LendingAgent,
+        FlashLoanAgent, OracleAgent, NFTAgent, JITAgent, FundingAgent,
+        DustAgent, TWAPAgent, GovernanceAgent, OptionsAgent, BridgeAgent,
+        StakingAgent, YieldAgent, GasAgent, AirdropAgent, ReferralAgent,
+        SelfDestructAgent, GaslessAgent, KeeperAgent, HoneypotAgent,
+        ForgottenAgent, PricePredictionAgent, SentimentAgent, TechnicalAgent,
+        NewsAgent, ComposioAgent, InjectiveAgent, TriangularArbitrageAgent,
+        SandwichAttackAgent, TimeBanditAgent, AdvancedLiquidationAgent,
+        PPOAgent, BalancerV3Agent, MetaOptimizerAgent,
+        RustAgent, CppAgent, Uint256Agent, PAXAgent, HPRMaxbotAgent,
+        LatencyOptimizerAgent, LangGraphAgent, AutoGenAgent, CrewAIAgent,
+        BrowserUseAgent, RagasAgent, PromptfooAgent, HeliconeAgent,
+        DeepResearchAgent, SmartContractAuditorAgent, GovernanceTrackerAgent,
+        LiquidityAnalyzerAgent, MultiBuilderAgent, ContractDeployerAgent,
+        FlashbotsExecutor, CowSwapExecutor, BridgeExecutor,
+        ZeroXExecutor, OneInchExecutor, ParaswapExecutor,
+        GelatoExecutor, ChainlinkKeeperExecutor,
+        GeneticBreeder, AgentOrchestrator,
+        HybridQuantumAgent, FHEAgent, CrossChainOrchestrator, AdaptiveContractAgent,
+        inject_advanced_agents
+    )
+except ImportError as e:
+    print(f"Warning: Could not import all agents: {e}")
+    from agents import *
 # استيراد العقل المدبر
 try:
     from thinking_core import ThinkingCore, setup_thinking_core
