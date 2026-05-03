@@ -174,50 +174,24 @@ class PriceFetcher:
 
 
 class MempoolWatcher:
-    """مراقبة الميمبول عبر WebSocket أو RPC"""
-def __init__(self, god_pulse: GodPulse, config: Config, ws_manager=None):
+    def __init__(self, god_pulse: GodPulse, config: Config, ws_manager=None):
         self.god_pulse = god_pulse
         self.config = config
         self.ws_manager = ws_manager
-        self.pending_transactions: List[Dict] = []
+        self.pending_transactions = []
         self.running = False
-        self._task: Optional[asyncio.Task] = None
 
     async def start(self):
         self.running = True
-        self._task = asyncio.create_task(self._watch())
-
-    async def _watch(self):
-        # يمكن استخدام WebSocket إذا كان متاحاً، وإلا نستخدم polling (غير مدعوم)
-        # هنا سنستخدم محاكاة مؤقتة
-        while self.running:
-            # محاكاة وصول معاملة
-            if random.random() < 0.1:
-                tx = {
-                    'hash': '0x' + os.urandom(32).hex(),
-                    'from': '0x' + os.urandom(20).hex(),
-                    'to': '0x' + os.urandom(20).hex(),
-                    'value': random.randint(1, 100) * 10**18,
-                    'gasPrice': random.randint(10, 200) * 10**9,
-                    'input': '0x' + os.urandom(100).hex()
-                }
-                self.pending_transactions.append(tx)
-                if len(self.pending_transactions) > 1000:
-                    self.pending_transactions = self.pending_transactions[-1000:]
-            await asyncio.sleep(1)
-
-    def get_swaps_in_mempool(self, limit: int = 10) -> List[Dict]:
-        swaps = [tx for tx in self.pending_transactions if tx.get('input', '').startswith(('0x7ff36ab5', '0x18cbafe5', '0x5c11d795'))]
-        return swaps[-limit:]
+        # محتوى الدالة
+        pass
 
     async def stop(self):
         self.running = False
-        if self._task:
-            self._task.cancel()
-            try:
-                await self._task
-            except asyncio.CancelledError:
-                pass
+        pass
+
+    def get_swaps_in_mempool(self, limit: int = 10):
+        return []
 
 
 class MarketDataAggregator:
