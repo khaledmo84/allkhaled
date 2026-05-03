@@ -175,7 +175,7 @@ class PriceFetcher:
 
 class MempoolWatcher:
     """مراقبة الميمبول عبر WebSocket أو RPC"""
-    def __init__(self, god_pulse: GodPulse, config: Config, ws_manager: WebSocketManager):
+   def __init__(self, god_pulse: GodPulse, config: Config, ws_manager=None):
         self.god_pulse = god_pulse
         self.config = config
         self.ws_manager = ws_manager
