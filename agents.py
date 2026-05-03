@@ -37,8 +37,13 @@ from datetime import datetime
 import numpy as np
 
 # استيراد من core
+# تعريف ExperienceDB محلياً في agents.py
+class ExperienceDB:
+    """فئة قاعدة بيانات للتجارب - تعريف محلي"""
+    pass
+
+# ثم استيراد باقي المحتويات من core
 from core import *
-from core import ExperienceDB
 # ==================== مكتبات اختيارية مع معالجة آمنة ====================
 try:
     import torch
