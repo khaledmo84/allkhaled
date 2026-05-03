@@ -3546,3 +3546,17 @@ __all__ = [
     'HybridQuantumAgent', 'FHEAgent', 'CrossChainOrchestrator', 'AdaptiveContractAgent',
     'inject_advanced_agents'
 ]
+# ==================== تعريف الكلاسات المفقودة ====================
+class AdvancedLiquidationAgent(BaseAgent):
+    def __init__(self, config, god_pulse):
+        super().__init__("advanced_liquidation", [])
+    async def process(self, opportunity, market_data):
+        return None, 0, {}
+
+class TimeBanditAgent(BaseAgent):
+    def __init__(self, config, god_pulse):
+        super().__init__("time_bandit", [])
+    async def process(self, opportunity, market_data):
+        return None, 0, {}
+
+# أضف أي كلاس آخر قد يكون مفقوداً
