@@ -1,65 +1,52 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-import asyncio
-import sys
-import os
-import logging
+# run.py - نسخة معدلة لتعمل على Cloudflare Workers
+import json
+from unified import UltimateNode
 
-# تحميل المتغيرات البيئية
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    print("Warning: python-dotenv not installed, using system env")
+# تهيئة العقدة (مرة واحدة عند بدء التشغيل)
+node = UltimateNode(config={})
 
-# إعداد التسجيل
-logging.basicConfig(
-    level=getattr(logging, os.getenv("LOG_LEVEL", "INFO")),
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger("AlKhaled")
-
-async def main():
-    logger.info("Starting AlKhaled Ultimate Node...")
+# هذه هي الدالة الرئيسية التي يستدعيها Cloudflare Workers
+async def fetch(request):
+    # 1. تحديد نوع الطلب
+    url = request.url
     
-    try:
-        # استيراد العقدة الرئيسية من الملف الأصلي
-        from unified import UltimateNode
-        
-        # إعدادات البوت
-        config = {
-            'port': int(os.getenv("PORT", 8080)),
-            'redis_url': os.getenv("REDIS_URL"),
-            'mempool_ws': os.getenv("MEMPOOL_WS", "wss://eth-mainnet.g.alchemy.com/v2/demo"),
-            'quantum': {
-                'ibmq_token': os.getenv("IBMQ_TOKEN"),
-                'aws_region': os.getenv("AWS_REGION"),
-            },
-            'bootstrap_peers': [
-                "/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ",
-            ]
-        }
-        
-        # إنشاء وتشغيل العقدة
-        node = UltimateNode(config)
+    # 2. معالجة الأمر حسب المسار
+    if "/start" in url:
+        # بدء تشغيل العقدة
         await node.start()
-        logger.info(f"UltimateNode started on port {config['port']}")
-        
-        # الانتظار حتى يتم إيقاف التشغيل
-        await asyncio.Event().wait()
-        
-    except ImportError as e:
-        logger.error(f"Failed to import UltimateNode: {e}")
-        logger.error("Make sure unified.py exists in the same directory")
-        sys.exit(1)
-    except KeyboardInterrupt:
-        logger.info("Shutting down...")
-    except Exception as e:
-        logger.exception(f"Fatal error: {e}")
-        sys.exit(1)
+        return Response.json({"status": "node started"})
+    
+    elif "/stop" in url:
+        # إيقاف العقدة
+        await node.stop()
+        return Response.json({"status": "node stopped"})
+    
+    elif "/status" in url:
+        # الحصول على حالة العقدة
+        return Response.json({"status": "running"})
+    
+    else:
+        # الصفحة الرئيسية
+        return Response.json({
+            "name": "AlKhaled Node",
+            "version": "1.0",
+            "endpoints": ["/start", "/stop", "/status"]
+        })
 
-if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("\nBot stopped by user")
+# كلاس الاستجابة (محاكاة لـ Response في Cloudflare)
+class Response:
+    @staticmethod
+    def json(data, status=200):
+        return {
+            "statusCode": status,
+            "headers": {"Content-Type": "application/json"},
+            "body": json.dumps(data)
+        }
+
+# نقطة الدخول الرئيسية (يقرأها Cloudflare)
+async def main(request):
+    return await fetch(request)
+    async def scheduled(event):
+    """تُستدعى تلقائياً حسب الـ Cron Job"""
+    await node.start()
+    return {"status": "scheduled run completed"}
