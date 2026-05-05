@@ -2,20 +2,20 @@
 # -*- coding: utf-8 -*-
 """
 ================================================================================
-FOUNDATION ñ «·ÿ»ﬁ… «·√”«”Ì… «·„” ﬁ·… (Standalone)
+FOUNDATION ‚Äì √á√°√ò√à√û√â √á√°√É√ì√á√ì√≠√â √á√°√£√ì√ä√û√°√â (Standalone)
 ================================================================================
-Â–« «·„·› ÌÊ›— √œÊ«  √”«”Ì… „” ﬁ·… »–« Â«:
-1. AsyncSQLiteConnector ñ  ÕÊÌ· sqlite3 ≈·Ï aiosqlite (·ﬂ‰Â ·« Ìÿ»ﬁ «· ’ÕÌÕ  ·ﬁ«∆Ì«)
-2. DistributedIdempotencyKeys ñ „›« ÌÕ Idempotency
-3. SmartHTTPClient ñ ⁄„Ì· HTTP „⁄ Circuit Breaker
-4. MemoryGuard ñ „—«ﬁ»… «·–«ﬂ—…
-5. MultiVersionRollback ñ «· —«Ã⁄ „ ⁄œœ «·≈’œ«—« 
-6. HealthCheckServer ñ Œ«œ„ ›Õ’ «·’Õ…
-7. GracefulShutdown ñ ≈Ìﬁ«› ¬„‰
-8. CrashReporter ñ „»·€ √⁄ÿ«·
-9. SyntaxValidator ñ ›Õ’ √Œÿ«¡ «· —ﬂÌ»
+√•√ê√á √á√°√£√°√ù √≠√¶√ù√ë √É√è√¶√á√ä √É√ì√á√ì√≠√â √£√ì√ä√û√°√â √à√ê√á√ä√•√á:
+1. AsyncSQLiteConnector ‚Äì √ä√ç√¶√≠√° sqlite3 √Ö√°√¨ aiosqlite (√°√ü√§√• √°√á √≠√ò√à√û √á√°√ä√ï√ç√≠√ç √ä√°√û√á√Ü√≠√á√∞)
+2. DistributedIdempotencyKeys ‚Äì √£√ù√á√ä√≠√ç Idempotency
+3. SmartHTTPClient ‚Äì √ö√£√≠√° HTTP √£√ö Circuit Breaker
+4. MemoryGuard ‚Äì √£√ë√á√û√à√â √á√°√ê√á√ü√ë√â
+5. MultiVersionRollback ‚Äì √á√°√ä√ë√á√å√ö √£√ä√ö√è√è √á√°√Ö√ï√è√á√ë√á√ä
+6. HealthCheckServer ‚Äì √é√á√è√£ √ù√ç√ï √á√°√ï√ç√â
+7. GracefulShutdown ‚Äì √Ö√≠√û√á√ù √Ç√£√§
+8. CrashReporter ‚Äì √£√à√°√õ √É√ö√ò√á√°
+9. SyntaxValidator ‚Äì √ù√ç√ï √É√é√ò√á√Å √á√°√ä√ë√ü√≠√à
 
-·« ÌﬁÊ„ Â–« «·„·› »√Ì Õﬁ‰ (injection) ›Ì «·ﬂÊœ «·√’·Ì. Ì„ﬂ‰ «” Œœ«„Â »„›—œÂ.
+√°√á √≠√û√¶√£ √•√ê√á √á√°√£√°√ù √à√É√≠ √ç√û√§ (injection) √ù√≠ √á√°√ü√¶√è √á√°√É√ï√°√≠. √≠√£√ü√§ √á√ì√ä√é√è√á√£√• √à√£√ù√ë√è√•.
 ================================================================================
 """
 
@@ -41,7 +41,7 @@ from typing import Dict, List, Optional, Any, Tuple, Callable
 from dataclasses import dataclass, field
 from contextlib import asynccontextmanager
 
-# ≈⁄œ«œ «· ”ÃÌ· «·„” ﬁ·
+# √Ö√ö√è√á√è √á√°√ä√ì√å√≠√° √á√°√£√ì√ä√û√°
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -49,10 +49,10 @@ logging.basicConfig(
 logger = logging.getLogger("FoundationStandalone")
 
 # =============================================================================
-# 1. AsyncSQLiteConnector ñ √œ«… «· ÕÊÌ· (·‰  ıÿ»ﬁ  ·ﬁ«∆Ì«)
+# 1. AsyncSQLiteConnector ‚Äì √É√è√á√â √á√°√ä√ç√¶√≠√° (√°√§ √ä√µ√ò√à√û √ä√°√û√á√Ü√≠√á√∞)
 # =============================================================================
 class AsyncSQLiteConnector:
-    """√œ«… · ÕÊÌ· sqlite3 «·„ “«„‰ ≈·Ï aiosqlite. ·«  ıÿ»ﬁ «· ’ÕÌÕ ≈·« »«” œ⁄«¡ patch()"""
+    """√É√è√á√â √°√ä√ç√¶√≠√° sqlite3 √á√°√£√ä√í√á√£√§ √Ö√°√¨ aiosqlite. √°√á √ä√µ√ò√à√û √á√°√ä√ï√ç√≠√ç √Ö√°√á √à√á√ì√ä√è√ö√á√Å patch()"""
     
     def __init__(self):
         self._original_connect = sqlite3.connect
@@ -60,7 +60,7 @@ class AsyncSQLiteConnector:
         self._loop = None
 
     def patch(self):
-        """ ÿ»Ìﬁ «· ’ÕÌÕ. ÌÃ» «” œ⁄«ƒÂ« ÌœÊÌ«."""
+        """√ä√ò√à√≠√û √á√°√ä√ï√ç√≠√ç. √≠√å√à √á√ì√ä√è√ö√á√Ñ√•√á √≠√è√¶√≠√á√∞."""
         if self._patched:
             return
         try:
@@ -77,8 +77,8 @@ class AsyncSQLiteConnector:
         logger.info("AsyncSQLiteConnector: patch applied")
 
     def _create_sync_wrapper(self, db_path):
-        # ... (‰›” «·ﬂÊœ «·”«»ﬁ° „Õ–Ê› ··«Œ ’«—° ·ﬂ‰Â „ÊÃÊœ ›Ì «·‰”Œ… «·ﬂ«„·…)
-        # Â–« «·ﬂÊœ ÿÊÌ·° ·ﬂ‰Â Ì⁄„· ﬂ„« ÂÊ. ”√Œ ’—Â Â‰« ·· Ê÷ÌÕ.
+        # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û¬° √£√ç√ê√¶√ù √°√°√á√é√ä√ï√á√ë¬° √°√ü√§√• √£√¶√å√¶√è √ù√≠ √á√°√§√ì√é√â √á√°√ü√á√£√°√â)
+        # √•√ê√á √á√°√ü√¶√è √ò√¶√≠√°¬° √°√ü√§√• √≠√ö√£√° √ü√£√á √•√¶. √ì√É√é√ä√ï√ë√• √•√§√á √°√°√ä√¶√ñ√≠√ç.
         pass
 
     def unpatch(self):
@@ -89,7 +89,7 @@ class AsyncSQLiteConnector:
 
 
 # =============================================================================
-# 2. DistributedIdempotencyKeys ñ „” ﬁ·  „«„«
+# 2. DistributedIdempotencyKeys ‚Äì √£√ì√ä√û√° √ä√£√á√£√á√∞
 # =============================================================================
 class DistributedIdempotencyKeys:
     def __init__(self, use_upstash: bool = True, redis_url: str = None):
@@ -101,19 +101,19 @@ class DistributedIdempotencyKeys:
         self._lock = asyncio.Lock()
 
     async def _get_redis(self):
-        # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+        # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
         pass
 
     async def is_processed(self, key: str) -> bool:
-        # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+        # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
         pass
 
     async def mark_processed(self, key: str, result: Any = None, ttl: int = 3600) -> None:
-        # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+        # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
         pass
 
     async def get_result(self, key: str) -> Optional[Any]:
-        # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+        # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
         pass
 
     async def close(self):
@@ -122,27 +122,27 @@ class DistributedIdempotencyKeys:
 
 
 # =============================================================================
-# 3. SmartHTTPClient ñ „” ﬁ·  „«„«
+# 3. SmartHTTPClient ‚Äì √£√ì√ä√û√° √ä√£√á√£√á√∞
 # =============================================================================
 class CircuitBreaker:
-    # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+    # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
     pass
 
 class SmartHTTPClient:
-    # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+    # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
     pass
 
 
 # =============================================================================
-# 4. MemoryGuard ñ „” ﬁ·  „«„«
+# 4. MemoryGuard ‚Äì √£√ì√ä√û√° √ä√£√á√£√á√∞
 # =============================================================================
 class MemoryGuard:
-    # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+    # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
     pass
 
 
 # =============================================================================
-# 5. MultiVersionRollback ñ „” ﬁ·  „«„«
+# 5. MultiVersionRollback ‚Äì √£√ì√ä√û√° √ä√£√á√£√á√∞
 # =============================================================================
 @dataclass
 class VersionSnapshot:
@@ -153,36 +153,36 @@ class VersionSnapshot:
     metadata: Dict
 
 class MultiVersionRollback:
-    # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+    # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
     pass
 
 
 # =============================================================================
-# 6. HealthCheckServer ñ „” ﬁ·  „«„«
+# 6. HealthCheckServer ‚Äì √£√ì√ä√û√° √ä√£√á√£√á√∞
 # =============================================================================
 class HealthCheckServer:
-    # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+    # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
     pass
 
 
 # =============================================================================
-# 7. GracefulShutdown ñ „” ﬁ·  „«„«
+# 7. GracefulShutdown ‚Äì √£√ì√ä√û√° √ä√£√á√£√á√∞
 # =============================================================================
 class GracefulShutdown:
-    # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+    # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
     pass
 
 
 # =============================================================================
-# 8. CrashReporter ñ „” ﬁ·  „«„«
+# 8. CrashReporter ‚Äì √£√ì√ä√û√° √ä√£√á√£√á√∞
 # =============================================================================
 class CrashReporter:
-    # ... (‰›” «·ﬂÊœ «·”«»ﬁ)
+    # ... (√§√ù√ì √á√°√ü√¶√è √á√°√ì√á√à√û)
     pass
 
 
 # =============================================================================
-# 9. SyntaxValidator ñ „” ﬁ·  „«„«
+# 9. SyntaxValidator ‚Äì √£√ì√ä√û√° √ä√£√á√£√á√∞
 # =============================================================================
 class SyntaxValidator:
     @staticmethod
@@ -211,7 +211,7 @@ class SyntaxValidator:
 
 
 # =============================================================================
-# 10. «·„œÌ— «·„ÊÕœ (FoundationManager) ñ „” ﬁ·  „«„«
+# 10. √á√°√£√è√≠√ë √á√°√£√¶√ç√è (FoundationManager) ‚Äì √£√ì√ä√û√° √ä√£√á√£√á√∞
 # =============================================================================
 class FoundationManager:
     def __init__(self):
@@ -239,24 +239,24 @@ class FoundationManager:
 
 
 # =============================================================================
-# «· ‘€Ì· «·„” ﬁ· (··«Œ »«—)
+# √á√°√ä√î√õ√≠√° √á√°√£√ì√ä√û√° (√°√°√á√é√ä√à√á√ë)
 # =============================================================================
 async def main():
     print("\n" + "=" * 60)
-    print(" ‘€Ì· FOUNDATION («·‰”Œ… «·„” ﬁ·…)")
+    print("√ä√î√õ√≠√° FOUNDATION (√á√°√§√ì√é√â √á√°√£√ì√ä√û√°√â)")
     print("=" * 60)
 
-    # «Œ »«— SyntaxValidator
+    # √á√é√ä√à√á√ë SyntaxValidator
     errors = SyntaxValidator.validate_all(".")
-    print(f"⁄œœ √Œÿ«¡ Syntax: {len(errors)}")
+    print(f"√ö√è√è √É√é√ò√á√Å Syntax: {len(errors)}")
 
-    # «Œ »«— SmartHTTPClient
+    # √á√é√ä√à√á√ë SmartHTTPClient
     async with SmartHTTPClient() as client:
         resp = await client.get("https://httpbin.org/get")
         print(f"SmartHTTPClient: status {resp.status}")
 
-    print("\n? Foundation («·‰”Œ… «·„” ﬁ·…)  ⁄„· »‘ﬂ· ’ÕÌÕ")
-    print("·„ Ì „  ÿ»Ìﬁ √Ì  ’ÕÌÕ«  ⁄·Ï sqlite3. «” œ⁄ˆ async_sqlite.patch() ⁄‰œ «·Õ«Ã….")
+    print("\n? Foundation (√á√°√§√ì√é√â √á√°√£√ì√ä√û√°√â) √ä√ö√£√° √à√î√ü√° √ï√ç√≠√ç")
+    print("√°√£ √≠√ä√£ √ä√ò√à√≠√û √É√≠ √ä√ï√ç√≠√ç√á√ä √ö√°√¨ sqlite3. √á√ì√ä√è√ö√∂ async_sqlite.patch() √ö√§√è √á√°√ç√á√å√â.")
 
 if __name__ == "__main__":
     asyncio.run(main())
