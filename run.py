@@ -299,51 +299,40 @@ class ShutdownManager:
                 logger.error(f"Service stop error: {e}")
         
         logger.info("Shutdown complete")
+# إضافة خادم ويب بسيط باستخدام aiohttp
+from aiohttp import web
 
+async def health_check(request):
+    """نقطة نهاية لفحص صحة التطبيق"""
+    return web.Response(text='{"status": "AlKhaled Node is running"}', content_type='application/json')
+
+async def start_http_server():
+    """تشغيل خادم HTTP على المنفذ 8080"""
+    app = web.Application()
+    app.router.add_get('/health', health_check)
+    app.router.add_get('/', health_check)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, '0.0.0.0', 8080)
+    await site.start()
+    logger.info("✅ HTTP server started on port 8080")
+    # Keep the server running
+    await asyncio.Event().wait()
 # =============================================================================
 # 5. الدالة الرئيسية
 # =============================================================================
 async def main():
-    """الدالة الرئيسية للتشغيل"""
-    print("=" * 80)
-    print("ALKHALED ULTIMATE – تشغيل النظام المتكامل")
-    print("=" * 80)
-    print(f"Python version: {sys.version}")
-    print(f"Environment: {os.getenv('ENVIRONMENT', 'development')}")
-    print(f"Log level: {LOG_LEVEL}")
-    print("=" * 80)
+    # ... (الكود الموجود لديك حتى قبل تشغيل البوت)
     
-    # التحقق من البيئة
-    check_environment()
-    check_dependencies()
+    # تشغيل خادم HTTP في الخلفية كـ Task
+    http_task = asyncio.create_task(start_http_server())
     
-    # إنشاء مدير الإيقاف
-    shutdown_manager = ShutdownManager()
-    shutdown_manager.setup_signal_handlers()
-    
-    # تشغيل الخدمات المساعدة
-    shutdown_manager.services = await start_services()
-    
-    # تشغيل البوت
+    # تشغيل البوت كالمعتاد
     shutdown_manager.agent = await run_bot()
     
-    if shutdown_manager.agent is None:
-        logger.error("Failed to start bot. Exiting.")
-        return
-    
-    # انتظار إشارة الإيقاف
-    await shutdown_manager.wait_for_shutdown()
-    
-    logger.info("AlKhaled Ultimate stopped successfully")
-
-# =============================================================================
-# 6. نقطة الدخول
-# =============================================================================
-if __name__ == "__main__":
+    # إذا انتهى البوت، ننهي خادم HTTP أيضاً
+    http_task.cancel()
     try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("\nInterrupted by user")
-    except Exception as e:
-        logger.exception(f"Fatal error: {e}")
-        sys.exit(1)
+        await http_task
+    except asyncio.CancelledError:
+        pass
