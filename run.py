@@ -15,6 +15,33 @@ RUN.PY – ملف التشغيل الرئيسي للنظام المتكامل
 5. إدارة الإيقاف الآمن (Graceful Shutdown)
 =============================================================================
 """
+# تعريف ExperienceDB مؤقتاً (لأنه غير موجود في الكود الأساسي)
+class ExperienceDB:
+    """فئة قاعدة بيانات للتجارب - تعريف مبسط"""
+    def __init__(self, db_path: str = "alkhaled.db"):
+        self.db_path = db_path
+        self.stats = {}
+    
+    async def init(self):
+        pass
+    
+    async def record_opportunity(self, opp):
+        pass
+    
+    async def get_recent_opportunities(self, limit: int = 100):
+        return []
+    
+    async def get_agent_stats(self):
+        return {}
+    
+    async def get_stats(self, days: int = 7):
+        return {'total_profit': 0.0, 'trades_count': 0}
+    
+    async def record_agent_call(self, agent_name: str, success: bool, confidence: float, time_ns: int, category=None, error=""):
+        pass
+    
+    async def close(self):
+        pass
 import logging
 import sys
 
