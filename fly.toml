@@ -1,0 +1,36 @@
+# fly.toml - إعدادات نشر AlKhaled على Fly.io
+
+app = "alkhaled"  # اسم التطبيق (غير حسب رغبتك)
+
+primary_region = "ewr"  # المنطقة (ewr = شرق أمريكا، يمكن تغييرها)
+
+[build]
+  # لا حاجة لـ Dockerfile، Fly.io سيكتشف Python تلقائياً
+
+[env]
+  PYTHON_VERSION = "3.10"
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false    # لا توقف الخدمة تلقائياً
+  auto_start_machines = true    # ابدأ تلقائياً عند الطلب
+  min_machines_running = 1      # حافظ على خادم واحد شغال دائماً
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
