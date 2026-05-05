@@ -15,7 +15,19 @@ RUN.PY – ملف التشغيل الرئيسي للنظام المتكامل
 5. إدارة الإيقاف الآمن (Graceful Shutdown)
 =============================================================================
 """
+import logging
+import sys
 
+# إزالة أي معالج موجود مسبقاً
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
+# إعداد logging جديد
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
 import asyncio
 import os
 import sys
